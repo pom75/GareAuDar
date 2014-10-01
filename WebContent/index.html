@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook Login JavaScript Example</title>
+<meta charset="UTF-8">
+</head>
+<body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1500073900262956',
+      xfbml      : true,
+      version    : 'v2.1'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="box">
+    <div id="social_networks">
+        <div id="facebook_button_box">
+            <fb:login-button show-faces="true" width="450" perms="email,user_birthday,read_stream,user_friends"></fb:login-button>
+        </div>
+    </div>
+    <div id="social_networks_profiles">
+        <div id="facebook_profile" style="display:none;">
+            <div id="facebook_profile_image" style="width:50px;height:50px;margin-left:20px;float:left;">
+
+            </div>
+            <div id="facebook_profile_text" style="height:50px;margin-top:-3px;margin-left:5px;float:left">
+
+            </div>
+            <div class="clear"></div>
+            <ul id="facebook_user_data">
+
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+
+Nom du web service : addcomment
+Description du service : rajouter un commentaire
+Parametres en entrer : key + text
+Format de sortie: JSON
+Exemple de sortie : {} OU {mess:..., code:...}
+Erreur Possible : key inexistant, paramètres non renseigné 
+Avancement du Service : Non fini
+Class Java en raport avec le Web Service : AddCommentService et ServiceTools ,ControlString
+Inofrmations additionelles : 
+
+
+Nom du web service : addfriend
+Description du service : rajouter un amis
+Parametres en entrer : key + idF
+Format de sortie: JSON
+Exemple de sortie : {} OU {mess:..., code:...}
+Erreur Possible : key inexistant, paramètres non renseigné ,idF inexistante
+Avancement du Service : Non fini
+Class Java en raport avec le Web Service : AddFriendService et ServiceTools ,ControlString
+Inofrmations additionelles : 
+
+
+om du web service : removefriend
+Description du service : suprimer un amis
+Parametres en entrer : key + idF
+Format de sortie: JSON
+Exemple de sortie : {} OU {mess:..., code:...}
+Erreur Possible : key inexistant, paramètres non renseigné ,idF inexistante
+Avancement du Service : Non fini
+Class Java en raport avec le Web Service : RemoveFriendService et ServiceTools ,ControlString
+Inofrmations additionelles : 
