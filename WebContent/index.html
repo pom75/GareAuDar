@@ -1,49 +1,468 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Facebook Login JavaScript Example</title>
-<meta charset="UTF-8">
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="font-awesome-4.1.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+
 <body>
+<!-- facebookScript -->
+<div id="fb-root"></div>
 <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1500073900262956',
-      xfbml      : true,
-      version    : 'v2.1'
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
     });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1500073900262956',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.1' // use version 2.1
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
   };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+
+	
+var accessToken;
+function Nom_De_La_Fonction() {
+FB.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+    // the user is logged in and has authenticated your
+    // app, and response.authResponse supplies
+    // the user's ID, a valid access token, a signed
+    // request, and the time the access token 
+    // and signed request each expire
+    var uid = response.authResponse.userID;
+    accessToken = response.authResponse.accessToken;
+    console.log(accessToken);
+    
+  } else if (response.status === 'not_authorized') {
+    // the user is logged in to Facebook, 
+    // but has not authenticated your app
+  } else {
+    // the user isn't logged in to Facebook.
+  }
+ });
+ 
+FB.api('/me', {fields: 'last_name'}, function(response) { 
+
+	    console.log(response);
+	     });
+	
+
+FB.api('/me/friendlists' , {access_token : accessToken} ,function(response) { 
+
+	    console.log(response);
+	     });
+	     
+	
+}
+  
+
+
+
+
 </script>
-<div class="box">
-    <div id="social_networks">
-        <div id="facebook_button_box">
-            <fb:login-button show-faces="true" width="450" perms="email,user_birthday,read_stream,user_friends"></fb:login-button>
-        </div>
-    </div>
-    <div id="social_networks_profiles">
-        <div id="facebook_profile" style="display:none;">
-            <div id="facebook_profile_image" style="width:50px;height:50px;margin-left:20px;float:left;">
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&appId=1500073900262956&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
-            </div>
-            <div id="facebook_profile_text" style="height:50px;margin-top:-3px;margin-left:5px;float:left">
+	<div id="wrapper">
 
-            </div>
-            <div class="clear"></div>
-            <ul id="facebook_user_data">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+			</div>
+			<!-- /.navbar-header -->
 
-            </ul>
-        </div>
-        <div class="clear"></div>
-    </div>
-</div>
+			<ul class="nav navbar-top-links navbar-right">
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i
+						class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-messages">
+						<li><a href="#">
+								<div>
+									<strong>John Smith</strong> <span class="pull-right text-muted">
+										<em>Yesterday</em>
+									</span>
+								</div>
+								<div>Lorem ipsum dolor sit amet, consectetur adipiscing
+									elit. Pellentesque eleifend...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<strong>John Smith</strong> <span class="pull-right text-muted">
+										<em>Yesterday</em>
+									</span>
+								</div>
+								<div>Lorem ipsum dolor sit amet, consectetur adipiscing
+									elit. Pellentesque eleifend...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<strong>John Smith</strong> <span class="pull-right text-muted">
+										<em>Yesterday</em>
+									</span>
+								</div>
+								<div>Lorem ipsum dolor sit amet, consectetur adipiscing
+									elit. Pellentesque eleifend...</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>Read
+									All Messages</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-messages --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-tasks fa-fw"></i>
+						<i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-tasks">
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 1</strong> <span class="pull-right text-muted">40%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-success"
+											role="progressbar" aria-valuenow="40" aria-valuemin="0"
+											aria-valuemax="100" style="width: 40%">
+											<span class="sr-only">40% Complete (success)</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 2</strong> <span class="pull-right text-muted">20%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-info" role="progressbar"
+											aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
+											style="width: 20%">
+											<span class="sr-only">20% Complete</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 3</strong> <span class="pull-right text-muted">60%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-warning"
+											role="progressbar" aria-valuenow="60" aria-valuemin="0"
+											aria-valuemax="100" style="width: 60%">
+											<span class="sr-only">60% Complete (warning)</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<p>
+										<strong>Task 4</strong> <span class="pull-right text-muted">80%
+											Complete</span>
+									</p>
+									<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-danger"
+											role="progressbar" aria-valuenow="80" aria-valuemin="0"
+											aria-valuemax="100" style="width: 80%">
+											<span class="sr-only">80% Complete (danger)</span>
+										</div>
+									</div>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>See
+									All Tasks</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-tasks --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
+						<i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-alerts">
+						<li><a href="#">
+								<div>
+									<i class="fa fa-comment fa-fw"></i> New Comment <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
+										class="pull-right text-muted small">12 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-envelope fa-fw"></i> Message Sent <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-tasks fa-fw"></i> New Task <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a href="#">
+								<div>
+									<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
+										class="pull-right text-muted small">4 minutes ago</span>
+								</div>
+						</a></li>
+						<li class="divider"></li>
+						<li><a class="text-center" href="#"> <strong>See
+									All Alerts</strong> <i class="fa fa-angle-right"></i>
+						</a></li>
+					</ul> <!-- /.dropdown-alerts --></li>
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+						<i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
+								Profile</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+						</li>
+						<li class="divider"></li>
+						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
+								Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
+
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li class="sidebar-search">
+							<div class="input-group custom-search-form">
+								<input type="text" class="form-control" placeholder="Search...">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">
+										<i class="fa fa-search"></i>
+									</button>
+								</span>
+							</div> <!-- /input-group -->
+						</li>
+						<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
+								Dashboard</a></li>
+						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
+								Charts<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="flot.html">Flot Charts</a></li>
+								<li><a href="morris.html">Morris.js Charts</a></li>
+							</ul> <!-- /.nav-second-level --></li>
+						<li><a href="tables.html"><i class="fa fa-table fa-fw"></i>
+								Tables</a></li>
+						<li><a class="active" href="forms.html"><i
+								class="fa fa-edit fa-fw"></i> Forms</a></li>
+						<li><a href="#"><i class="fa fa-wrench fa-fw"></i> UI
+								Elements<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="panels-wells.html">Panels and Wells</a></li>
+								<li><a href="buttons.html">Buttons</a></li>
+								<li><a href="notifications.html">Notifications</a></li>
+								<li><a href="typography.html">Typography</a></li>
+								<li><a href="grid.html">Grid</a></li>
+							</ul> <!-- /.nav-second-level --></li>
+						<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>
+								Multi-Level Dropdown<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="#">Second Level Item</a></li>
+								<li><a href="#">Second Level Item</a></li>
+								<li><a href="#">Third Level <span class="fa arrow"></span></a>
+									<ul class="nav nav-third-level">
+										<li><a href="#">Third Level Item</a></li>
+										<li><a href="#">Third Level Item</a></li>
+										<li><a href="#">Third Level Item</a></li>
+										<li><a href="#">Third Level Item</a></li>
+									</ul> <!-- /.nav-third-level --></li>
+							</ul> <!-- /.nav-second-level --></li>
+						<li><a href="#"><i class="fa fa-files-o fa-fw"></i>
+								Sample Pages<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="blank.html">Blank Page</a></li>
+								<li><a href="login.html">Login Page</a></li>
+							</ul> <!-- /.nav-second-level --></li>
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
+
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Facebook connexion</h1>
+					<button type="reset" class="btn btn-default" onclick="javascript:Nom_De_La_Fonction();">Chargement Button</button>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+<!-- facebook connexion -->
+			<div class="row">
+
+				<div class="fb-login-button" data-max-rows="4" data-size="medium" scope="public_profile,email,user_friends" data-show-faces="true" data-auto-logout-link="false"></div>
+
+<div id="status">
+					
+					
+					
+					
+		
+						<!-- /.panel-body -->
+					</div>
+					<!-- /.panel -->
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /#page-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- jQuery Version 1.11.0 -->
+	<script src="js/jquery-1.11.0.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="js/sb-admin-2.js"></script>
 
 </body>
+
 </html>
+
