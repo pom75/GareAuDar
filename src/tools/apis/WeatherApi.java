@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -32,7 +30,7 @@ public class WeatherApi {
 			in.close();
 			JSONObject json = new JSONObject(str);		
 			return json;
-		} catch (JSONException | IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -52,7 +50,7 @@ public class WeatherApi {
 		in.close();
 		JSONObject json = new JSONObject(str);		
 		return json;
-		} catch (JSONException | IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

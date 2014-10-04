@@ -25,7 +25,7 @@ public class ExampleNewUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		String login = req.getParameter("login");
+		
 		String pass = req.getParameter("pass");
 		String name = req.getParameter("name");
 		String fname = req.getParameter("fname");
@@ -45,6 +45,6 @@ public class ExampleNewUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		this.doGet(req, res);
+		
 	}
 }
