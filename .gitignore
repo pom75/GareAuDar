@@ -7,3 +7,4 @@ TP/
 *.classpath
 *.settings
 *build
+/bin
