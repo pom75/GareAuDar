@@ -1,4 +1,4 @@
-package servlets.auth;
+package servlets;
 
 import java.io.IOException;
 
@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import tools.apis.SNCFApi;
 
 /**
- * Servlet implementation class TrainAtGare
+ * Servlet implementation class Itineraire
  */
-@WebServlet("/trainatgare")
-public class TrainAtGare extends HttpServlet {
+@WebServlet("itineraire")
+public class Itineraire extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TrainAtGare() {
+    public Itineraire() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,9 +29,10 @@ public class TrainAtGare extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String num = request.getParameter("num");
+		String dep = request.getParameter("dep");
+		String arr = request.getParameter("arr");
 		response.setContentType("text/plain");
-		response.getWriter().println(SNCFApi.getTrainAtGareJSON(num));
+		response.getWriter().println(SNCFApi.getInineraire(dep, arr));
 	}
 
 	/**

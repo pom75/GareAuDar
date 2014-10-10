@@ -15,16 +15,15 @@ body {
 	background-image: url('img/blue.gif');
 	background-repeat: repeat;
 }
-
 .badge {
 	margin-left: 5px;
 }
-
 .flexx {
 	padding: 20px;
 	padding-top: 0px;
 	min-height: 700px;
 }
+
 </style>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -33,39 +32,22 @@ body {
     <![endif]-->
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/angular.js"></script>
 <script src="js/ajax.js"></script>
 <script src="js/mustache.js"></script>
-<script>
-	function searchGare() {
-		var num = $('input[name="numgare"]').val();
-		$.ajax({
-			type : "POST",
-			url : "trainatgare",
-			data : "num="+num,
-			dataType : "json",
-			success : function(rep) {
-				var tpl = "<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td></tr>{{#passages}}{{#train}}" +
-				"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td></tr>{{/train}}</table>{{/passages}}";
-				var html = Mustache.to_html(tpl, rep);
-				$('#responserecerche').html(html);
+<script src="js/data.js"></script>
+<script src="js/index.js"></script>
 
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				$('#responserecerche').html("<p>num de gare innexistant</p>");
-			}
-		});
-
-	}
-</script>
 
 </head>
 
 <body>
-	<!-- facebookScript -->
+	<!-- Facebook API -->
 	<div id="fb-root"></div>
 	<script src="js/facebook.js"></script>
-	<!-- Fixed navbar -->
+	
+	
+	
+	<!-- Barre de navigation -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -79,7 +61,7 @@ body {
 				<div class="visible-xs">
 					<button type="button" class="navbar-toggle collapsed"
 						data-toggle="collapse" data-target="#sousmenu">
-						<span class="glyphicon glyphicon-chevron-down">
+						<span class="glyphicon glyphicon-chevron-down"></span>
 					</button>
 					<!-- Boutton favori quand xs -->
 					<a class="navbar-brand pull-right" href="#"> <span
@@ -109,21 +91,20 @@ body {
 			<!-- Menu adaptable -->
 			<div id="menu" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Recherche </a></li>
-					<li><a href="#contact">Social</a></li>
-					<li><a href="#contact">Actualités <span
+					<li class="active"><a href="index.html">Recherche </a></li>
+					<li><a href="social.html">Social</a></li>
+					<li><a href="actu.html">Actualités <span
 							class="badge pull-right">3</span></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="navbar-brand" href="#"><div
-								class="hidden-xs">
+					<li><a class="navbar-brand" href="#">
+					<div class="hidden-xs">
 								<span class="glyphicon glyphicon-envelope"></span><span
 									class="badge pull-right">5</span>
 							</div></a></li>
 
 					<li>
 						<!-- Formulaire Search -->
-
 						<form class="navbar-form" role="search">
 							<div class="input-group">
 								<input type="text" class="form-control" placeholder="Search"
@@ -135,9 +116,6 @@ body {
 								</div>
 							</div>
 						</form>
-
-
-
 					</li>
 					<li>
 						<!-- Boutton favoris quand not xs -->
@@ -151,11 +129,12 @@ body {
 			<!--/.nav-collapse -->
 		</div>
 	</div>
+	
+	<!-- Contenu principal de la page -->
 	<div class="container">
-
-
 		<div class="row">
 			<div class="hidden-xs">
+			<!-- Menu gauche de la page -->
 				<div class="col-md-3">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -169,19 +148,105 @@ body {
 					</div>
 				</div>
 			</div>
-			<!-- container Principal -->
-			<div class="col-md-9">
+			
+			<!-- Parti de contenu de la page pour les recherches -->
+			<div class="col-md-9" style="display: none">
 				<div class="panel panel-primary  flexx">
 					<h2>Prochains départ à une gare</h2>
-					<form class="form-horizontal" role="form">
+					<!-- Liste de proposition de Type de train -->
+					<form class="form-horizontal" role="form" id="mainform">
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">Numéro
-								de la gare</label>
+							<label for="ligne" class="col-sm-3 control-label">Choissez
+								une ligne</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="numgare"
-									name="numgare" placeholder="numéro de la gare">
+								<label class="radio-inline" onclick="choixRER()"> <input
+									type="radio" name="inlineRadioOptions" id="inlineRadio1"
+									value="rer">RER
+								</label> <label class="radio-inline" onclick="choixTER()"> <input
+									type="radio" name="inlineRadioOptions" id="inlineRadio1"
+									value="ter">TER
+								</label> <label class="radio-inline" onclick="choixTRAM()"> <input
+									type="radio" name="inlineRadioOptions" id="inlineRadio1"
+									value="tram">TRAM
+								</label>
 							</div>
 						</div>
+						<!-- Liste de proposition de Ligne de train pour les RER -->
+						<div class="form-group" style="display: none" id="rer">
+							<label for="rer" class="col-sm-3 control-label">Choissez
+								un RER</label>
+							<div class="col-sm-8" onclick="choixTRAIN('rer')">
+								<label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="a">RER
+									A
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="b">RER
+									B
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="d">RER
+									D
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="c">RER
+									C
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="e">RER
+									E
+								</label>
+							</div>
+						</div>
+						<!-- Liste de propostion de Ligne de train pour les TER -->
+						<div class="form-group" style="display: none" id="ter">
+							<label for="ter" class="col-sm-3 control-label">Choissez
+								un TER</label>
+							<div class="col-sm-8" onclick="choixTRAIN('ter')">
+								<label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="l">TER
+									L
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="j">TER
+									J
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="h">TER
+									H
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="n">TER
+									N
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="p">TER
+									P
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="r">TER
+									R
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="u">TER
+									U
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="k">TER
+									K
+								</label>
+							</div>
+						</div>
+						<!-- Liste de proposition de Ligne de train pour les TRAM -->
+						<div class="form-group" style="display: none" id="tram">
+							<label for="ter" class="col-sm-3 control-label">Choissez
+								un TRAM</label>
+							<div class="col-sm-8" onclick="choixTRAIN('tram')">
+								<label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="t4">TRAM
+									4
+								</label>
+							</div>
+						</div>
+						<!-- Liste de proposition de Gare dynamique -->
+						<div class="form-group" style="display: none" id="gare">
+							<label for="ter" class="col-sm-3 control-label">Choissez
+								une gare</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="gareliste">
+								</select>
+							</div>
+						</div>
+						<!-- Ajout en favoris d'une recherche -->
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-8">
 								<div class="checkbox">
@@ -191,25 +256,152 @@ body {
 								</div>
 							</div>
 						</div>
+						<!-- Boutton de lancement de recherche -->
 						<div class="col-sm-offset-3 col-sm-8">
 							<button type="button" class="btn btn-default"
 								onclick="searchGare();">Chercher</button>
 						</div>
-						<div class="row">
-							<div class="col-md-8">
-								<div id="responserecerche">
-								
+					</form>
+					<!-- Conteneur de reponse de recherche -->
+					<div class="row">
+						<div class="col-md-8">
+							<div id="responserecerche"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		<!-- Parti de contenu de la page pour les Inténéraire -->
+			<div class="col-md-9">
+				<div class="panel panel-primary  flexx">
+					<h2> Recherche de tous les trains passant par deux gares</h2>
+					<!-- Liste de proposition de Type de train -->
+					<form class="form-horizontal" role="form" id="mainform1">
+						<div class="form-group">
+							<label for="ligne" class="col-sm-3 control-label">Choissez
+								une ligne</label>
+							<div class="col-sm-8">
+								<label class="radio-inline" onclick="choixRER1()"> <input
+									type="radio" name="inlineRadioOptions" id="inlineRadio1"
+									value="rer">RER
+								</label> <label class="radio-inline" onclick="choixTER1()"> <input
+									type="radio" name="inlineRadioOptions" id="inlineRadio1"
+									value="ter">TER
+								</label> <label class="radio-inline" onclick="choixTRAM1()"> <input
+									type="radio" name="inlineRadioOptions" id="inlineRadio1"
+									value="tram">TRAM
+								</label>
+							</div>
+						</div>
+						<!-- Liste de proposition de Ligne de train pour les RER -->
+						<div class="form-group" style="display: none" id="rer1">
+							<label for="rer" class="col-sm-3 control-label">Choissez
+								un RER</label>
+							<div class="col-sm-8" onclick="choixTRAIN1('rer')">
+								<label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="a">RER
+									A
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="b">RER
+									B
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="d">RER
+									D
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="c">RER
+									C
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="e">RER
+									E
+								</label>
+							</div>
+						</div>
+						<!-- Liste de propostion de Ligne de train pour les TER -->
+						<div class="form-group" style="display: none" id="ter1">
+							<label for="ter" class="col-sm-3 control-label">Choissez
+								un TER</label>
+							<div class="col-sm-8" onclick="choixTRAIN1('ter')">
+								<label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="l">TER
+									L
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="j">TER
+									J
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="h">TER
+									H
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="n">TER
+									N
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="p">TER
+									P
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="r">TER
+									R
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="u">TER
+									U
+								</label> <label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="k">TER
+									K
+								</label>
+							</div>
+						</div>
+						<!-- Liste de proposition de Ligne de train pour les TRAM -->
+						<div class="form-group" style="display: none" id="tram1">
+							<label for="ter" class="col-sm-3 control-label">Choissez
+								un TRAM</label>
+							<div class="col-sm-8" onclick="choixTRAIN1('tram')">
+								<label class="radio-inline"> <input type="radio"
+									name="inlineRadioOptions" id="inlineRadio1" value="t4">TRAM
+									4
+								</label>
+							</div>
+						</div>
+						<!-- Liste de proposition de Gare dynamique depart -->
+						<div class="form-group"  style="display: none" id="gare">
+							<label for="ter" class="col-sm-3 control-label">Choissez
+								une de gare départ</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="gareliste1">
+								</select>
+							</div>
+						</div>
+						<!-- Liste de proposition de Gare dynamique -->
+						<div class="form-group" style="display: none" id="gare">
+							<label for="ter" class="col-sm-3 control-label">Choissez
+								une de gare d'arrivé</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="gareliste2">
+								</select>
+							</div>
+						</div>
+						<!-- Ajout en favoris d'une recherche arrive -->
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-8">
+								<div class="checkbox">
+									<label> <input type="checkbox"> ajouter cette
+										recherche en favoris
+									</label>
 								</div>
 							</div>
-
 						</div>
+						<!-- Boutton de lancement de recherche -->
+						<div class="col-sm-offset-3 col-sm-8">
+							<button type="button" class="btn btn-default"
+								onclick="searchIti();">Chercher</button>
+						</div>
+					</form>
+					<!-- Conteneur de reponse de recherche -->
+					<div class="row">
+						<div class="col-md-8">
+							<div id="responserecerche"></div>
+						</div>
+					</div>
 				</div>
-
-
-
 			</div>
 		</div>
-	</div>
 	</div>
 
 	<!-- FOOTER -->
@@ -243,15 +435,3 @@ body {
 </body>
 </html>
 <script src="js/bootstrap-notify.js"></script>
-<script>
-	//Quéry Spécifique a cette page
-
-	// Basic Features, style isn't even required.
-	$('.show-notification').click(function(e) {
-		$('.top-left').notify({
-			message : {
-				text : 'Aw yeah, It works!'
-			}
-		}).show();
-	});
-</script>
