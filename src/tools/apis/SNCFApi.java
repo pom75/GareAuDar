@@ -5,15 +5,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+
+import org.apache.xerces.impl.dv.util.Base64;
 import org.json.JSONObject;
 import org.json.XML;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 public class SNCFApi {
 	private static String log = "tnhtn175";
 	private static String pwd = "cgP479kW";
 	
-	// Reçois un numéro de gare et retourne tous les prochai ntrain de passage a cette gare en JSON
+	// Re��ois un num��ro de gare et retourne tous les prochai ntrain de passage a cette gare en JSON
 	public static JSONObject getTrainAtGareJSON(String num){
 		try {
             String line = " ";
@@ -47,7 +48,7 @@ public class SNCFApi {
 		return null;
 	}
 	
-	// Reçois un numéro de gare et retourne tous les prochai ntrain de passage a cette gare en JSON
+	// Re��ois un num��ro de gare et retourne tous les prochai ntrain de passage a cette gare en JSON
 		public static JSONObject getInineraire(String dep, String arr){
 			try {
 	            String line = " ";

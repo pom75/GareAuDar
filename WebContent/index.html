@@ -81,9 +81,9 @@ body {
 			<div class="visible-xs">
 				<div id="sousmenu" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Prochains départ à une
+						<li class="active" onclick="switchMenu(true)"><a href="#" >Prochains départ d' une
 								gare</a></li>
-						<li><a href="#contact">Chercher un itinéraire</a></li>
+						<li><a href="#contact" onclick="switchMenu(false)">Chercher un itinéraire</a></li>
 					</ul>
 				</div>
 			</div>
@@ -93,7 +93,7 @@ body {
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="index.html">Recherche </a></li>
 					<li><a href="social.html">Social</a></li>
-					<li><a href="actu.html">Actualités <span
+					<li><a href="actu.html">Actualitée"s <span
 							class="badge pull-right">3</span></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -134,6 +134,7 @@ body {
 	<div class="container">
 		<div class="row">
 			<div class="hidden-xs">
+			
 			<!-- Menu gauche de la page -->
 				<div class="col-md-3">
 					<div class="panel panel-default">
@@ -141,18 +142,19 @@ body {
 							<h3 class="panel-title">Recherche</h3>
 						</div>
 						<div class="list-group">
-							<a href="#" class="list-group-item active">Prochains départ à
-								une gare</a> <a href="#" class="list-group-item">Chercher un
-								itinéraire</a>
+							<a id="ee" href="#" class="list-group-item active" onclick="switchMenu(true)">Prochains départ d'un
+								une gare</a> 
+							<a id="pp" href="#" class="list-group-item" onclick="switchMenu(false)">Chercher un
+								itiné"raire</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			
 			<!-- Parti de contenu de la page pour les recherches -->
-			<div class="col-md-9" style="display: none">
+			<div id="page1" class="col-md-9">
 				<div class="panel panel-primary  flexx">
-					<h2>Prochains départ à une gare</h2>
+					<h2>Prochains départ d'une gare</h2>
 					<!-- Liste de proposition de Type de train -->
 					<form class="form-horizontal" role="form" id="mainform">
 						<div class="form-group">
@@ -271,8 +273,8 @@ body {
 				</div>
 			</div>
 		
-		<!-- Parti de contenu de la page pour les Inténéraire -->
-			<div class="col-md-9">
+		<!-- Parti de contenu de la page pour les Int��n��raire -->
+			<div id="page2" class="col-md-9" style="display: none">
 				<div class="panel panel-primary  flexx">
 					<h2> Recherche de tous les trains passant par deux gares</h2>
 					<!-- Liste de proposition de Type de train -->
@@ -360,7 +362,7 @@ body {
 							</div>
 						</div>
 						<!-- Liste de proposition de Gare dynamique depart -->
-						<div class="form-group"  style="display: none" id="gare">
+						<div class="form-group"  style="display: none" id="gare1">
 							<label for="ter" class="col-sm-3 control-label">Choissez
 								une de gare départ</label>
 							<div class="col-sm-8">
@@ -369,7 +371,7 @@ body {
 							</div>
 						</div>
 						<!-- Liste de proposition de Gare dynamique -->
-						<div class="form-group" style="display: none" id="gare">
+						<div class="form-group" style="display: none" id="gare2">
 							<label for="ter" class="col-sm-3 control-label">Choissez
 								une de gare d'arrivé</label>
 							<div class="col-sm-8">
@@ -396,7 +398,7 @@ body {
 					<!-- Conteneur de reponse de recherche -->
 					<div class="row">
 						<div class="col-md-8">
-							<div id="responserecerche"></div>
+							<div id="responserecerche1"></div>
 						</div>
 					</div>
 				</div>

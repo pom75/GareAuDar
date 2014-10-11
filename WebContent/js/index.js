@@ -1,8 +1,19 @@
 //-----------------TOOLS index
+var menu = -1;
 function switchMenu(bool){
-	if(bool){
-		
-	}else{
+	console.log("ooooo");
+	if(menu == -1 || menu == 0 && bool){
+		menu = 1;
+		$( "#pp" ).removeClass("active");
+		$( "#ee" ).addClass("active");
+		$("#page1").css("display", "inline");
+		$("#page2").css("display", "none");
+	}else if (menu == -1 || menu == 1 && !bool){
+		$( "#ee" ).removeClass("active");
+		$( "#pp" ).addClass("active");
+		$("#page2").css("display", "inline");
+		$("#page1").css("display", "none");
+		menu = 0;
 		
 	}
 }
@@ -184,22 +195,20 @@ function choixTRAIN(s){
 function searchIti() {
 		var dep = $("#gareliste1 option:selected").val();
 		var arr = $("#gareliste2 option:selected").val();
-		console.log(num);
 		$.ajax({
 			type : "POST",
 			url : "itineraire",
-			data : "dep="+dep+"arr="+arr,
+			data : "dep="+dep+"&arr="+arr,
 			dataType : "json",
 			success : function(rep) {
-				//TODOOOO
 				var tpl = "<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td></tr>{{#passages}}{{#train}}" +
 				"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td></tr>{{/train}}</table>{{/passages}}";
 				var html = Mustache.to_html(tpl, rep);
-				$('#responserecerche').html(html);
+				$('#responserecerche1').html(html);
 
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				$('#responserecerche').html("<p>num de gare innexistant</p>");
+				$('#responserecerche1').html("<p>num de gare innexistant</p>");
 			}
 		});
 
@@ -224,4 +233,130 @@ function choixTRAM1(){
 	$("#tram1").css("display", "inline");
 	$("#rer1").css("display", "none");
 	$("#gar1e").css("display", "none");
+}
+
+
+//Changement de la liste déroulante
+function choixTRAIN1(s){
+	var name = $("#mainform1 input[type='radio']:checked").val();
+	$("#gare1").css("display", "inline");
+	$("#gare2").css("display", "inline");
+	$("#gareliste1").html('<option>----------------</option>');
+	$("#gareliste2").html('<option>----------------</option>');
+	switch(name) //mot-clé de la réponse du fichier php
+	{
+	case "a":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.a !== 'undefined') {
+				$("#gareliste").append('<option value="'+value.fields.code_uic +'"  >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "b":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.b !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "c":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.c !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "d":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.d !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "e":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.e !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "l":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.l !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "j":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.j !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "h":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.h !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "n":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.n !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "p":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.p !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "r":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.r !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "u":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.u !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	case "k":
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.k !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;	
+	default:
+		$.each( tags, function( key, value ) {
+			if (typeof value.fields.t4 !== 'undefined') {
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
+
+			}
+	});
+		break;
+	}
+	
 }
