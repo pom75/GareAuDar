@@ -35,12 +35,7 @@ body {
 <script src="js/bootstrap.min.js"></script>
 <script src="js/ajax.js"></script>
 <script src="js/mustache.js"></script>
-<script>
-	function test() {
-		$('#mymodal').modal('show');
 
-	}
-</script>
 
 </head>
 
@@ -93,7 +88,7 @@ body {
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Recherche </a></li>
 					<li class="active"><a href="social.html">Social</a></li>
-					<li><a href="actu.html">Actualit��s <span
+					<li><a href="actu.html">Actualitées <span
 							class="badge pull-right">3</span></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -160,7 +155,9 @@ body {
 						<div class="fb-login-button" data-max-rows="4" data-size="large"
 							data-show-faces="true" data-auto-logout-link="true"
 							onclick="checkLoginState()"></div>
-						<div id="mymodal" class="modal fade bs-example-modal-sm"
+							
+						<!-- Pop Up De connexion a facebook -->	
+						<div id="myModal" class="modal fade bs-example-modal-sm"
 							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog modal-sm">
@@ -169,7 +166,7 @@ body {
 										<button type="button" class="close" data-dismiss="modal">
 											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 										</button>
-										<h4 class="modal-title" id="myModalLabel">Informaton !</h4>
+										<h4 class="modal-title" id="myModalLabel">Information !</h4>
 									</div>
 									<div class="modal-body">Pour pouvoir utiliser les
 										fonctionnalitées de cette page , il faut vous connecter
@@ -222,7 +219,7 @@ body {
 </html>
 <script src="js/bootstrap-notify.js"></script>
 <script>
-	//Qu��ry Sp��cifique a cette page
+	//Qu������ry Sp������cifique a cette page
 
 	// Basic Features, style isn't even required.
 	$('.show-notification').click(function(e) {
@@ -234,3 +231,9 @@ body {
 	});
 </script>
 <script src="js/data.js"></script>
+<script>
+	function test() {
+		$('#myModal').modal('show');
+		console.log("ee");
+	}
+</script>
