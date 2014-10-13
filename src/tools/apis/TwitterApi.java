@@ -1,5 +1,6 @@
 package tools.apis;
 
+import bd.ActualiteBD;
 import twitter4j.DirectMessage;
 import twitter4j.StallWarning;
 import twitter4j.Status;
@@ -15,14 +16,7 @@ import twitter4j.conf.ConfigurationBuilder;
 public class TwitterApi {
 
 	
-	
-	
-//	public static JSONObject getTweetsSNCF(int count){
-//
-//	
-//		return null;
-//	}
-	
+
 	 public static void main(String[] args) {
 //	        try {
 	            // gets Twitter instance with default credentials
@@ -44,6 +38,7 @@ public class TwitterApi {
 	    private static final UserStreamListener listener = new UserStreamListener() {
 	        @Override
 	        public void onStatus(Status status) {
+	        	ActualiteBD.postActualite(status.getUser().getScreenName(),status.getText());
 	            System.out.println("onStatus @" + status.getUser().getScreenName() + " - " + status.getText());
 	        }
 
