@@ -13,6 +13,11 @@
     <servlet-class>servlets.SendKeyServlet</servlet-class>
   </servlet>
   
+  <servlet>
+  <servlet-name>AddFriend</servlet-name>
+  <servlet-class>servlets.AddFriendServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>TrainAtGare</servlet-name>
     <url-pattern>/trainatgare</url-pattern>
@@ -24,5 +29,9 @@
   <servlet-mapping>
     <servlet-name>SendKey</servlet-name>
     <url-pattern>/sendkey</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+  <servlet-name>AddFriend</servlet-name>
+  <url-pattern>/AddFriend</url-pattern>
   </servlet-mapping>
 </web-app>
