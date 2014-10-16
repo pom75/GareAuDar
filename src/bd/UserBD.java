@@ -65,6 +65,5 @@ public class UserBD {
         }
         //Si tous ses bien passer on retrun true
         return true;
-    }
-
+    }	
 }

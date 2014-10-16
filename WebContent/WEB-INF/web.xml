@@ -23,6 +23,10 @@
 		<servlet-name>RemoveFriend</servlet-name>
 		<servlet-class>servlets.RemoveFriendServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ListFriends</servlet-name>
+		<servlet-class>servlets.ListFriendServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>TrainAtGare</servlet-name>
@@ -43,5 +47,9 @@
 	<servlet-mapping>
 		<servlet-name>RemoveFriend</servlet-name>
 		<url-pattern>/RemoveFriend</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListFriends</servlet-name>
+		<url-pattern>/ListFriends</url-pattern>
 	</servlet-mapping>
 </web-app>
