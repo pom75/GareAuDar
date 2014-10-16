@@ -24,4 +24,23 @@ public class FriendBD {
 		}
 		return true;
 	}
+
+	public static boolean removeFriend(int user1, int user2) {
+		Connection co;
+		Statement stm;
+		String query;
+		try {
+			co = DBTools.getMySQLConnection();
+			stm = co.createStatement();
+			query = "delete from Friends where id_user_1 ='"+user1+"' and id_user_2 = '"+user2+"';";
+			stm.executeUpdate(query);
+			stm.close();
+			co.close();
+		} catch (Exception e) {
+			System.err.print("Exception :");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }
