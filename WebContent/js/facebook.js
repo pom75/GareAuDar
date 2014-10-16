@@ -28,8 +28,26 @@ window.fbAsyncInit = function() {
 
 function statusChangeCallback(response) {
 	if (response.status === 'connected') {
-		// Logged into your app and Facebook.
-		testAPI();
+		// Logged into your app and Facebook
+		
+		accessToken = response.authResponse.accessToken;
+		console.log(accessToken);
+		$.ajax ({
+			type : "POST" ,
+			url: "sendkey",
+			data:"key="+accessToken, 
+			dataType : "json" ,
+			success: function(rep){
+				if(!(typeof (rep.code) == 'undefined')){
+					erreurServlet(rep.code,rep.mess);
+				}else{
+					
+				} 
+			},
+			error :function(jqXHR, textStatus , errorThrown ){
+
+			}
+		})
 	} else if (response.status === 'not_authorized') {
 		$('#myModal').modal('show');
 	} else {
@@ -39,37 +57,36 @@ function statusChangeCallback(response) {
 
 
 
-function Nom_De_La_Fonction() {
-	FB.getLoginStatus(function(response) {
-		if (response.status === 'connected') {
-			// the user is logged in and has authenticated your
-			// app, and response.authResponse supplies
-			// the user's ID, a valid access token, a signed
-			// request, and the time the access token 
-			// and signed request each expire
-			var uid = response.authResponse.userID;
-			accessToken = response.authResponse.accessToken;
-			console.log(accessToken);
 
-		} else if (response.status === 'not_authorized') {
-			// the user is logged in to Facebook, 
-			// but has not authenticated your app
-		} else {
-			// the user isn't logged in to Facebook.
-		}
+function getInformationUser(token) {
+	FB.api('/me', function(rep) {
+		FB.api('/me/friends', {
+		}, function(response) {
+			$.ajax ({
+				type : "POST" ,
+				url: "fbuser",
+				data:"id="+rep.id+"&name="+rep.name+"&first_name="+rep.first_name+"&last_name="+rep.last_name+"&link="+
+				rep.link+"&gender="+rep.gender+"&local="+rep.local+"&link="+rep.link+"&token="+token+"&="+token, 
+				dataType : "json" ,
+				success: function(rep){
+					if(!(typeof (rep.code) == 'undefined')){
+						boolInscr = true;
+						alert("Erreur "+rep.code+" : "+rep.mess);
+					}else{
+						boolInscr = true;
+						pop('inscrip');
+					} 
+				},
+				error :function(jqXHR, textStatus , errorThrown ){
+					boolInscr = true;
+					alert("textStatus");
+				}
+			})
+
+		});
 	});
-
-	FB.api('/me', function(response) {
-		console.log(JSON.stringify(response));
-	});
-
-	FB.api('/me/friends', {
-		access_token : accessToken
-	}, function(response) {
-
-		console.log(JSON.stringify(response));
-	});
-
 }
+
+
 
 

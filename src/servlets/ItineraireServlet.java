@@ -13,13 +13,13 @@ import tools.apis.SNCFApi;
  * Servlet implementation class Itineraire
  */
 
-public class Itineraire extends HttpServlet {
+public class ItineraireServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Itineraire() {
+    public ItineraireServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

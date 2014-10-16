@@ -3,23 +3,26 @@ package servlets;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import services.KeyService;
 import tools.apis.SNCFApi;
 
 /**
- * Servlet implementation class TrainAtGare
+ * Servlet implementation class sendKey
  */
 
-public class TrainAtGare extends HttpServlet {
+
+public class SendKeyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TrainAtGare() {
+    public SendKeyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,9 +31,10 @@ public class TrainAtGare extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String num = request.getParameter("num");
+		String key = request.getParameter("key");
 		response.setContentType("text/plain");
-		response.getWriter().println(SNCFApi.getTrainAtGareJSON(num));
+		KeyService keyService = new KeyService(key);
+		response.getWriter().println(keyService.service());
 	}
 
 	/**
