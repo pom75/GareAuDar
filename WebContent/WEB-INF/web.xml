@@ -27,6 +27,13 @@
 		<servlet-name>ListFriends</servlet-name>
 		<servlet-class>servlets.ListFriendServlet</servlet-class>
 	</servlet>
+	
+	
+	<servlet>
+		<servlet-name>GareFavor</servlet-name>
+		<servlet-class>servlets.GarFavorServlet</servlet-class>
+	</servlet>
+	
 
 	<servlet-mapping>
 		<servlet-name>TrainAtGare</servlet-name>
@@ -52,4 +59,10 @@
 		<servlet-name>ListFriends</servlet-name>
 		<url-pattern>/ListFriends</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>GarFavor</servlet-name>
+		<url-pattern>/GarFavor</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
