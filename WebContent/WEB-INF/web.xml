@@ -33,6 +33,11 @@
 		<servlet-name>GareFavor</servlet-name>
 		<servlet-class>servlets.GarFavorServlet</servlet-class>
 	</servlet>
+
+	<servlet>
+		<servlet-name>SupGareFavor</servlet-name>
+		<servlet-class>servlets.SuprimeGarFavorServlet</servlet-class>
+	</servlet>
 	
 
 	<servlet-mapping>
@@ -63,6 +68,11 @@
 	<servlet-mapping>
 		<servlet-name>GarFavor</servlet-name>
 		<url-pattern>/GarFavor</url-pattern>
+	</servlet-mapping>
+	
+		<servlet-mapping>
+		<servlet-name>SupGarFavor</servlet-name>
+		<url-pattern>/SupGarFavor</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

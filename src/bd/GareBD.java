@@ -24,5 +24,24 @@ public class GareBD {
 		}
 		return true;
 	}
+
+	public static boolean removeFavGare(String token, String uic) {
+		Connection co;
+		Statement stm;
+		String query;
+		try {
+			co = DBTools.getMySQLConnection();
+			stm = co.createStatement();
+			query = "delete from GarFavor where token = '"+token+"and UIC = '"+uic+"';";
+			stm.executeUpdate(query);
+			stm.close();
+			co.close();
+		} catch (Exception e) {
+			System.err.print("Exception :");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 	
 }
