@@ -1,5 +1,7 @@
 package services;
 
+import org.json.JSONArray;
+
 import bd.GareBD;
 
 public class GareService {
@@ -18,6 +20,14 @@ public class GareService {
 			return false;
 		}else{
 			return GareBD.removeFavGare(token, uic);
+		}	
+	}
+
+	public static JSONArray getStations(String user1) {
+		if(user1.isEmpty() || user1.equals("")){
+			return null;
+		}else{
+			return GareBD.listArray(user1);
 		}	
 	}
 }
