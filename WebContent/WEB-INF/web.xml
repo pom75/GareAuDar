@@ -19,16 +19,17 @@
 		<servlet-name>AddFriend</servlet-name>
 		<servlet-class>servlets.AddFriendServlet</servlet-class>
 	</servlet>
+
 	<servlet>
 		<servlet-name>RemoveFriend</servlet-name>
 		<servlet-class>servlets.RemoveFriendServlet</servlet-class>
 	</servlet>
+
 	<servlet>
 		<servlet-name>ListFriends</servlet-name>
 		<servlet-class>servlets.ListFriendServlet</servlet-class>
 	</servlet>
-	
-	
+
 	<servlet>
 		<servlet-name>GareFavor</servlet-name>
 		<servlet-class>servlets.GarFavorServlet</servlet-class>
@@ -37,8 +38,8 @@
 	<servlet>
 		<servlet-name>SupGareFavor</servlet-name>
 		<servlet-class>servlets.SuprimeGarFavorServlet</servlet-class>
-	</servlet>
-	
+	</servlet> 
+
 
 	<servlet-mapping>
 		<servlet-name>TrainAtGare</servlet-name>
@@ -52,27 +53,32 @@
 		<servlet-name>SendKey</servlet-name>
 		<url-pattern>/sendkey</url-pattern>
 	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>AddFriend</servlet-name>
 		<url-pattern>/AddFriend</url-pattern>
 	</servlet-mapping>
+
+
+
 	<servlet-mapping>
 		<servlet-name>RemoveFriend</servlet-name>
 		<url-pattern>/RemoveFriend</url-pattern>
 	</servlet-mapping>
+
+
 	<servlet-mapping>
 		<servlet-name>ListFriends</servlet-name>
 		<url-pattern>/ListFriends</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
-		<servlet-name>GarFavor</servlet-name>
-		<url-pattern>/GarFavor</url-pattern>
+		<servlet-name>GareFavor</servlet-name>
+		<url-pattern>/GareFavor</url-pattern>
 	</servlet-mapping>
 	
-		<servlet-mapping>
-		<servlet-name>SupGarFavor</servlet-name>
-		<url-pattern>/SupGarFavor</url-pattern>
-	</servlet-mapping>
-	
+	 <servlet-mapping>
+		<servlet-name>SupGareFavor</servlet-name> <url-pattern>/SupGareFavor</url-pattern> 
+			</servlet-mapping> 
+
 </web-app>
