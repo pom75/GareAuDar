@@ -1,28 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-  <servlet>
-    <servlet-name>TrainAtGare</servlet-name>
-    <servlet-class>servlets.TrainAtGareServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>Itineraire</servlet-name>
-    <servlet-class>servlets.ItineraireServlet</servlet-class>
-  </servlet>
-   <servlet>
-    <servlet-name>SendKey</servlet-name>
-    <servlet-class>servlets.SendKeyServlet</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>TrainAtGare</servlet-name>
-    <url-pattern>/trainatgare</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>Itineraire</servlet-name>
-    <url-pattern>/itineraire</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SendKey</servlet-name>
-    <url-pattern>/sendkey</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<servlet>
+		<servlet-name>TrainAtGare</servlet-name>
+		<servlet-class>servlets.TrainAtGareServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Itineraire</servlet-name>
+		<servlet-class>servlets.ItineraireServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SendKey</servlet-name>
+		<servlet-class>servlets.SendKeyServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>AddFriend</servlet-name>
+		<servlet-class>servlets.AddFriendServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>RemoveFriend</servlet-name>
+		<servlet-class>servlets.RemoveFriendServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ListFriends</servlet-name>
+		<servlet-class>servlets.ListFriendServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>GareFavor</servlet-name>
+		<servlet-class>servlets.GarFavorServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SupGareFavor</servlet-name>
+		<servlet-class>servlets.SuprimeGarFavorServlet</servlet-class>
+	</servlet> 
+
+
+	<servlet-mapping>
+		<servlet-name>TrainAtGare</servlet-name>
+		<url-pattern>/trainatgare</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Itineraire</servlet-name>
+		<url-pattern>/itineraire</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SendKey</servlet-name>
+		<url-pattern>/sendkey</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AddFriend</servlet-name>
+		<url-pattern>/AddFriend</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet-mapping>
+		<servlet-name>RemoveFriend</servlet-name>
+		<url-pattern>/RemoveFriend</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet-mapping>
+		<servlet-name>ListFriends</servlet-name>
+		<url-pattern>/ListFriends</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GareFavor</servlet-name>
+		<url-pattern>/GareFavor</url-pattern>
+	</servlet-mapping>
+	
+	 <servlet-mapping>
+		<servlet-name>SupGareFavor</servlet-name> <url-pattern>/SupGareFavor</url-pattern> 
+			</servlet-mapping> 
+
 </web-app>
