@@ -1,7 +1,6 @@
 //-----------------TOOLS index
 var menu = -1;
 function switchMenu(bool){
-	console.log("ooooo");
 	if(menu == -1 || menu == 0 && bool){
 		menu = 1;
 		$( "#pp" ).removeClass("active");

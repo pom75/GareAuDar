@@ -12,13 +12,13 @@
 body {
 	padding-top: 70px;
 	padding-bottom: 70px;
-	background-image: url('img/blue.gif');
-	background-repeat: repeat;
+	background-color: rgb(0,170,147);
 }
 
 .badge {
 	margin-left: 5px;
 }
+
 
 .flexx {
 	padding: 20px;
@@ -35,13 +35,14 @@ body {
 <script src="js/bootstrap.min.js"></script>
 <script src="js/ajax.js"></script>
 <script src="js/mustache.js"></script>
+<script src="js/social.js"></script>
 
 
 
 
 </head>
 
-<body>
+<body onload="affiche()">
 	<!-- facebookScript -->
 	<div id="fb-root"></div>
 	<script src="js/facebook.js"></script>
@@ -62,7 +63,7 @@ body {
 						<span class="glyphicon glyphicon-chevron-down">
 					</button>
 					<!-- Boutton favori quand xs -->
-					<a class="navbar-brand pull-right" href="#"> <span
+					<a class="navbar-brand pull-right" href="#fav"> <span
 						class="glyphicon glyphicon-star"></span>
 					</a> <a class="navbar-brand pull-right" href="#"> <span
 						class="glyphicon glyphicon-envelope"> </span><span
@@ -79,8 +80,10 @@ body {
 			<div class="visible-xs">
 				<div id="sousmenu" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Flex flex flex</a></li>
-						<li><a href="#contact">blablabla</a></li>
+						<li class="active" id="prom1" ><a id="prom" href="#prof" onclick="switchMenu(this)">Mon profil</a></li>
+						<li id="favm1"><a id="favm" href="#fav" onclick="switchMenu(this)">Mes favoris</a></li>
+						<li id="tram1"><a id="tram" href="#tra" onclick="switchMenu(this)">Mes trains</a></li>
+						<li id="stam1"><a id="stam" href="#sta" onclick="switchMenu(this)">Mes statistiques</a></li>
 					</ul>
 				</div>
 			</div>
@@ -99,29 +102,10 @@ body {
 								<span class="glyphicon glyphicon-envelope"></span><span
 									class="badge pull-right">5</span>
 							</div></a></li>
-
-					<li>
-						<!-- Formulaire Search -->
-
-						<form class="navbar-form" role="search">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search"
-									name="srch-term" id="srch-term">
-								<div class="input-group-btn">
-									<button class="btn btn-default" type="submit">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</div>
-							</div>
-						</form>
-
-
-
-					</li>
 					<li>
 						<!-- Boutton favoris quand not xs -->
 						<div class="hidden-xs">
-							<a class="navbar-brand" href="#"><span
+							<a class="navbar-brand" href="#fav"><span
 								class="glyphicon glyphicon-star"></span></a>
 						</div>
 					</li>
@@ -130,9 +114,11 @@ body {
 			<!--/.nav-collapse -->
 		</div>
 	</div>
+	
+	<!-- container Principal -->
 	<div class="container">
 
-
+		<!-- Menu gauche de la page -->
 		<div class="row">
 			<div class="hidden-xs">
 				<div class="col-md-3">
@@ -141,24 +127,359 @@ body {
 							<h3 class="panel-title">Social</h3>
 						</div>
 						<div class="list-group">
-							<a href="#" class="list-group-item active">Flex flex felx</a> <a
-								href="#" class="list-group-item">Blablabla</a>
+							<a id="prop" href="#" class="list-group-item active" onclick="switchMenu(this)">Mon profil</a> 
+							<a id="favp" href="#" class="list-group-item" onclick="switchMenu(this)">Mes favoris</a>
+							<a id="trap" href="#" class="list-group-item" onclick="switchMenu(this)">Mes trains</a>
+							<a id="stap" href="#" class="list-group-item" onclick="switchMenu(this)">Mes statistiques</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- container Principal -->
-			<div class="col-md-9">
+			
+			
+			<!-- Sous menu Mon Profil -->
+			<div id="pro" class="col-md-9">
 				<div class="panel panel-primary  flexx">
+					<h2>Mon Profil</h2>
+					
+					<div class="col-md-3">
+					<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="100px" width="100px">
+					</div>
+					<div class="col-md-6">
+					<p> Nom Prenom </p>
+					<p> Informations divers </p>
+					<p> Informations divers </p>
+					<p> Informations divers </p>
 
-					<div style="text-align: center; padding-top: 40px;">
+					</div>
+					<div class="col-md-3">
+					<button id="buttonfollow" type="button" class="btn btn-success" onclick="follow()" >Suivre</button>
+					<button id="buttonunfollow" type="button" class="btn btn-danger" onclick="unfollow()" >Ne plus suivre</button>
+						
+					<!-- Module Facebook -->
+						<div class="fb-login-button" data-max-rows="4" data-size="large"
+							data-show-faces="true" data-auto-logout-link="true"
+							onclick="checkLoginState()">
+						</div>	
+					</div>
+					<div id="whofollow" class="col-md-9">
+						<h4>Personnes que je suis :</h4>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						
+					</div>
+					
+					<div id="whofollowme" class="col-md-9">
+						<h4>Personnes qui me suivent :</h4>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						<div class="col-md-2">
+							<a href="#">
+								<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="50px" width="50px">
+								<p>Nom Prenom</p>
+							</a>
+						</div>
+						
+					</div>
+						
+						
+					
+				</div>
+			</div>
+			
+			
+			
+			<!-- Sous menu Mes favoris -->
+			<div id="fav" class="col-md-9" style="display: none">
+				<div class="panel panel-primary  flexx">
+				<h2>Mes favoris</h2>
+				
+				<h4>Gares :</h4>
+				
+				<h5>Nom de la gare 1</h5>
+				<table class="table table-striped">
+					<tr>
+						<td>Heur</td>
+						<td>Misson</td>
+						<td>Num</td>
+						<td>Terminus</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				
+				<h5>Nom de la gare 2</h5>
+				<table class="table table-striped">
+					<tr>
+						<td>Heur</td>
+						<td>Misson</td>
+						<td>Num</td>
+						<td>Terminus</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				
+				<h5>Nom de la gare 3</h5>
+				<table class="table table-striped">
+					<tr>
+						<td>Heur</td>
+						<td>Misson</td>
+						<td>Num</td>
+						<td>Terminus</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				
+				
+				<h4>Trajet :</h4>
+				<h5>Gare de départ :  Nom de la gare.   Gare d'arrivée : Nom de la gare</h5>
+				
+				<table class="table table-striped">
+					<tr>
+						<td>Heur</td>
+						<td>Misson</td>
+						<td>Num</td>
+						<td>Terminus</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				
+				<h5>Gare de départ :  Nom de la gare.   Gare d'arrivée : Nom de la gare</h5>
+				
+				<table class="table table-striped">
+					<tr>
+						<td>Heur</td>
+						<td>Misson</td>
+						<td>Num</td>
+						<td>Terminus</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				
+				<h5>Gare de départ :  Nom de la gare.   Gare d'arrivée : Nom de la gare</h5>
+				
+				<table class="table table-striped">
+					<tr>
+						<td>Heur</td>
+						<td>Misson</td>
+						<td>Num</td>
+						<td>Terminus</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				
+				
+				
+				<!-- Module Facebook -->
+						<div class="fb-login-button" data-max-rows="4" data-size="large"
+							data-show-faces="true" data-auto-logout-link="true"
+							onclick="checkLoginState()">
+						</div>	
 
+				</div>
+			</div>
+			
+			
+			<!-- Sous menu Mes trains -->
+			<div id="tra" class="col-md-9" style="display: none">
+				<div class="panel panel-primary  flexx">
+					<h2>Mes trains</h2>
+					
+					<h4>Mes trains à venir</h4>
+					<table class="table table-striped">
+					<tr>
+						<td>Heur</td>
+						<td>Misson</td>
+						<td>Num</td>
+						<td>Terminus</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				
+				<h4>Les trains à venir des gens que je suis</h4>
+					<table class="table table-striped">
+					<tr>
+						<td>Heur</td>
+						<td>Misson</td>
+						<td>Num</td>
+						<td>Terminus</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+					
+					<h4>Trains passé</h4>
+					<table class="table table-striped">
+					<tr>
+						<td>Heur</td>
+						<td>Misson</td>
+						<td>Num</td>
+						<td>Terminus</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+					
+					 
+					<!-- Module Facebook -->
+						<div class="fb-login-button" data-max-rows="4" data-size="large"
+							data-show-faces="true" data-auto-logout-link="true"
+							onclick="checkLoginState()">
+						</div>	
+						
+						
+				</div>
+			</div>
+			
+			
+			<!-- Sous menu Mes Statistique -->
+			<div id="sta" class="col-md-9" style="display: none">
+				<div class="panel panel-primary  flexx">
+					<h2>Mes Statistiques</h2>
+					
+
+					    <label  class="col-md-5 control-label">Nombre total de train pris : </label>
+					    <label  class="col-md-4 control-label">valeur</label>
+					    <label  class="col-md-5 control-label">Gare la plus recherché  : </label>
+					    <label  class="col-md-4 control-label">Valeur</label>
+					    <label  class="col-md-5 control-label">Itinéraire le plus rechercher  : </label>
+					    <label  class="col-md-4 control-label">Valeur</label>
+					    <label  class="col-md-5 control-label">Nombre de km parcourut  : </label>
+					    <label  class="col-md-4 control-label">Valeur</label>
+					    <label  class="col-md-5 control-label">Temps passé dans les transport  : </label>
+					    <label  class="col-md-4 control-label">Valeur</label>
+					    <label  class="col-md-5 control-label">Meilleur compagnon de voyage  : </label>
+					    <label  class="col-md-4 control-label">Valeur</label>
+					    
+					  
 						<!-- Module Facebook -->
 						<div class="fb-login-button" data-max-rows="4" data-size="large"
 							data-show-faces="true" data-auto-logout-link="true"
-							onclick="checkLoginState()"></div>
-							
-						<!-- Pop Up De connexion a facebook -->	
+							onclick="checkLoginState()">
+						</div>	
+				</div>
+			</div>
+			
+				<!-- Pop Up De connexion a facebook -->	
 						<div id="myModal" class="modal fade bs-example-modal-sm"
 							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 							aria-hidden="true">
@@ -176,21 +497,61 @@ body {
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default"
 											data-dismiss="modal">Close</button>
-
 									</div>
 								</div>
 							</div>
 						</div>
-
-					</div>
-
-				</div>
-			</div>
+						
+			   <!-- Pop Up de suivre une personne -->	
+						<div id="follow" class="modal fade bs-example-modal-sm"
+							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Information !</h4>
+									</div>
+									<div class="modal-body">Vous suivez désormais cette personne.</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+			 <!-- Pop Up de plus suivre une personne -->	
+						<div id="unfollow" class="modal fade bs-example-modal-sm"
+							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Information !</h4>
+									</div>
+									<div class="modal-body">Vous ne suivez plus désormais cette personne.</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+			
 		</div>
 	</div>
 
 	<!-- FOOTER -->
-	<nav class="navbar navbar-inverse navbar-fixed-bottom"
+	<div id="foot">
+		<nav class="navbar navbar-inverse navbar-fixed-bottom"
 		role="navigation">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -217,25 +578,8 @@ body {
 		</div>
 		<!-- /.container -->
 	</nav>
+	</div>
 </body>
 </html>
 <script src="js/bootstrap-notify.js"></script>
-<script>
-	//Qu������ry Sp������cifique a cette page
-
-	// Basic Features, style isn't even required.
-	$('.show-notification').click(function(e) {
-		$('.top-left').notify({
-			message : {
-				text : 'Aw yeah, It works!'
-			}
-		}).show();
-	});
-</script>
 <script src="js/data.js"></script>
-<script>
-	function test() {
-		$('#myModal').modal('show');
-		console.log("ee");
-	}
-</script>

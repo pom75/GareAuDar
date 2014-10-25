@@ -17,6 +17,7 @@ public class DBStatic {
     //SQL tables
     public static final String TABLE_STATIONS = "Stations";
     public static final String TABLE_USER = "USER_FACEBOOK";
+    public static final String TABLE_FRIENDS = "Friends";
     
     
     //MongoDB

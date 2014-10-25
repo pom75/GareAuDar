@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 public class UserBD {
 
-	public static boolean userExist(String id_fb) {
+	public static boolean userExist(String id_fb, String key) {
 		Connection con = null;
 		Statement stm = null;
 		ResultSet rep;
@@ -23,6 +23,8 @@ public class UserBD {
 
 			//On teste si le resultat est null
 			boolean a = rep.next() != false;
+			
+			
 			stm.close();
 			con.close();
 			return a;
