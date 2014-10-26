@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.FriendService;
+import services.FollowService;
 
-public class AddFriendServlet extends HttpServlet { 
+public class AddFollowServlet extends HttpServlet { 
 	/**
 	 * 
 	 */
@@ -18,8 +18,9 @@ public class AddFriendServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String user1 = request.getParameter("user1");
 		String user2 = request.getParameter("user2");
+		String key = request.getParameter("key");
 		response.setContentType("text/plain");
-		response.getWriter().println(FriendService.addFriend(user1, user2));
+		response.getWriter().println(FollowService.addFollow(user1, user2,key));
 	}
 
 	/**

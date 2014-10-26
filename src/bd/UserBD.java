@@ -11,6 +11,29 @@ import org.json.JSONObject;
 public class UserBD {
 
 
+	
+	public static boolean myKey(String id , String key){
+		Connection con = null;
+		Statement stm = null;
+		ResultSet rep;
+
+		try {
+			con = DBTools.getMySQLConnection();
+			stm = con.createStatement();
+
+			rep = stm.executeQuery("Select * from USER_FACEBOOK where id_user = '"+id+"' and token = '"+key+"';");
+			boolean a = rep.next() != false;
+			
+			
+			stm.close();
+			con.close();
+			return a;
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return false;
+	}
 
 	public static boolean userExist(String id_fb) {
 		Connection con = null;

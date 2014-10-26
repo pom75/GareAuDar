@@ -7,14 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.FriendService;
+import services.FollowService;
 
-public class ListFriendServlet extends HttpServlet {
+public class RemoveFollowServlet extends HttpServlet {
+
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2265345633717220569L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String key = request.getParameter("key");
 		String user1 = request.getParameter("user1");
+		String user2 = request.getParameter("user2");
 		response.setContentType("text/plain");
-		response.getWriter().println(FriendService.getFriends(user1));
+		response.getWriter().println(FollowService.removeFollow(key,user1, user2));
 	}
 
 	/**

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.FriendService;
+import services.FollowService;
 import services.GareService;
 
 public class GarFavorServlet extends HttpServlet {

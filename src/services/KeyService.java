@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import bd.FriendBD;
+import bd.FollowBD;
 import bd.UserBD;
 
 public class KeyService {
@@ -37,7 +37,7 @@ public class KeyService {
 			//Ajout la liste des ces amis dans la bd
 			JSONArray listF = getFriendUserFacebook(key).getJSONArray("data");
 			for(int i= 0; i< listF.length(); i++){
-				FriendBD.addFriend(rep.getString("id"), listF.getJSONObject(i).getString("id"));
+				FollowBD.addFollow(rep.getString("id"), listF.getJSONObject(i).getString("id"));
 			}
 			
 			
