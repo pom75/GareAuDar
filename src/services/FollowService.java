@@ -10,7 +10,7 @@ public class FollowService {
 
 	
 	public static boolean addFollow(String user1,String user2, String key){
-		if(user1 == null || key == null || user2 == null || user1.isEmpty() || user1.equals("") || user2.isEmpty() || user2.equals("") || !UserBD.myKey(user1, key)){
+		if( !UserBD.myKey(user1, key)){
 			return false;
 		}else{
 			return FollowBD.addFollow(user1,user2);

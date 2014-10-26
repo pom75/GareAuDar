@@ -75,38 +75,6 @@ function switchMenu(item){
 }
 
 
-function follow(){
-	$('#follow').modal('show');
-	$("#buttonunfollow").css("display", "inline");
-	$("#buttonfollow").css("display", "none");
-	callFollow();
-}
-
-function unfollow(){
-	$('#unfollow').modal('show');
-	$("#buttonfollow").css("display", "inline");
-	$("#buttonunfollow").css("display", "none");
-	callUnfollow();
-}
-
-/*
-$.ajax ({
-	type : "POST" ,
-	url: "GetProfil",
-	data: "", 
-	dataType : "json" ,
-	success: function(rep){
-		if(!(typeof (rep.code) == 'undefined')){
-			erreurServlet(rep.code,rep.mess);
-		}else{
-		} 
-	},
-	error :function(jqXHR, textStatus , errorThrown ){
-
-	}
-})
-
-*/
 function callP(){
 	$('#photoP').attr( "src", "http://graph.facebook.com/"+getCookie("id_fb")+"/picture" );
 	$('#infoP').append( "<h3>"+ getCookie("lname") +" "+ getCookie("fname") +"</h3>" );
@@ -123,7 +91,7 @@ function callP(){
 				
 				
 				
-				var tpl = '{{#list}}<div class="col-md-3"><a href="#{{id_user}}">'+
+				var tpl = '{{#list}}<div class="col-md-3"><a href="prof.html?id={{id_user}}">'+
 					'<img src="http://graph.facebook.com/{{id_fb}}/picture" height="50px" width="50px">' +
 					'<p>{{name}}</p></a></div>{{/list}}';
 				var html = Mustache.to_html(tpl, rep);
@@ -149,7 +117,7 @@ function callP(){
 				
 				
 				
-				var tpl = '{{#list}}<div class="col-md-3"><a href="prof.html#{{id_user}}">'+
+				var tpl = '{{#list}}<div class="col-md-3"><a href="prof.html?id={{id_user}}">'+
 					'<img src="http://graph.facebook.com/{{id_fb}}/picture" height="50px" width="50px">' +
 					'<p>{{name}}</p></a></div>{{/list}}';
 				var html = Mustache.to_html(tpl, rep);
@@ -177,13 +145,5 @@ function callT(){
 }
 
 function callS(){
-	
-}
-
-function callFollow(){
-	
-}
-
-function callUnfollow(){
 	
 }

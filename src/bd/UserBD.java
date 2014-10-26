@@ -24,7 +24,7 @@ public class UserBD {
 			con = DBTools.getMySQLConnection();
 			stm = con.createStatement();
 
-			rep = stm.executeQuery("Select * from" + DBStatic.TABLE_USER + "where id_user = '"+id+"' and token = '"+key+"';");
+			rep = stm.executeQuery("Select * from " + DBStatic.TABLE_USER + " where id_user = '"+id+"' and token = '"+key+"';");
 			boolean a = rep.next() != false;
 			
 			
