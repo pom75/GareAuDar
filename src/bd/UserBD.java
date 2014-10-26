@@ -160,7 +160,7 @@ public class UserBD {
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "Select * from  "+ DBStatic.TABLE_USER+"   where id = '"+id+"';";
+			query = "Select * from "+ DBStatic.TABLE_USER+"  where id_user = '"+id+"';";
 			ResultSet rs = stm.executeQuery(query);
 			if(rs.next()){
 				json.put("id", rs.getInt("id_user"));
