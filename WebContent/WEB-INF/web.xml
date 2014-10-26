@@ -2,6 +2,10 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	
+	<!-- SERVLET NAMING -->
+	
 	<servlet>
 		<servlet-name>TrainAtGare</servlet-name>
 		<servlet-class>servlets.TrainAtGareServlet</servlet-class>
@@ -38,8 +42,20 @@
 	<servlet>
 		<servlet-name>SupGareFavor</servlet-name>
 		<servlet-class>servlets.SuprimeGarFavorServlet</servlet-class>
-	</servlet> 
+	</servlet>
 
+
+	<servlet>
+		<servlet-name>MonProfil</servlet-name>
+		<servlet-class>servlets.MonProfilServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GetProfil</servlet-name>
+		<servlet-class>servlets.GetProfilServlet</servlet-class>
+	</servlet>
+
+	<!-- 	SERVLET MAPPING -->
 
 	<servlet-mapping>
 		<servlet-name>TrainAtGare</servlet-name>
@@ -53,32 +69,36 @@
 		<servlet-name>SendKey</servlet-name>
 		<url-pattern>/sendkey</url-pattern>
 	</servlet-mapping>
-
 	<servlet-mapping>
 		<servlet-name>AddFriend</servlet-name>
 		<url-pattern>/AddFriend</url-pattern>
 	</servlet-mapping>
-
-
-
 	<servlet-mapping>
 		<servlet-name>RemoveFriend</servlet-name>
 		<url-pattern>/RemoveFriend</url-pattern>
 	</servlet-mapping>
-
-
 	<servlet-mapping>
 		<servlet-name>ListFriends</servlet-name>
 		<url-pattern>/ListFriends</url-pattern>
 	</servlet-mapping>
-
 	<servlet-mapping>
 		<servlet-name>GareFavor</servlet-name>
 		<url-pattern>/GareFavor</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SupGareFavor</servlet-name>
+		<url-pattern>/SupGareFavor</url-pattern>
+	</servlet-mapping>
 	
-	 <servlet-mapping>
-		<servlet-name>SupGareFavor</servlet-name> <url-pattern>/SupGareFavor</url-pattern> 
-			</servlet-mapping> 
+	<servlet-mapping>
+		<servlet-name>MonProfil</servlet-name>
+		<url-pattern>/MonProfil</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>GetProfil</servlet-name>
+		<url-pattern>/GetProfil</url-pattern>
+	</servlet-mapping>
+
 
 </web-app>
