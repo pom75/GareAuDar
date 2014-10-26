@@ -18,8 +18,9 @@ public class SuprimeGarFavorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String token = request.getParameter("token");
 		String uic = request.getParameter("uic");
+		String user = request.getParameter("user");
 		response.setContentType("text/plain");
-		response.getWriter().println(GareService.removeFavor(token, uic));
+		response.getWriter().println(GareService.removeFavor(token,user, uic));
 	}
 
 	/**

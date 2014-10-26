@@ -9,35 +9,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class FollowBD {
-	public static boolean addFollow(String id_fb1, String id_fb2) {
+	public static boolean addFollow(String id1, String id2) {
 		Connection co;
 		Statement stm;
 		String query;
-		ResultSet rep = null;
-		String id_user1 = "";
-		String id_user2 = "";
 
 		try {
 			//Connexion a la base
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
 
-			rep = stm.executeQuery("SELECT * FROM " + DBStatic.TABLE_USER + "  WHERE id_fb='" + id_fb1 + "'");
-
-			//Si il existe on retourn l'id et le login sinon false
-			if (rep.next() != false) {
-				id_user1 = rep.getString("id_user");
-			}
-
-			rep = stm.executeQuery("SELECT * FROM " + DBStatic.TABLE_USER + "  WHERE id_fb='" + id_fb2 + "'");
-
-			//Si il existe on retourn l'id et le login sinon false
-			if (rep.next() != false) {
-				id_user2 = rep.getString("id_user");
-			}
 
 			//Insertion dans la bd
-			query = "INSERT INTO " + DBStatic.TABLE_FRIENDS + " (id,id_user_1,id_user_2) VALUES" + " (NULL ,'" + id_user1 + "','" + id_user2 + "');";
+			query = "INSERT INTO " + DBStatic.TABLE_FRIENDS + " (id,id_user_1,id_user_2) VALUES" + " (NULL ,'" + id1 + "','" + id2 + "');";
 			stm.executeUpdate(query);
 
 

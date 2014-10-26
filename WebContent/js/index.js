@@ -23,7 +23,11 @@ function switchMenu(bool){
 //Apelle a la servlet
 function searchGare() {
 		var num = $("#gareliste option:selected").val();
-		console.log(num);
+		
+		if($('#chek').is(':checked')){
+			addFav(num);
+		}
+		
 		$.ajax({
 			type : "POST",
 			url : "trainatgare",
@@ -43,6 +47,25 @@ function searchGare() {
 
 	}
 
+
+function addFav(num){
+	$.ajax({
+		type : "POST",
+		url : "GareFavor",
+		data : "token="+getCookie("key")+"&uic="+num+"&user="+getCookie("id_user"),
+		dataType : "json",
+		success : function(rep) {
+			var tpl = "<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td></tr>{{#passages}}{{#train}}" +
+			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td></tr>{{/train}}</table>{{/passages}}";
+			var html = Mustache.to_html(tpl, rep);
+			$('#responserecerche').html(html);
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$('#responserecerche').html("<p>num de gare innexistant</p>");
+		}
+	});
+}
 
 //Changement de Menu dynamique (Radio options)
 function choixRER(){

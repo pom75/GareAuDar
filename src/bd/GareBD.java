@@ -9,14 +9,14 @@ import org.json.JSONObject;
 public class GareBD {
 
 	
-	public static boolean addFavGare(String token,String uic){
+	public static boolean addFavGare(String user,String uic){
 		Connection co;
 		Statement stm;
 		String query;
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "insert into GarFavor(token,UIC) VALUES ('"+token+"','"+uic+"');";
+			query = "insert into GarFavor (id_u,UIC) VALUES ('"+user+"','"+uic+"');";
 			stm.executeUpdate(query);
 			stm.close();
 			co.close();
@@ -28,14 +28,14 @@ public class GareBD {
 		return true;
 	}
 
-	public static boolean removeFavGare(String token, String uic) {
+	public static boolean removeFavGare(String user, String uic) {
 		Connection co;
 		Statement stm;
 		String query;
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "delete from GarFavor where token = '"+token+"and UIC = '"+uic+"';";
+			query = "delete from GarFavor where id_u = '"+user+"' and UIC = '"+uic+"';";
 			stm.executeUpdate(query);
 			stm.close();
 			co.close();
@@ -47,25 +47,27 @@ public class GareBD {
 		return true;
 	}
 
-	public static JSONArray listArray(String user1) {
+	public static JSONObject listArray(String user1) {
 		JSONArray jArray = new JSONArray();
+		JSONObject rep = new JSONObject();
 		Connection co;
 		Statement stm;
 		String query;
 		try{
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "select * from GarFavor where Token = '"+user1+"';";
+			query = "select * from GarFavor where id_u = '"+user1+"';";
 			ResultSet rs = stm.executeQuery(query);
 			while(rs.next()){
 				JSONObject json = new JSONObject();
 				json.put("uic",rs.getString("UIC"));
 				jArray.put(json);
 			}
+			rep.put("list", jArray);
 		}catch (Exception e) {
 			System.err.print("Exception :");
 			e.printStackTrace();
 		}
-		return jArray;
+		return rep;
 	}
 }

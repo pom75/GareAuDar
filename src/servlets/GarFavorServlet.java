@@ -19,10 +19,11 @@ public class GarFavorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String user = request.getParameter("user");
 		String token = request.getParameter("token");
 		String uic = request.getParameter("uic");
 		response.setContentType("text/plain");
-		response.getWriter().println(GareService.addFavor(token, uic));
+		response.getWriter().println(GareService.addFavor(token, user, uic));
 	}
 
 	/**

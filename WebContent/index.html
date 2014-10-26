@@ -140,6 +140,11 @@ body {
 			<div id="page1" class="col-md-9">
 				<div class="panel panel-primary  flexx">
 					<h2>Prochains départ d'une gare </h2>
+					<!-- Module Facebook -->
+						<div class="fb-login-button" data-max-rows="4" data-size="large"
+							data-show-faces="true" data-auto-logout-link="true"
+							onclick="checkLoginState()">
+						</div>	
 					<!-- Liste de proposition de Type de train -->
 					<form class="form-horizontal" role="form" id="mainform">
 						<div class="form-group">
@@ -237,7 +242,7 @@ body {
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-8">
 								<div class="checkbox">
-									<label> <input type="checkbox"> ajouter cette
+									<label> <input id="chek" type="checkbox"> ajouter cette
 										recherche en favoris
 									</label>
 								</div>
@@ -364,7 +369,7 @@ body {
 								</select>
 							</div>
 						</div>
-						<!-- Ajout en favoris d'une recherche arrive -->
+						<!-- Ajout en favoris d'une recherche arrive 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-8">
 								<div class="checkbox">
@@ -374,6 +379,7 @@ body {
 								</div>
 							</div>
 						</div>
+						-->
 						<!-- Boutton de lancement de recherche -->
 						<div class="col-sm-offset-3 col-sm-8">
 							<button type="button" class="btn btn-default"

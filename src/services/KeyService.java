@@ -32,23 +32,36 @@ public class KeyService {
 				UserBD.upKey(rep.getString("id"), key);
 				
 			}else{
-				UserBD.addUser(rep.getString("id"), key, rep.getString("email"), rep.getString("first_name"), rep.getString("gender"), rep.getString("last_name"), rep.getString("link"), rep.getString("locale"), rep.getString("name"), rep.getString("timezone"));
+				try {
+					UserBD.addUser(rep.getString("id"), key, rep.getString("email"), rep.getString("first_name"), rep.getString("gender"), rep.getString("last_name"), rep.getString("link"), rep.getString("locale"), rep.getString("name"), rep.getString("timezone"));
+					//Ajout la liste des ces amis dans la bd
+					JSONArray listF = getFriendUserFacebook(key).getJSONArray("data");
+					for(int i= 0; i< listF.length(); i++){
+						FollowBD.addFollow(rep.getString("id"), listF.getJSONObject(i).getString("id"));
+						FollowBD.addFollow(listF.getJSONObject(i).getString("id"), rep.getString("id"));
 
+					}
+				
+				}catch(Exception e){
+					//Ajout la liste des ces amis dans la bd
+					JSONArray listF = getFriendUserFacebook(key).getJSONArray("data");
+					for(int i= 0; i< listF.length(); i++){
+						FollowBD.addFollow(rep.getString("id"), listF.getJSONObject(i).getString("id"));
+						FollowBD.addFollow(listF.getJSONObject(i).getString("id"), rep.getString("id"));
+
+					}
+					UserBD.addUser(rep.getString("id"), key, "ERRORMAIL", rep.getString("first_name"), rep.getString("gender"), rep.getString("last_name"), rep.getString("link"), rep.getString("locale"), rep.getString("name"), rep.getString("timezone"));
+
+				}
 			}
 			
 			
-			//Ajout la liste des ces amis dans la bd
-			JSONArray listF = getFriendUserFacebook(key).getJSONArray("data");
-			for(int i= 0; i< listF.length(); i++){
-				FollowBD.addFollow(rep.getString("id"), listF.getJSONObject(i).getString("id"));
-				FollowBD.addFollow(listF.getJSONObject(i).getString("id"), rep.getString("id"));
-
-			}
+			
 			
 			
 			
 		} catch (Exception e) {
-			//System.out.println(e);
+			System.out.println(e);
 			return null;
 			//retourné une erreur ici
 		}

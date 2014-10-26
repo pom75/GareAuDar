@@ -59,9 +59,18 @@
 		<servlet-name>TweetsServlet</servlet-name>
 		<servlet-class>servlets.TweetsServlet</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>ListGare</servlet-name>
+		<servlet-class>servlets.ListGareServlet</servlet-class>
+	</servlet>
 
 	<!-- 	SERVLET MAPPING -->
 
+	<servlet-mapping>
+		<servlet-name>ListGare</servlet-name>
+		<url-pattern>/listgare</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>TrainAtGare</servlet-name>
 		<url-pattern>/trainatgare</url-pattern>

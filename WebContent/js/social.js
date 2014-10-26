@@ -134,8 +134,68 @@ function callP(){
 }
 
 function callF(){
-//Gare favoris
-//trajet favoris
+	$.ajax ({
+		type : "POST" ,
+		url: "listgare",
+		data: "user="+getCookie("id_user"), 
+		dataType : "json" ,
+		success: function(rep){
+			if(!(typeof (rep.code) == 'undefined')){
+				erreurServlet(rep.code,rep.mess);
+			}else{
+				for (var i = 0; i < rep.list.length; i++) {
+				    var counter = rep.list[i];
+				     addGare(counter.uic); 
+				   
+				}
+				
+				
+				
+			} 
+		},
+		error :function(jqXHR, textStatus , errorThrown ){
+
+		}
+	})
+	
+}
+
+function addGare(num){
+	$.ajax({
+		type : "POST",
+		url : "trainatgare",
+		data : "num="+num,
+		dataType : "json",
+		success : function(rep) {
+			
+			var tpl = "<div class=\"col-md-4\"><h5>Nom :"+ num + "</h5></div><div class=\"col-md-4\"><button id=\"buttonunfav\" type=\"button\"  class=\"btn btn-danger\" onclick=\"unfav("+num+")\"  >Retirer des favris</button></div>" +
+					"<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td></tr>{{#passages}}{{#train}}" +
+			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td></tr>{{/train}}</table>{{/passages}}";
+			var html = Mustache.to_html(tpl, rep);
+			$('#listgare').append(html);
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$('#responserecerche').html("<p>num de gare innexistant</p>");
+		}
+	});
+
+}
+
+function unfav(num){
+	$.ajax({
+		type : "POST",
+		url : "SupGareFavor",
+		data : "token="+getCookie("key")+"&uic="+num+"&user="+getCookie("id_user"),
+		dataType : "json",
+		success : function(rep) {
+			$('#unfav').modal('show');
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$('#responserecerche').html("<p>num de gare innexistant</p>");
+		}
+	});
 	
 }
 
