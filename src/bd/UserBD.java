@@ -136,7 +136,7 @@ public class UserBD {
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "Select * from where token = '"+key+"';";
+			query = "Select * from "+ DBStatic.TABLE_USER+" where token = '"+key+"';";
 			ResultSet rs = stm.executeQuery(query);
 			if(rs.next()){
 				json.put("id", rs.getInt("id_user"));
@@ -146,7 +146,7 @@ public class UserBD {
 			}
 
 		}catch (Exception e) {
-			System.err.print("Exception :");
+			System.err.print("AAAAAAAAAAAAAAException :");
 			e.printStackTrace();
 		}	
 		return json;
@@ -160,7 +160,7 @@ public class UserBD {
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "Select * from where id = '"+id+"';";
+			query = "Select * from  "+ DBStatic.TABLE_USER+"   where id = '"+id+"';";
 			ResultSet rs = stm.executeQuery(query);
 			if(rs.next()){
 				json.put("id", rs.getInt("id_user"));
