@@ -6,14 +6,13 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import bd.FollowBD;
 import bd.UserBD;
 
 public class KeyService {
-	
+
 	private String key;
 	
 	public KeyService(String key){
@@ -29,25 +28,31 @@ public class KeyService {
 
 			//TODO tester si un utilisateur est déja enregitrer et mettre a jour son token
 			
-			//Ajout d'un utilisateur dans la BDD
-			UserBD.addUser(rep.getString("id"), key, rep.getString("email"), rep.getString("first_name"), rep.getString("gender"), rep.getString("last_name"), rep.getString("link"), rep.getString("locale"), rep.getString("name"), rep.getString("timezone"));
+			if(UserBD.userExist(rep.getString("id"))){
+				UserBD.upKey(rep.getString("id"), key);
+				
+			}else{
+				UserBD.addUser(rep.getString("id"), key, rep.getString("email"), rep.getString("first_name"), rep.getString("gender"), rep.getString("last_name"), rep.getString("link"), rep.getString("locale"), rep.getString("name"), rep.getString("timezone"));
+
+			}
 			
-			System.out.println("ok");
 			
 			//Ajout la liste des ces amis dans la bd
 			JSONArray listF = getFriendUserFacebook(key).getJSONArray("data");
 			for(int i= 0; i< listF.length(); i++){
 				FollowBD.addFollow(rep.getString("id"), listF.getJSONObject(i).getString("id"));
+				FollowBD.addFollow(listF.getJSONObject(i).getString("id"), rep.getString("id"));
+
 			}
 			
 			
 			
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
 			return null;
 			//retourné une erreur ici
 		}
-		return getUserFacebook(key);
+		return UserBD.getUser(key);
 	}
 
 	public static JSONObject getUserFacebook(String key){

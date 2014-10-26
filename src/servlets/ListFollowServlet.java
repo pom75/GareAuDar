@@ -12,7 +12,7 @@ import services.FollowService;
 public class ListFollowServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user1 = request.getParameter("user1");
+		String user1 = request.getParameter("user");
 		response.setContentType("text/plain");
 		response.getWriter().println(FollowService.getFollow(user1));
 	}

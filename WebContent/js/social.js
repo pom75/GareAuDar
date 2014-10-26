@@ -7,7 +7,12 @@ var callAJAXS = false;
 function affiche(){
 	var url = window.location.href;
 	url = url.substring(url.lastIndexOf("#")+1)
-	switchMenu(url+"m")
+	if(!(url.length >= 5)){
+		switchMenu(url+"m")
+	}else{
+		switchMenu("prom");
+	}
+	
 }
 
 
@@ -84,10 +89,44 @@ function unfollow(){
 	callUnfollow();
 }
 
+/*
+$.ajax ({
+	type : "POST" ,
+	url: "GetProfil",
+	data: "", 
+	dataType : "json" ,
+	success: function(rep){
+		if(!(typeof (rep.code) == 'undefined')){
+			erreurServlet(rep.code,rep.mess);
+		}else{
+		} 
+	},
+	error :function(jqXHR, textStatus , errorThrown ){
+
+	}
+})
+
+*/
 function callP(){
-//profil
-//personne que je suis
-//personne qui me suivent
+	$('#photoP').attr( "src", "http://graph.facebook.com/"+getCookie("id_fb")+"/picture" );
+	$('infoP').append( "<p>"+ getCookie("name") +"</p>" );
+	
+	$.ajax ({
+		type : "POST" ,
+		url: "GetProfil",
+		data: "", 
+		dataType : "json" ,
+		success: function(rep){
+			if(!(typeof (rep.code) == 'undefined')){
+				erreurServlet(rep.code,rep.mess);
+			}else{
+			} 
+		},
+		error :function(jqXHR, textStatus , errorThrown ){
+
+		}
+	})
+	
 	
 }
 

@@ -47,8 +47,8 @@ public class FollowBD {
 
 			//Si une exeption est leve l'insersion na pas pu se faire , on revois false
 		} catch (Exception e) {
-			System.err.print("Exception :");
-			e.printStackTrace();
+			//System.err.print("Exception :");
+			//e.printStackTrace();
 			return false;
 		}
 		//Si tous ses bien passer on retrun true
@@ -127,4 +127,3 @@ public class FollowBD {
 		return jArray;
 	}
 }
-

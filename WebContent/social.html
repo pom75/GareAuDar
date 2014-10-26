@@ -143,18 +143,14 @@ body {
 					<h2>Mon Profil</h2>
 					
 					<div class="col-md-3">
-					<img src="http://graph.facebook.com/marwan.t.ghanem/picture"/ height="100px" width="100px">
+					<img id="photoP" src=""/ height="100px" width="100px">
 					</div>
-					<div class="col-md-6">
-					<p> Nom Prenom </p>
-					<p> Informations divers </p>
-					<p> Informations divers </p>
-					<p> Informations divers </p>
+					<div id="infoP" class="col-md-6">
 
 					</div>
 					<div class="col-md-3">
-					<button id="buttonfollow" type="button" class="btn btn-success" onclick="follow()" >Suivre</button>
-					<button id="buttonunfollow" type="button" class="btn btn-danger" onclick="unfollow()" >Ne plus suivre</button>
+					<button id="buttonfollow" type="button" class="btn btn-success" onclick="follow()"  style="display: none">Suivre</button>
+					<button id="buttonunfollow" type="button" class="btn btn-danger" onclick="unfollow()" style="display: none" >Ne plus suivre</button>
 						
 					<!-- Module Facebook -->
 						<div class="fb-login-button" data-max-rows="4" data-size="large"

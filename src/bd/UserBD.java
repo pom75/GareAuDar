@@ -8,6 +8,9 @@ import java.util.Calendar;
 
 import org.json.JSONObject;
 
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
 public class UserBD {
 
 
@@ -21,13 +24,40 @@ public class UserBD {
 			con = DBTools.getMySQLConnection();
 			stm = con.createStatement();
 
-			rep = stm.executeQuery("Select * from USER_FACEBOOK where id_user = '"+id+"' and token = '"+key+"';");
+			rep = stm.executeQuery("Select * from" + DBStatic.TABLE_USER + "where id_user = '"+id+"' and token = '"+key+"';");
 			boolean a = rep.next() != false;
 			
 			
 			stm.close();
 			con.close();
 			return a;
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return false;
+	}
+
+	public static boolean upKey(String id , String key){
+		Connection con = null;
+		Statement stm = null;
+
+		try {
+			con = DBTools.getMySQLConnection();
+			stm = con.createStatement();
+
+
+			String query = "UPDATE "+ DBStatic.TABLE_USER +" SET token = ?  WHERE id_fb = '"+id+"' ;";
+
+			PreparedStatement preparedStmt = (PreparedStatement) con.prepareStatement(query);
+			preparedStmt.setString(1, key);
+
+			// execute the java preparedstatement
+			preparedStmt.executeUpdate();
+
+			stm.close();
+			con.close();
+			return true;
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -87,9 +117,11 @@ public class UserBD {
 			co.close();
 
 			//Si une exeption est leve l'insersion na pas pu se faire , on revois false
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			System.err.print("utilisateur déja cré :");
+			return false;
 		} catch (Exception e) {
 			System.err.print("Exception :");
-			e.printStackTrace();
 			return false;
 		}
 		//Si tous ses bien passer on retrun true

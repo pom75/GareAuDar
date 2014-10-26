@@ -26,12 +26,14 @@ window.fbAsyncInit = function() {
 
 };
 
+
 function statusChangeCallback(response) {
 	if (response.status === 'connected') {
 		// Logged into your app and Facebook
 		
 		accessToken = response.authResponse.accessToken;
-		console.log(accessToken);
+		
+		setCookie("key",accessToken, 100);
 		$.ajax ({
 			type : "POST" ,
 			url: "sendkey",
@@ -41,11 +43,12 @@ function statusChangeCallback(response) {
 				if(!(typeof (rep.code) == 'undefined')){
 					erreurServlet(rep.code,rep.mess);
 				}else{
-					
+					setCookie("id_fb",rep.id, 100);
+					setCookie("name",rep.name, 100);
 				} 
 			},
 			error :function(jqXHR, textStatus , errorThrown ){
-
+				
 			}
 		})
 	} else if (response.status === 'not_authorized') {
@@ -58,35 +61,29 @@ function statusChangeCallback(response) {
 
 
 
-function getInformationUser(token) {
-	FB.api('/me', function(rep) {
-		FB.api('/me/friends', {
-		}, function(response) {
-			$.ajax ({
-				type : "POST" ,
-				url: "fbuser",
-				data:"id="+rep.id+"&name="+rep.name+"&first_name="+rep.first_name+"&last_name="+rep.last_name+"&link="+
-				rep.link+"&gender="+rep.gender+"&local="+rep.local+"&link="+rep.link+"&token="+token+"&="+token, 
-				dataType : "json" ,
-				success: function(rep){
-					if(!(typeof (rep.code) == 'undefined')){
-						boolInscr = true;
-						alert("Erreur "+rep.code+" : "+rep.mess);
-					}else{
-						boolInscr = true;
-						pop('inscrip');
-					} 
-				},
-				error :function(jqXHR, textStatus , errorThrown ){
-					boolInscr = true;
-					alert("textStatus");
-				}
-			})
-
-		});
-	});
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
 }
 
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+
+function checkCookie(cname) {
+    var cookie=getCookie(cname);
+    return cookie!="";
+}
 
 
 
