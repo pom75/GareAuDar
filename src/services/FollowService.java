@@ -1,6 +1,7 @@
 package services;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import bd.FollowBD;
 import bd.UserBD;
@@ -24,9 +25,13 @@ public class FollowService {
 		}
 	}
 
-	public static JSONArray getFollow(String user1) {
+	public static JSONObject getFollow(String user1, String user2) {
 		if(user1 == null || user1.isEmpty() || user1.equals("")){
-			return null;
+			if(user2 == null || user2.isEmpty() || user2.equals("")){
+				return null;
+			}else{
+				return FollowBD.listFollowInverse(Integer.valueOf(user2));
+			}
 		}else{
 			return FollowBD.listFollow(Integer.valueOf(user1));
 		}

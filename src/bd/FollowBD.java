@@ -96,8 +96,9 @@ public class FollowBD {
 	}
 
 
-	public static JSONArray listFollow(int user1){
+	public static JSONObject listFollow(int user1){
 		JSONArray jArray = new JSONArray();
+		JSONObject rep = new JSONObject();
 		Connection co;
 		Statement stm;
 		String query;
@@ -119,11 +120,48 @@ public class FollowBD {
 				json.put("id_fb",rs.getString("id_fb"));
 				json.put("name",rs.getString("name"));
 				jArray.put(json);
+				
+				rep.put("list", jArray);
 			}
 		}catch (Exception e) {
 			System.err.print("Exception :");
 			e.printStackTrace();
 		}
-		return jArray;
+		
+		return rep;
+	}
+	
+	public static JSONObject listFollowInverse(int user1){
+		JSONArray jArray = new JSONArray();
+		Connection co;
+		Statement stm;
+		String query;
+		ArrayList<Integer> ids = new ArrayList<Integer>();
+		JSONObject rep = new JSONObject();;
+		try{
+			co = DBTools.getMySQLConnection();
+			stm = co.createStatement();
+			query = "select * from Friends where id_user_1 = '"+user1+"';";
+			ResultSet rs = stm.executeQuery(query);
+			while(rs.next()){
+					ids.add(rs.getInt("id_user_2"));
+				}	
+			for(int i = 0 ; i < ids.size() ; i++){
+				query = "select * from USER_FACEBOOK where id_user = '"+ids.get(i)+"';";
+				rs = stm.executeQuery(query);
+				rs.next();
+				JSONObject json = new JSONObject();
+				json.put("id_user", rs.getString("id_user"));
+				json.put("id_fb",rs.getString("id_fb"));
+				json.put("name",rs.getString("name"));
+				jArray.put(json);
+				
+				rep.put("list", jArray);
+			}
+		}catch (Exception e) {
+			System.err.print("Exception :");
+			e.printStackTrace();
+		}
+		return rep;
 	}
 }

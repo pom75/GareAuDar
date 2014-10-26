@@ -43,8 +43,10 @@ function statusChangeCallback(response) {
 				if(!(typeof (rep.code) == 'undefined')){
 					erreurServlet(rep.code,rep.mess);
 				}else{
-					setCookie("id_fb",rep.id, 100);
-					setCookie("name",rep.name, 100);
+					setCookie("id_fb",rep.id_fb, 100);
+					setCookie("id_user",rep.id, 100);
+					setCookie("fname",rep.first_name , 100);
+					setCookie("lname",rep.last_name , 100);
 				} 
 			},
 			error :function(jqXHR, textStatus , errorThrown ){
@@ -62,6 +64,7 @@ function statusChangeCallback(response) {
 
 
 function setCookie(cname, cvalue, exdays) {
+	delete_cookie( cname );
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+d.toUTCString();
@@ -84,6 +87,10 @@ function checkCookie(cname) {
     var cookie=getCookie(cname);
     return cookie!="";
 }
+
+function delete_cookie( name ) {
+	  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+	}
 
 
 

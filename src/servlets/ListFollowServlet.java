@@ -9,12 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import services.FollowService;
 
+
+//Qui Follow l'user 
 public class ListFollowServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user1 = request.getParameter("user");
+		String user2 = request.getParameter("quiJeSuis");
+		String user1 = request.getParameter("quiMeSuis");
+		
+		
 		response.setContentType("text/plain");
-		response.getWriter().println(FollowService.getFollow(user1));
+		response.getWriter().println(FollowService.getFollow(user1,user2));
 	}
 
 	/**

@@ -109,17 +109,27 @@ $.ajax ({
 */
 function callP(){
 	$('#photoP').attr( "src", "http://graph.facebook.com/"+getCookie("id_fb")+"/picture" );
-	$('infoP').append( "<p>"+ getCookie("name") +"</p>" );
+	$('#infoP').append( "<h3>"+ getCookie("lname") +" "+ getCookie("fname") +"</h3>" );
 	
 	$.ajax ({
 		type : "POST" ,
-		url: "GetProfil",
-		data: "", 
+		url: "ListFollow",
+		data: "quiJeSuis="+getCookie("id_user"), 
 		dataType : "json" ,
 		success: function(rep){
 			if(!(typeof (rep.code) == 'undefined')){
 				erreurServlet(rep.code,rep.mess);
 			}else{
+				
+				
+				
+				var tpl = '{{#list}}<div class="col-md-3"><a href="#{{id_user}}">'+
+					'<img src="http://graph.facebook.com/{{id_fb}}/picture" height="50px" width="50px">' +
+					'<p>{{name}}</p></a></div>{{/list}}';
+				var html = Mustache.to_html(tpl, rep);
+				console.log(html);
+				$('#whofollow').html(html);
+				
 			} 
 		},
 		error :function(jqXHR, textStatus , errorThrown ){
@@ -127,6 +137,31 @@ function callP(){
 		}
 	})
 	
+		$.ajax ({
+		type : "POST" ,
+		url: "ListFollow",
+		data: "quiMeSuis="+getCookie("id_user"), 
+		dataType : "json" ,
+		success: function(rep){
+			if(!(typeof (rep.code) == 'undefined')){
+				erreurServlet(rep.code,rep.mess);
+			}else{
+				
+				
+				
+				var tpl = '{{#list}}<div class="col-md-3"><a href="prof.html#{{id_user}}">'+
+					'<img src="http://graph.facebook.com/{{id_fb}}/picture" height="50px" width="50px">' +
+					'<p>{{name}}</p></a></div>{{/list}}';
+				var html = Mustache.to_html(tpl, rep);
+				console.log(html);
+				$('#whofollowme').html(html);
+				
+			} 
+		},
+		error :function(jqXHR, textStatus , errorThrown ){
+
+		}
+	})
 	
 }
 
