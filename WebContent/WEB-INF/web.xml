@@ -54,6 +54,11 @@
 		<servlet-name>GetProfil</servlet-name>
 		<servlet-class>servlets.GetProfilServlet</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>TweetsServlet</servlet-name>
+		<servlet-class>servlets.TweetsServlet</servlet-class>
+	</servlet>
 
 	<!-- 	SERVLET MAPPING -->
 
@@ -100,5 +105,10 @@
 		<url-pattern>/GetProfil</url-pattern>
 	</servlet-mapping>
 
-
+	<servlet-mapping>
+		<servlet-name>TweetsServlet</servlet-name>
+		<url-pattern>/tweets</url-pattern>
+	</servlet-mapping>
+	
+	
 </web-app>
