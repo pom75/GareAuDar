@@ -9,7 +9,7 @@ public class UserService {
 	
 	
 	public static JSONObject getProfil(String key){
-		if(key.isEmpty() || key.equals("")){
+		if(key == null || key.isEmpty() || key.equals("")){
 			return null;
 		}else{
 			return UserBD.getUser(key);
@@ -17,7 +17,7 @@ public class UserService {
 	}
 	
 	public static JSONObject getProfilID(String id){
-		if(id.isEmpty() || id.equals("")){
+		if(id == null || id.isEmpty() || id.equals("")){
 			return null;
 		}else{
 			return UserBD.getUserID(id);
