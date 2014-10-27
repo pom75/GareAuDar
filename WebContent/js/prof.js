@@ -50,7 +50,6 @@ function affiche(){
 					'<img src="http://graph.facebook.com/{{id_fb}}/picture" height="50px" width="50px">' +
 					'<p>{{name}}</p></a></div>{{/list}}';
 				var html = Mustache.to_html(tpl, rep);
-				console.log(html);
 				$('#whofollow').html(html);
 				
 			} 
@@ -81,7 +80,6 @@ function affiche(){
 					'<img src="http://graph.facebook.com/{{id_fb}}/picture" height="50px" width="50px">' +
 					'<p>{{name}}</p></a></div>{{/list}}';
 				var html = Mustache.to_html(tpl, rep);
-				console.log(html);
 				$('#whofollowme').html(html);
 				
 			} 

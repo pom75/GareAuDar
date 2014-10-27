@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-notify.css.txt" rel="stylesheet">
+
+<style>
+body {
+	padding-top: 70px;
+	padding-bottom: 70px;
+	background-color: rgb(0,170,147);
+}
+
+.badge {
+	margin-left: 5px;
+}
+
+
+.flexx {
+	padding: 20px;
+	padding-top: 0px;
+	min-height: 700px;
+}
+</style>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/mustache.js"></script>
+<script src="js/actu.js"></script>
+
+
+
+
+</head>
+
+<body onload="affiche()">
+	<!-- facebookScript -->
+	<div id="fb-root"></div>
+	<script src="js/facebook.js"></script>
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Boutton menu principal quand xs -->
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#menu">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<!-- Boutton sous menu quand xs -->
+				<div class="visible-xs">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#sousmenu">
+						<span class="glyphicon glyphicon-chevron-down">
+					</button>
+					<!-- Boutton favori quand xs -->
+					<a class="navbar-brand pull-right" href="#fav"> <span
+						class="glyphicon glyphicon-star"></span>
+					</a> <a class="navbar-brand pull-right" href="#"> <span
+						class="glyphicon glyphicon-envelope"> </span><span
+						class="badge pull-right">5</span>
+					</a> <a class="navbar-brand pull-right" href="#"> <span
+						class="glyphicon glyphicon-bell"></span><span
+						class="badge pull-right">3</span>
+					</a>
+				</div>
+				<!-- nom du site -->
+				<a class="navbar-brand" href="#">GAD</a>
+			</div>
+			<!-- Sous menu quand xs -->
+			<div class="visible-xs" style="display: none" >
+				<div id="sousmenu" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active" id="prom1" ><a id="prom" href="#prof" onclick="switchMenu(this)">Mon profil</a></li>
+						<li id="favm1"><a id="favm" href="#fav" onclick="switchMenu(this)">Mes favoris</a></li>
+						<li id="tram1"><a id="tram" href="#tra" onclick="switchMenu(this)">Mes trains</a></li>
+						<li id="stam1"><a id="stam" href="#sta" onclick="switchMenu(this)">Mes statistiques</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Menu adaptable -->
+			<div id="menu" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Recherche </a></li>
+					<li class="active"><a href="social.html">Social</a></li>
+					<li><a href="actu.html">Actualitées <span
+							class="badge pull-right">3</span></a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a class="navbar-brand" href="#">
+					<div class="hidden-xs">
+								<span class="glyphicon glyphicon-envelope"></span><span
+									class="badge pull-right">5</span>
+							</div></a></li>
+					<li>
+						<!-- Boutton favoris quand not xs -->
+						<div class="hidden-xs">
+							<a class="navbar-brand" href="#fav"><span
+								class="glyphicon glyphicon-star"></span></a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+	
+	<!-- container Principal -->
+	<div class="container">
+
+		<!-- Menu gauche de la page -->
+		<div class="row" >
+			
+			
+			<!-- Sous menu Profil -->
+			<div id="pro" class="col-md-9">
+				<div class="panel panel-primary  flexx">
+					<h2>Actualité</h2>
+					
+					<div id="actu">
+					</div>
+					
+					
+						
+						
+					
+				</div>
+			</div>
+
+
+						
+						
+			
+		</div>
+	</div>
+
+	<!-- FOOTER -->
+	<div id="foot">
+		<nav class="navbar navbar-inverse navbar-fixed-bottom"
+		role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Gar au Dar</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="#">About</a></li>
+					<li><a href="#">API REST</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">Aide</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	</div>
+</body>
+</html>
+<script src="js/bootstrap-notify.js"></script>
+<script src="js/data.js"></script>

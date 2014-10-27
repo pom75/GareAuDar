@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import services.TrainService;
 import tools.apis.SNCFApi;
 
 /**
@@ -30,7 +31,7 @@ public class TrainAtGareServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String num = request.getParameter("num");
 		response.setContentType("text/plain");
-		response.getWriter().println(SNCFApi.getTrainAtGareJSON(num));
+		response.getWriter().println(TrainService.addTrains(num));
 	}
 
 	/**
