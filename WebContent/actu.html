@@ -3,6 +3,7 @@
 <head>
 <title></title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +47,8 @@ body {
 	<!-- facebookScript -->
 	<div id="fb-root"></div>
 	<script src="js/facebook.js"></script>
-	<!-- Fixed navbar -->
+
+	<!-- Barre de navigation -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -60,30 +62,27 @@ body {
 				<div class="visible-xs">
 					<button type="button" class="navbar-toggle collapsed"
 						data-toggle="collapse" data-target="#sousmenu">
-						<span class="glyphicon glyphicon-chevron-down">
+						<span class="glyphicon glyphicon-chevron-down"></span>
 					</button>
 					<!-- Boutton favori quand xs -->
-					<a class="navbar-brand pull-right" href="#fav"> <span
+					<a class="navbar-brand pull-right" href="social.html#fav"> <span
 						class="glyphicon glyphicon-star"></span>
 					</a> <a class="navbar-brand pull-right" href="#"> <span
-						class="glyphicon glyphicon-envelope"> </span><span
-						class="badge pull-right">5</span>
+						class="glyphicon glyphicon-envelope"> </span>
 					</a> <a class="navbar-brand pull-right" href="#"> <span
-						class="glyphicon glyphicon-bell"></span><span
-						class="badge pull-right">3</span>
+						class="glyphicon glyphicon-bell"></span>
 					</a>
 				</div>
 				<!-- nom du site -->
 				<a class="navbar-brand" href="#">GAD</a>
 			</div>
 			<!-- Sous menu quand xs -->
-			<div class="visible-xs" style="display: none" >
+			<div class="visible-xs">
 				<div id="sousmenu" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active" id="prom1" ><a id="prom" href="#prof" onclick="switchMenu(this)">Mon profil</a></li>
-						<li id="favm1"><a id="favm" href="#fav" onclick="switchMenu(this)">Mes favoris</a></li>
-						<li id="tram1"><a id="tram" href="#tra" onclick="switchMenu(this)">Mes trains</a></li>
-						<li id="stam1"><a id="stam" href="#sta" onclick="switchMenu(this)">Mes statistiques</a></li>
+						<li class="active" onclick="switchMenu(true)"><a href="#" >Prochains départ d' une
+								gare</a></li>
+						<li><a href="#contact" onclick="switchMenu(false)">Chercher un itinéraire</a></li>
 					</ul>
 				</div>
 			</div>
@@ -91,21 +90,20 @@ body {
 			<!-- Menu adaptable -->
 			<div id="menu" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="index.html">Recherche </a></li>
-					<li class="active"><a href="social.html">Social</a></li>
-					<li><a href="actu.html">Actualitées <span
-							class="badge pull-right">3</span></a></li>
+					<li class="active"><a href="index.html">Recherche </a></li>
+					<li><a href="social.html">Social</a></li>
+					<li><a href="actu.html">Actualitées</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="navbar-brand" href="#">
 					<div class="hidden-xs">
-								<span class="glyphicon glyphicon-envelope"></span><span
-									class="badge pull-right">5</span>
+								<span class="glyphicon glyphicon-envelope"></span>
 							</div></a></li>
+
 					<li>
 						<!-- Boutton favoris quand not xs -->
 						<div class="hidden-xs">
-							<a class="navbar-brand" href="#fav"><span
+							<a class="navbar-brand" href="social.html#fav"><span
 								class="glyphicon glyphicon-star"></span></a>
 						</div>
 					</li>
