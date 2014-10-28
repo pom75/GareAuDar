@@ -16,6 +16,22 @@ function affiche(){
 }
 
 
+function statSearchedTrain(){
+	$.ajax({
+		type: "POST",
+		url : "MostSearchedStation",
+		data : "user="+getCookie("id_user"),
+		datType : "json",
+		success: function(rep){
+			var json = JSON.parse(rep);
+			document.getElementById('GareMost').innerHTML = json.station + " ("+json.num+")";
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$('#responserecerche').html("<p>num de gare innexistant</p>");
+		}
+	});
+}
+
 function switchMenu(item){
 	$( "#prop" ).removeClass("active");
 	$( "#prom1" ).removeClass("active");

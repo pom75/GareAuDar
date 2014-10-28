@@ -70,6 +70,13 @@
 		<servlet-name>SearchStation</servlet-name>
 		<servlet-class>servlets.SearchStationServlet</servlet-class>	
 	</servlet>
+	
+	
+	
+	<servlet>
+		<servlet-name>MostSearchedStation</servlet-name>
+		<servlet-class>servlets.MostSearchedStationServlet</servlet-class>	
+	</servlet>
 
 	<!-- 	SERVLET MAPPING -->
 
@@ -128,6 +135,11 @@
 	<servlet-mapping>
 		<servlet-name>SearchStation</servlet-name>
 		<url-pattern>/SearchStation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>MostSearchedStation</servlet-name>
+		<url-pattern>/MostSearchedStation</url-pattern>
 	</servlet-mapping>
 	
 	

@@ -1,5 +1,7 @@
 package services;
 
+import org.json.JSONObject;
+
 import bd.StationBD;
 import bd.UserBD;
 
@@ -11,5 +13,14 @@ public class StationService {
 		}else{
 			return StationBD.addFavGare(user, uic);
 		}	
+	}
+
+	
+	public static JSONObject getMostSearched(String user){
+		if(user == null || user.isEmpty()){
+			return new JSONObject();
+		}else{
+			return StationBD.getMostSearch(user);
+		}
 	}
 }
