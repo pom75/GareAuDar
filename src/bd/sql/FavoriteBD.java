@@ -8,19 +8,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import bd.DBTools;
+import static bd.DBConfig.TABLE_FAVORITES;
 
 //TODO: merge maybe
-public class GareBD {
-
+public class FavoriteBD {
 	
-	public static boolean addFavGare(String user,String uic){
+	public static boolean addFavoriteStation(String user,String uic){
 		Connection co;
 		Statement stm;
 		String query;
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "insert into GarFavor (id_u,UIC) VALUES ('"+user+"','"+uic+"');";
+			query = "INSERT INTO " + TABLE_FAVORITES + " (id_u,UIC) VALUES ('"+user+"','"+uic+"');";
 			stm.executeUpdate(query);
 			stm.close();
 			co.close();
@@ -32,14 +32,14 @@ public class GareBD {
 		return true;
 	}
 
-	public static boolean removeFavGare(String user, String uic) {
+	public static boolean removeFavoriteStation(String user, String uic) {
 		Connection co;
 		Statement stm;
 		String query;
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "delete from GarFavor where id_u = '"+user+"' and UIC = '"+uic+"';";
+			query = "DELETE FROM " + TABLE_FAVORITES + " WHERE id_u = '"+user+"' AND UIC = '"+uic+"';";
 			stm.executeUpdate(query);
 			stm.close();
 			co.close();
@@ -51,7 +51,7 @@ public class GareBD {
 		return true;
 	}
 
-	public static JSONObject listArray(String user1) {
+	public static JSONObject listFavoriteStations(String user) {
 		JSONArray jArray = new JSONArray();
 		JSONObject rep = new JSONObject();
 		Connection co;
@@ -60,7 +60,7 @@ public class GareBD {
 		try{
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "select * from GarFavor where id_u = '"+user1+"';";
+			query = "SELECT * FROM " + TABLE_FAVORITES + " WHERE id_u = '"+user+"';";
 			ResultSet rs = stm.executeQuery(query);
 			while(rs.next()){
 				JSONObject json = new JSONObject();
@@ -68,6 +68,7 @@ public class GareBD {
 				jArray.put(json);
 			}
 			rep.put("list", jArray);
+			
 		}catch (Exception e) {
 			System.err.print("Exception :");
 			e.printStackTrace();

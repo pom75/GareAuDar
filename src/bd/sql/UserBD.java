@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 import org.json.JSONObject;
 
-import bd.DBStatic;
+import bd.DBConfig;
 import bd.DBTools;
 
 import com.mysql.jdbc.PreparedStatement;
@@ -27,7 +27,7 @@ public class UserBD {
 			con = DBTools.getMySQLConnection();
 			stm = con.createStatement();
 
-			rep = stm.executeQuery("Select * from " + DBStatic.TABLE_USER + " where id_user = '"+id+"' and token = '"+key+"';");
+			rep = stm.executeQuery("Select * from " + DBConfig.TABLE_USER + " where id_user = '"+id+"' and token = '"+key+"';");
 			boolean a = rep.next() != false;
 			
 			
@@ -50,7 +50,7 @@ public class UserBD {
 			stm = con.createStatement();
 
 
-			String query = "UPDATE "+ DBStatic.TABLE_USER +" SET token = ?  WHERE id_fb = '"+id+"' ;";
+			String query = "UPDATE "+ DBConfig.TABLE_USER +" SET token = ?  WHERE id_fb = '"+id+"' ;";
 
 			PreparedStatement preparedStmt = (PreparedStatement) con.prepareStatement(query);
 			preparedStmt.setString(1, key);
@@ -79,7 +79,7 @@ public class UserBD {
 			stm = con.createStatement();
 
 			//On selection le login entrer , dansla table User
-			rep = stm.executeQuery("SELECT * FROM " + DBStatic.TABLE_USER + " WHERE id_fb='" + id_fb + "'");
+			rep = stm.executeQuery("SELECT * FROM " + DBConfig.TABLE_USER + " WHERE id_fb='" + id_fb + "'");
 
 			//On teste si le resultat est null
 			boolean a = rep.next() != false;
@@ -111,7 +111,7 @@ public class UserBD {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 			//Insertion dans la bd
-			query = "INSERT INTO " + DBStatic.TABLE_USER + " (id_user,token,id_fb,email,first_name,gender,last_name,link,locale,name,timezone) VALUES" + " (NULL ,'" + token + "','" + id_fb + "','" + email + "','" + first_name + "','" + gender + "' , '" + last_name + "' , '" + link + "' , '" + locale + "' ,'" + name + "' , '" + timezone + "');";
+			query = "INSERT INTO " + DBConfig.TABLE_USER + " (id_user,token,id_fb,email,first_name,gender,last_name,link,locale,name,timezone) VALUES" + " (NULL ,'" + token + "','" + id_fb + "','" + email + "','" + first_name + "','" + gender + "' , '" + last_name + "' , '" + link + "' , '" + locale + "' ,'" + name + "' , '" + timezone + "');";
 			stm.executeUpdate(query);
 
 
@@ -139,7 +139,7 @@ public class UserBD {
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "Select * from "+ DBStatic.TABLE_USER+" where token = '"+key+"';";
+			query = "Select * from "+ DBConfig.TABLE_USER+" where token = '"+key+"';";
 			ResultSet rs = stm.executeQuery(query);
 			if(rs.next()){
 				json.put("id", rs.getInt("id_user"));
@@ -163,7 +163,7 @@ public class UserBD {
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "Select * from "+ DBStatic.TABLE_USER+"  where id_user = '"+id+"';";
+			query = "Select * from "+ DBConfig.TABLE_USER+"  where id_user = '"+id+"';";
 			ResultSet rs = stm.executeQuery(query);
 			if(rs.next()){
 				json.put("id", rs.getInt("id_user"));
