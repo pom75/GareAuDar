@@ -4,7 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import bd.TrainBD;
+import bd.sql.TrainBD;
 import tools.apis.SNCFApi;
 
 public class TrainService {

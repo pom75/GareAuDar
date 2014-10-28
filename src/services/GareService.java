@@ -3,8 +3,8 @@ package services;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import bd.GareBD;
-import bd.UserBD;
+import bd.sql.GareBD;
+import bd.sql.UserBD;
 
 public class GareService {
 

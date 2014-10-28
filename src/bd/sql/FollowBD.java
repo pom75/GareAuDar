@@ -1,4 +1,4 @@
-package bd;
+package bd.sql;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import bd.DBStatic;
+import bd.DBTools;
 
 public class FollowBD {
 	public static boolean addFollow(String id1, String id2) {

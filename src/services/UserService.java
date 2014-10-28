@@ -2,7 +2,7 @@ package services;
 
 import org.json.JSONObject;
 
-import bd.UserBD;
+import bd.sql.UserBD;
 
 public class UserService {
 

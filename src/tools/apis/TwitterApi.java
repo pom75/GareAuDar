@@ -1,6 +1,6 @@
 package tools.apis;
 
-import bd.ActualiteBD;
+import bd.mongo.ActualiteBD;
 import twitter4j.DirectMessage;
 import twitter4j.StallWarning;
 import twitter4j.Status;

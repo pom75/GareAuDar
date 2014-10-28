@@ -2,7 +2,7 @@ package services;
 
 import org.json.JSONObject;
 
-import bd.TweetBD;
+import bd.mongo.TweetBD;
 
 public class ToolService {
 

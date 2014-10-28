@@ -1,4 +1,4 @@
-package bd;
+package bd.sql;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.json.JSONObject;
+
+import bd.DBStatic;
+import bd.DBTools;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;

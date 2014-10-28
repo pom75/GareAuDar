@@ -2,8 +2,8 @@ package services;
 
 import org.json.JSONObject;
 
-import bd.StationBD;
-import bd.UserBD;
+import bd.sql.StationBD;
+import bd.sql.UserBD;
 
 public class StationService {
 

@@ -8,8 +8,8 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import bd.FollowBD;
-import bd.UserBD;
+import bd.sql.FollowBD;
+import bd.sql.UserBD;
 
 public class KeyService {
 

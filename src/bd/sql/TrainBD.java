@@ -1,10 +1,12 @@
-package bd;
+package bd.sql;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import bd.DBTools;
 
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 

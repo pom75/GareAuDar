@@ -1,10 +1,13 @@
-package bd;
+package bd.sql;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import bd.DBTools;
 
 public class GareBD {
 

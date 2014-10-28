@@ -1,4 +1,4 @@
-package bd;
+package bd.mongo;
 
 import java.net.UnknownHostException;
 
