@@ -24,6 +24,8 @@ function switchMenu(bool){
 function searchGare() {
 		var num = $("#gareliste option:selected").val();
 		
+		searchStation(num);
+
 		if($('#chek').is(':checked')){
 			addFav(num);
 		}
@@ -47,6 +49,20 @@ function searchGare() {
 
 	}
 
+
+function searchStation(num){
+	$.ajax({
+		type: "POST",
+		url : "SearchStation",
+		data : "token="+getCookie("key")+"&uic="+num+"&user="+getCookie("id_user"),
+		datType : "json",
+		success: function(rep){
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$('#responserecerche').html("<p>num de gare innexistant</p>");
+		}
+	});
+}
 
 function addFav(num){
 	$.ajax({
