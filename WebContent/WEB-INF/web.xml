@@ -64,6 +64,12 @@
 		<servlet-name>ListGare</servlet-name>
 		<servlet-class>servlets.ListGareServlet</servlet-class>
 	</servlet>
+	
+	
+	<servlet>
+		<servlet-name>SearchStation</servlet-name>
+		<servlet-class>servlets.SearchStationServlet</servlet-class>	
+	</servlet>
 
 	<!-- 	SERVLET MAPPING -->
 
@@ -117,6 +123,11 @@
 	<servlet-mapping>
 		<servlet-name>TweetsServlet</servlet-name>
 		<url-pattern>/tweets</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>SearchStation</servlet-name>
+		<url-pattern>/SearchStation</url-pattern>
 	</servlet-mapping>
 	
 	
