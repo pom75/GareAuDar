@@ -1,15 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package bd;
 
+// TODO: later, extranliser dans fichier config
 public class DBStatic {
 
-    //Otpion connexion
+    //Option connexion
     static String mysql_host = "localhost:3306";
     static String mysql_username = "root";
-    static String mysql_password = "maimai";
+    static String mysql_password = "maimai"; //et ta grand mère!
     static boolean mysql_pooling = false ;
     static String mysql_db = "GareAuDar";
     
@@ -21,8 +18,9 @@ public class DBStatic {
     
     
     //MongoDB
+    public static final String MONGO_IP = "localhost";
+    public static final int MONGO_PORT = 27130;
+    public static final String MONGO_DB = "gare";
     public static final String COLLECTION_ACTUALITE = "actualite";
-    public static final String IP_MONGO = "localhost";
-    public static final int PORT_MONGO = 27130;
-    public static final String BD_MONGO = "gare";
+    public static final String COLLECTION_TWEET = "actualite";
 }

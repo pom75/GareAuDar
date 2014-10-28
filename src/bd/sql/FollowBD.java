@@ -25,6 +25,7 @@ public class FollowBD {
 
 			//Insertion dans la bd
 			query = "INSERT INTO " + DBStatic.TABLE_FRIENDS + " (id,id_user_1,id_user_2) VALUES" + " (NULL ,'" + id1 + "','" + id2 + "');";
+			//TODO: maybe, use prepare statement.
 			stm.executeUpdate(query);
 
 
@@ -51,7 +52,7 @@ public class FollowBD {
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "insert into Friends(id_user_1,id_user_2) VALUES ('"+user1+"','"+user2+"');";
+			query = "INSERT INTO " + DBStatic.TABLE_FRIENDS + " (id_user_1,id_user_2) VALUES ('"+user1+"','"+user2+"');";
 			stm.executeUpdate(query);
 			stm.close();
 			co.close();
@@ -70,7 +71,7 @@ public class FollowBD {
 		try {
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "delete from Friends where id_user_1 ='"+user1+"' and id_user_2 = '"+user2+"';";
+			query = "DELETE FROM" + DBStatic.TABLE_FRIENDS + " where id_user_1 ='"+user1+"' and id_user_2 = '"+user2+"';";
 			stm.executeUpdate(query);
 			stm.close();
 			co.close();
@@ -93,7 +94,7 @@ public class FollowBD {
 		try{
 			co = DBTools.getMySQLConnection();
 			stm = co.createStatement();
-			query = "select * from Friends where id_user_2 = '"+user1+"';";
+			query = "select * from " + DBStatic.TABLE_FRIENDS + " where id_user_2 = '"+user1+"';";
 			ResultSet rs = stm.executeQuery(query);
 			while(rs.next()){
 					ids.add(rs.getInt("id_user_1"));

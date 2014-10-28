@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import bd.DBTools;
 
+//TODO: merge maybe
 public class GareBD {
 
 	

@@ -1,6 +1,5 @@
 package services;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import bd.sql.GareBD;

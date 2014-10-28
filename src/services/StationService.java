@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import bd.sql.StationBD;
 import bd.sql.UserBD;
 
+// total?
 public class StationService {
 
 	public static boolean addSearched(String token,String user,String uic){

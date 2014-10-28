@@ -12,16 +12,20 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
+import static bd.DBStatic.*;
+
 public class TweetBD {
 
 	public static JSONObject getNTweet(int n) {
 		JSONObject json = new JSONObject();
 		try {
-			MongoClient mg = new MongoClient("localhost",27017);
-			DB db = mg.getDB("gare");
-			DBCollection collection = db.getCollection("actualite");
+			MongoClient mg = new MongoClient(MONGO_IP, MONGO_PORT);
+			DB db = mg.getDB(MONGO_DB);
+			DBCollection collection = db.getCollection(COLLECTION_ACTUALITE);
+			//TODO check; if same, merge 
 			
 			DBCursor cs = collection.find().sort(new BasicDBObject("_id",-1)).limit(n);
+			//TODO: see id?
 			
 			while(cs.hasNext()){
 				DBObject next = cs.next();
