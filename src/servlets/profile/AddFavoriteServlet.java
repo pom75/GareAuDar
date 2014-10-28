@@ -1,4 +1,4 @@
-package servlets;
+package servlets.profile;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import services.FollowService;
 import services.GareService;
 
-public class GarFavorServlet extends HttpServlet {
+public class AddFavoriteServlet extends HttpServlet {
 
 	
 	/**

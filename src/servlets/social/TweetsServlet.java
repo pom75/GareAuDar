@@ -1,4 +1,4 @@
-package servlets;
+package servlets.social;
 
 import java.io.IOException;
 

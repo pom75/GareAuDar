@@ -1,36 +1,28 @@
-package servlets;
+package servlets.profile;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import services.UserService;
 
-import services.TrainService;
-
-/**
- * Servlet implementation class TrainAtGare
- */
-
-public class TrainAtGareServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TrainAtGareServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+public class MonProfilServlet extends HttpServlet {
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String num = request.getParameter("num");
+		Cookie[] cookies = request.getCookies();
+
+		String key = null;
+		for(Cookie cookie : cookies){
+			if("key".equals(cookie.getName())){
+				key = cookie.getValue();
+			}
+		}
 		response.setContentType("text/plain");
-		response.getWriter().println(TrainService.addTrains(num));
+		response.getWriter().println(UserService.getProfil(key));
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package servlets;
+package servlets.search;
 
 import java.io.IOException;
 
@@ -7,20 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.FollowService;
+import services.StationService;
 
-public class AddFollowServlet extends HttpServlet { 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1007713300894478018L;
+public class MostSearchedStationServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user1 = request.getParameter("user1");
-		String user2 = request.getParameter("user2");
-		String key = request.getParameter("key");
+		String user = request.getParameter("user");
 		response.setContentType("text/plain");
-		response.getWriter().println(FollowService.addFollow(user1, user2,key));
+		response.getWriter().println(StationService.getMostSearched(user));
 	}
 
 	/**
@@ -28,6 +22,5 @@ public class AddFollowServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.doGet(request, response);
-	}
-
+	} 
 }

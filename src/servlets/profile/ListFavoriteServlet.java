@@ -1,4 +1,4 @@
-package servlets;
+package servlets.profile;
 
 import java.io.IOException;
 
@@ -7,14 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.StationService;
+import services.GareService;
 
-public class MostSearchedStationServlet extends HttpServlet {
+public class ListFavoriteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user = request.getParameter("user");
+		String user1 = request.getParameter("user");
 		response.setContentType("text/plain");
-		response.getWriter().println(StationService.getMostSearched(user));
+		response.getWriter().println(GareService.getStations(user1));
 	}
 
 	/**
@@ -22,5 +22,5 @@ public class MostSearchedStationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.doGet(request, response);
-	} 
+	}
 }

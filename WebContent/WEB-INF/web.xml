@@ -2,86 +2,89 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	
-	
+
 	<!-- SERVLET NAMING -->
-	
-	<servlet>
-		<servlet-name>TrainAtGare</servlet-name>
-		<servlet-class>servlets.TrainAtGareServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>Itineraire</servlet-name>
-		<servlet-class>servlets.ItineraireServlet</servlet-class>
-	</servlet>
+
 	<servlet>
 		<servlet-name>SendKey</servlet-name>
 		<servlet-class>servlets.SendKeyServlet</servlet-class>
 	</servlet>
 
+	<!-- Search -->
+	<servlet>
+		<servlet-name>TrainAtGare</servlet-name>
+		<servlet-class>servlets.search.TrainAtGareServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Itineraire</servlet-name>
+		<servlet-class>servlets.search.ItineraireServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SearchStation</servlet-name>
+		<servlet-class>servlets.search.SearchStationServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MostSearchedStation</servlet-name>
+		<servlet-class>servlets.search.MostSearchedStationServlet</servlet-class>
+	</servlet>
+
+	<!-- Profile -->
+
+	<servlet>
+		<servlet-name>MonProfil</servlet-name>
+		<servlet-class>servlets.profile.MonProfilServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>GetProfil</servlet-name>
+		<servlet-class>servlets.profile.GetProfilServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>AddFavorite</servlet-name>
+		<servlet-class>servlets.profile.AddFavoriteServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>DeleteFavorite</servlet-name>
+		<servlet-class>servlets.profile.DeleteFavoriteServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ListFavorite</servlet-name>
+		<servlet-class>servlets.profile.ListFavoriteServlet</servlet-class>
+	</servlet>
+
+	<!-- Social -->
+
 	<servlet>
 		<servlet-name>AddFollow</servlet-name>
-		<servlet-class>servlets.AddFollowServlet</servlet-class>
+		<servlet-class>servlets.social.AddFollowServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>RemoveFollow</servlet-name>
-		<servlet-class>servlets.RemoveFollowServlet</servlet-class>
+		<servlet-class>servlets.social.RemoveFollowServlet</servlet-class>
 	</servlet>
 
 	<servlet>
 		<servlet-name>ListFollow</servlet-name>
-		<servlet-class>servlets.ListFollowServlet</servlet-class>
+		<servlet-class>servlets.social.ListFollowServlet</servlet-class>
 	</servlet>
 
-	<servlet>
-		<servlet-name>GareFavor</servlet-name>
-		<servlet-class>servlets.GarFavorServlet</servlet-class>
-	</servlet>
-
-	<servlet>
-		<servlet-name>SupGareFavor</servlet-name>
-		<servlet-class>servlets.SuprimeGarFavorServlet</servlet-class>
-	</servlet>
-
-
-	<servlet>
-		<servlet-name>MonProfil</servlet-name>
-		<servlet-class>servlets.MonProfilServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>GetProfil</servlet-name>
-		<servlet-class>servlets.GetProfilServlet</servlet-class>
-	</servlet>
-	
 	<servlet>
 		<servlet-name>TweetsServlet</servlet-name>
-		<servlet-class>servlets.TweetsServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>ListGare</servlet-name>
-		<servlet-class>servlets.ListGareServlet</servlet-class>
-	</servlet>
-	
-	
-	<servlet>
-		<servlet-name>SearchStation</servlet-name>
-		<servlet-class>servlets.SearchStationServlet</servlet-class>	
-	</servlet>
-	
-	
-	
-	<servlet>
-		<servlet-name>MostSearchedStation</servlet-name>
-		<servlet-class>servlets.MostSearchedStationServlet</servlet-class>	
+		<servlet-class>servlets.social.TweetsServlet</servlet-class>
 	</servlet>
 
-	<!-- 	SERVLET MAPPING -->
+	<!-- SERVLET MAPPING -->
+	<!-- TODO: rename and dispatch?  -->
 
 	<servlet-mapping>
-		<servlet-name>ListGare</servlet-name>
+		<servlet-name>ListFavorite</servlet-name>
 		<url-pattern>/listgare</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -109,19 +112,19 @@
 		<url-pattern>/ListFollow</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>GareFavor</servlet-name>
+		<servlet-name>AddFavorite</servlet-name>
 		<url-pattern>/GareFavor</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>SupGareFavor</servlet-name>
+		<servlet-name>DeleteFavorite</servlet-name>
 		<url-pattern>/SupGareFavor</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>MonProfil</servlet-name>
 		<url-pattern>/MonProfil</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>GetProfil</servlet-name>
 		<url-pattern>/GetProfil</url-pattern>
@@ -131,16 +134,15 @@
 		<servlet-name>TweetsServlet</servlet-name>
 		<url-pattern>/tweets</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>SearchStation</servlet-name>
 		<url-pattern>/SearchStation</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>MostSearchedStation</servlet-name>
 		<url-pattern>/MostSearchedStation</url-pattern>
 	</servlet-mapping>
-	
-	
+
 </web-app>

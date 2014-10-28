@@ -22,7 +22,6 @@ public class SendKeyServlet extends HttpServlet {
      */
     public SendKeyServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
