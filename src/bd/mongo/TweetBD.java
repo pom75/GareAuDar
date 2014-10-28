@@ -12,7 +12,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
-import static bd.DBStatic.*;
+import static bd.DBConfig.*;
 
 public class TweetBD {
 

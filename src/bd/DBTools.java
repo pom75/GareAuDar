@@ -7,34 +7,38 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import static bd.DBConfig.*;
+
 public class DBTools {
 
-    private DataSource dataSource;
+	private DataSource dataSource;
 
-    public DBTools(String jndiname) throws SQLException, ClassNotFoundException {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            dataSource = (DataSource) new InitialContext().lookup("java:comp/env/"
-                    + jndiname);
-        } catch (NamingException e) {
-            // Handle error that it's not configured in JNDI.
-            throw new SQLException(jndiname + " is missing in JNDI! : " + e.getMessage());
-        }
-    }
+	public DBTools(String jndiname) throws SQLException, ClassNotFoundException {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			dataSource = (DataSource) new InitialContext()
+					.lookup("java:comp/env/" + jndiname);
+		} catch (NamingException e) {
+			// Handle error that it's not configured in JNDI.
+			throw new SQLException(jndiname + " is missing in JNDI! : "
+					+ e.getMessage());
+		}
+	}
 
-    public Connection getConnection() throws SQLException {
-        return dataSource.getConnection();
-    }
+	public Connection getConnection() throws SQLException {
+		return dataSource.getConnection();
+	}
 
-    public static Connection getMySQLConnection() throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
-        if (DBStatic.mysql_pooling == false) {
-            return (DriverManager.getConnection("jdbc:mysql://" + DBStatic.mysql_host
-                    + "/"
-                    + DBStatic.mysql_db, DBStatic.mysql_username, DBStatic.mysql_password));
-        } else {
-            DBTools database = new DBTools("jdbc/db");
-            return (database.getConnection());
-        }
-    }
+	public static Connection getMySQLConnection() throws SQLException,
+			ClassNotFoundException {
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		if (DBConfig.MYSQL_POOLING == false) {
+			return (DriverManager.getConnection("jdbc:mysql://" + MYSQL_HOST
+					+ "/" + MYSQL_DB, MYSQL_USERNAME, MYSQL_PASSWORD));
+		} else {
+			DBTools database = new DBTools("jdbc/db");
+			return (database.getConnection());
+		}
+	}
 }

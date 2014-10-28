@@ -8,7 +8,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
 import com.mongodb.WriteResult;
 
-import static bd.DBStatic.*;
+import static bd.DBConfig.*;
 
 public class ActualiteBD {
 

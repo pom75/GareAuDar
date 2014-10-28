@@ -12,7 +12,7 @@ public class StationService {
 		if(!UserBD.myKey(user, token)){
 			return false;
 		}else{
-			return StationBD.addFavGare(user, uic);
+			return StationBD.addSearchGare(user, uic);
 		}	
 	}
 

@@ -2,7 +2,7 @@ package services;
 
 import org.json.JSONObject;
 
-import bd.sql.GareBD;
+import bd.sql.FavoriteBD;
 import bd.sql.UserBD;
 
 public class GareService {
@@ -12,7 +12,7 @@ public class GareService {
 		if(!UserBD.myKey(user, token)){
 			return false;
 		}else{
-			return GareBD.addFavGare(user, uic);
+			return FavoriteBD.addFavoriteStation(user, uic);
 		}	
 	}
 
@@ -20,7 +20,7 @@ public class GareService {
 		if(!UserBD.myKey(user, token)){
 			return false;
 		}else{
-			return GareBD.removeFavGare(user, uic);
+			return FavoriteBD.removeFavoriteStation(user, uic);
 		}	
 	}
 
@@ -28,7 +28,7 @@ public class GareService {
 		if(user1 == null || user1.isEmpty() || user1.equals("")){
 			return null;
 		}else{
-			return GareBD.listArray(user1);
+			return FavoriteBD.listFavoriteStations(user1);
 		}	
 	}
 }
