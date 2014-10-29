@@ -30,6 +30,12 @@
 	<servlet-name>MostSearchedStation</servlet-name>
 	<servlet-class>servlets.search.MostSearchedStationServlet</servlet-class>
 	</servlet>
+	
+	
+	<servlet>
+	<servlet-name>GetNbTrainTakenServlet</servlet-name>
+	<servlet-class>servlets.search.GetNbTrainTakenServlet</servlet-class>
+	</servlet>
 
 	<!-- Train -->
 
@@ -196,6 +202,11 @@
 	<servlet-mapping>
 		<servlet-name>MostSearchedStation</servlet-name>
 		<url-pattern>/MostSearchedStation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>GetNbTrainTakenServlet</servlet-name>
+		<url-patter>/GetNbTrainTaken</url-patter>
 	</servlet-mapping>
 
 </web-app>

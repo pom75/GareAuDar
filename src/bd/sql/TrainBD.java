@@ -99,6 +99,8 @@ public class TrainBD {
 					
 				}	
 			
+			stm.close();
+			co.close();
 			
 		}catch (Exception e) {
 			System.err.print("Exception :");
@@ -109,7 +111,32 @@ public class TrainBD {
 		
 	}
 
-
-
-
+	
+	/*
+	 * SELECT COUNT( * ) 
+FROM  `Train` 
+WHERE user_id =1
+	 */
+	
+	public static JSONObject getNbTrainTaken(String id){
+		Connection co;
+		Statement stm;
+		String query;
+		JSONObject json = new JSONObject();
+		try{
+			co = DBTools.getMySQLConnection();
+			stm = co.createStatement();
+			query = "select COUNT(*) from Train where user_id = '"+id+"'";
+			ResultSet rs = stm.executeQuery(query);
+			if(rs.next()){
+				json.put("nb", rs.getInt(1));
+			}
+			stm.close();
+			co.close();
+		}catch (Exception e) {
+			System.err.print("Exception :");
+			e.printStackTrace();
+		}
+		return json;
+	}
 }
