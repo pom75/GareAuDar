@@ -119,7 +119,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>SuppTrain</servlet-name>
-		<url-pattern>/suppTrain</url-pattern>
+		<url-pattern>/supptrain</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>TrainAtGare</servlet-name>

@@ -229,7 +229,7 @@ function addTrain(numT,date,numG,term){
 		type : "POST",
 		url : "addtrain",
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user")+"&numT="+numT+"&date="+date+"&numG="+numG+"&term="+term,
-		dataType : "json",
+		dataType : "json", //CHECK?
 		success : function(rep) {
 			$('#addT').modal('show');
 
@@ -240,6 +240,19 @@ function addTrain(numT,date,numG,term){
 	});
 }
 
+//TODO test
 function suppTrain(numT,date){
-	
+	$.ajax({
+		type : "POST",
+		url : "/supptrain",
+		data : "key="+getCookie("key")+"&user="+getCookie("id_user")+"&numT="+numT+"&date="+date,
+		dataType : "json",
+		success : function(rep) {
+			$('#addT').modal('show');
+			//TODO: see what to do
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			
+		}
+	});
 }
