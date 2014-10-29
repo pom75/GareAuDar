@@ -11,6 +11,22 @@ function affiche(){
 }
 
 
+function trainTaken(){
+	$.ajax({
+		type: "POST",
+		url : "GetNbTrainTaken",
+		data : "user="+getCookie("id_user"),
+		datType : "json",
+		success: function(rep){
+			var json = JSON.parse(rep);
+			document.getElementById('trainTaken').innerHTML = json.nb;
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$('#responserecerche').html("<p>num de gare innexistant</p>");
+		}
+	});
+}
+
 function statSearchedTrain(){
 	$.ajax({
 		type: "POST",

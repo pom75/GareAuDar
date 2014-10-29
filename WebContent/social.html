@@ -42,7 +42,7 @@ body {
 
 
 </head>
-<body onload="affiche();statSearchedTrain();">
+<body onload="affiche();statSearchedTrain();trainTaken();">
 	<!-- facebookScript -->
 	<div id="fb-root"></div>
 	<script src="js/facebook.js"></script>
@@ -259,7 +259,7 @@ body {
 					
 
 					    <label  class="col-md-5 control-label">Nombre total de train pris : </label>
-					    <label  class="col-md-4 control-label">valeur</label>
+					    <label  class="col-md-4 control-label" id="trainTaken">valeur</label>
 					    <label  class="col-md-5 control-label">Gare la plus recherché  : </label>
 					    <label  class="col-md-4 control-label" id="GareMost">Valeur</label>
 					    <label  class="col-md-5 control-label">Itinéraire le plus rechercher  : </label>
