@@ -32,7 +32,7 @@
 	</servlet>
 	
 	
-	<servlet>
+	 <servlet>
 	<servlet-name>GetNbTrainTakenServlet</servlet-name>
 	<servlet-class>servlets.search.GetNbTrainTakenServlet</servlet-class>
 	</servlet>
@@ -204,9 +204,9 @@
 		<url-pattern>/MostSearchedStation</url-pattern>
 	</servlet-mapping>
 	
-	<servlet-mapping>
+ <servlet-mapping>
 		<servlet-name>GetNbTrainTakenServlet</servlet-name>
-		<url-patter>/GetNbTrainTaken</url-patter>
+		<url-pattern>/GetNbTrainTaken</url-pattern>
 	</servlet-mapping>
 
 </web-app>

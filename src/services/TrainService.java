@@ -248,9 +248,10 @@ public class TrainService {
 
 	public static JSONObject getNbTrainTaken(String user){
 		if(user == null || user.equals("")){
-			return TrainBD.getNbTrainTaken(user);
+			JSONObject json = new JSONObject();
+			return json;
 		}else{
-			return new JSONObject();
+			return TrainBD.getNbTrainTaken(user);
 		}
 	}
 }
