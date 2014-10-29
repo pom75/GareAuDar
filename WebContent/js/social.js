@@ -1,8 +1,3 @@
-//-----------------TOOLS social
-var callAJAXP = false;
-var callAJAXF = false;
-var callAJAXT = false;
-var callAJAXS = false;
 
 function affiche(){
 	var url = window.location.href;
@@ -51,40 +46,32 @@ function switchMenu(item){
 		$( "#prom1" ).addClass("active");
 		$( "#pro" ).css("display", "inline");
 		
-		if( !callAJAXP ){
-			callAJAXP = true;
 			callP();
-		}
+	
 		
 	}else if( $(item).attr("id") == "favp" || $(item).attr("id") == "favm" || item == "favm"){
 		$( "#favp" ).addClass("active");
 		$( "#favm1" ).addClass("active");
 		$( "#fav" ).css("display", "inline");
 		
-		if( !callAJAXF ){
-			callAJAXF = true;
 			callF();
-		}
+		
 		
 	}else if( $(item).attr("id") == "trap" || $(item).attr("id") == "tram" || item == "tram"){
 		$( "#trap" ).addClass("active");
 		$( "#tram1" ).addClass("active");
 		$( "#tra" ).css("display", "inline");
 		
-		if( !callAJAXT ){
-			callAJAXT = true;
 			callT();
-		}
+		
 		
 	}else if( $(item).attr("id") == "stap" || $(item).attr("id") == "stam" || item == "stam"){
 		$( "#stap" ).addClass("active");
 		$( "#stam1" ).addClass("active");
 		$( "#sta" ).css("display", "inline");
 		
-		if( !callAJAXS ){
-			callAJAXS = true;
 			callS();
-		}
+		
 		
 	}
 	
@@ -213,12 +200,28 @@ function unfav(num){
 			$('#responserecerche').html("<p>num de gare innexistant</p>");
 		}
 	});
-	
+
 }
 
 function callT(){
+	$.ajax({
+		type : "POST",
+		url : "getmytrainf",
+		data : "key="+getCookie("key")+"&user="+getCookie("id_user"),
+		dataType : "json",
+		success : function(rep) {
+			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
+			"<tr><td>{{numG}}</td><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td><td>{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
+			" onclick=\"supTrain('{{num}}','{{#date}}{{content}}{{/date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
+			var html = Mustache.to_html(tpl, rep);
+			$('#tav').append(html);
 
-	
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+
+		}
+	});
+
 }
 
 function addTrain(numT,date,numG,term){
@@ -235,4 +238,8 @@ function addTrain(numT,date,numG,term){
 			
 		}
 	});
+}
+
+function suppTrain(numT,date){
+	
 }

@@ -13,6 +13,11 @@
 	<!-- Train  -->
 	
 	<servlet>
+		<servlet-name>GetMyTrainFuture</servlet-name>
+		<servlet-class>servlets.trains.GetMyTrainFutureServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
 		<servlet-name>AddTrain</servlet-name>
 		<servlet-class>servlets.trains.AddTrainServlet</servlet-class>
 	</servlet>
@@ -90,7 +95,12 @@
 
 	<!-- SERVLET MAPPING -->
 	<!-- TODO: rename and dispatch?  -->
+	
 
+	<servlet-mapping>
+		<servlet-name>GetMyTrainFuture</servlet-name>
+		<url-pattern>/getmytrainf</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ListFavorite</servlet-name>
 		<url-pattern>/listgare</url-pattern>
