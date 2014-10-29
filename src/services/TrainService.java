@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import bd.sql.FollowBD;
 import bd.sql.StationBD;
 import bd.sql.TrainBD;
 import bd.sql.UserBD;
@@ -32,7 +33,7 @@ public class TrainService {
 			JSONArray alltrain = TrainBD.getTrainUser(user_id);
 			
 			//Train passe uniquement
-			alltrain = getTrainFutur(alltrain);
+			alltrain = getTrainPasse(alltrain);
 			
 			try {
 				rep.put("train", alltrain);
@@ -56,7 +57,7 @@ public class TrainService {
 			JSONArray alltrain = TrainBD.getTrainUser(user_id);
 			
 			//Train futur uniquement
-			alltrain = getTrainPasse(alltrain);
+			alltrain = getTrainFutur(alltrain , 1);
 			
 			//nb friend qui prennent ce train  == numT ==term  +-2h date
 			
@@ -71,8 +72,46 @@ public class TrainService {
 	}
 	
 	
-	public static char[] getTrainFallowFutur(String key, String user_id) {
-
+	public static JSONObject getTrainFallowFutur(String key, String user_id) {
+		JSONObject rep = new JSONObject();
+		JSONArray repT = new JSONArray();
+		if(!UserBD.myKey(user_id, key)){
+			//AHAHAHAH
+		}else{
+			JSONArray friend = new JSONArray();
+			try {
+				
+				friend = FollowBD.listFollow(Integer.parseInt(user_id)).getJSONArray("list");
+				
+				for (int i = 0; i < friend.length(); i++){
+					((JSONObject)  friend.get(i)).getString("id_user");
+					
+					JSONArray buff = new JSONArray();
+					
+					buff = TrainBD.getTrainUser(user_id);
+					buff = getTrainFutur(buff, 0);
+					
+					for (int j = 0; j < buff.length(); j++){
+						repT.put(buff.get(j));
+					}
+					
+					
+					
+				}
+			
+			rep.put("train", repT);
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+		}
+		return rep;
 		
 	}
 	
@@ -108,7 +147,7 @@ public class TrainService {
 	
 	
 
-	public static JSONArray getTrainFutur(JSONArray tab){
+	public static JSONArray getTrainFutur(JSONArray tab , int interval){
 		JSONArray rep = new JSONArray();
 		for (int i = 0; i < tab.length(); i++)
 		{
@@ -121,7 +160,7 @@ public class TrainService {
 				
 		    	
 				//Si le train est pas encore passé ou si le train est a quai , ou si le train est en retard (toujours présent requette)
-		    	if(date1.compareTo(date2)>0 || date1.compareTo(date2)==0 || isInInterval(date1.toString(), date2.toString(), 1) ){
+		    	if(date1.compareTo(date2)>0 || date1.compareTo(date2)==0 || isInInterval(date1.toString(), date2.toString(), interval) ){
 		    		rep.put(tab.get(i));
 		    	}
 			

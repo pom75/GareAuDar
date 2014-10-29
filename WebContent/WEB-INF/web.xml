@@ -12,6 +12,13 @@
 
 	<!-- Train  -->
 	
+	
+	<servlet>
+		<servlet-name>GetTrainFollowFutur</servlet-name>
+		<servlet-class>servlets.trains.GetTrainFollowFuturServlet</servlet-class>
+	</servlet>
+	
+	
 	<servlet>
 		<servlet-name>GetMyTrainFuture</servlet-name>
 		<servlet-class>servlets.trains.GetMyTrainFutureServlet</servlet-class>
@@ -102,6 +109,11 @@
 	<!-- TODO: rename and dispatch? -->
 
 
+	
+	<servlet-mapping>
+		<servlet-name>GetTrainFollowFutur</servlet-name>
+		<url-pattern>/gettrainff</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>GetMyTrainPasse</servlet-name>
 		<url-pattern>/getmytrainp</url-pattern>

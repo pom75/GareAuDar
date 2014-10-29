@@ -64,6 +64,7 @@ public class TrainBD {
 			
 			while(rs.next()){
 				JSONObject json = new JSONObject();
+				json.put("user_id", rs.getString("user_id"));
 				json.put("numT", rs.getString("numT"));
 				json.put("date",rs.getString("date"));
 				json.put("numG",rs.getString("numG"));
