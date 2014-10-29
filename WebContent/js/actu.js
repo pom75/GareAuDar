@@ -9,7 +9,7 @@ function affiche(){
 				erreurServlet(rep.code,rep.mess);
 			}else{
 				// var tpl = '{{#tweets}}<h4>{{user}}</h4><p>{{message}}</p><br><br>{{/tweets}}';
-				var tpl = '{{#tweets}}<h4>{{user}}</h4><p>{{message}}</p><p>{{date}}</p><br>{{/tweets}}'
+				var tpl = '{{#tweets}}<h4>{{user}}</h4><h5>{{date}}</h5><p>{{message}}</p><br>{{/tweets}}'
 				var html = Mustache.to_html(tpl, rep);
 			$('#actu').html(html);
 				

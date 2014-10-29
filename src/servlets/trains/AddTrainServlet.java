@@ -1,4 +1,4 @@
-package servlets.search;
+package servlets.trains;
 
 import java.io.IOException;
 
@@ -7,30 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tools.apis.SNCFApi;
+import services.TrainService;
 
-/**
- * Servlet implementation class TrainAtGare
- */
-
-public class TrainAtGareServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TrainAtGareServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
+public class AddTrainServlet extends HttpServlet { 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 
 	 */
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String num = request.getParameter("num");
+		String key = request.getParameter("key");
+		String user_id = request.getParameter("user");
+		String numT = request.getParameter("numT");
+		String date = request.getParameter("date");
+		String numG = request.getParameter("numG");
+		String term = request.getParameter("term");
+		
 		response.setContentType("text/plain");
-		response.getWriter().println(SNCFApi.getTrainAtGareJSON(num));
+		response.getWriter().println(TrainService.addTrain(key, user_id, numT,date,numG, term));
 	}
 
 	/**

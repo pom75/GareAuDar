@@ -10,6 +10,14 @@
 		<servlet-class>servlets.SendKeyServlet</servlet-class>
 	</servlet>
 
+	<!-- Train  -->
+	
+	<servlet>
+		<servlet-name>AddTrain</servlet-name>
+		<servlet-class>servlets.trains.AddTrainServlet</servlet-class>
+	</servlet>
+	
+	
 	<!-- Search -->
 	<servlet>
 		<servlet-name>TrainAtGare</servlet-name>
@@ -86,6 +94,10 @@
 	<servlet-mapping>
 		<servlet-name>ListFavorite</servlet-name>
 		<url-pattern>/listgare</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddTrain</servlet-name>
+		<url-pattern>/addtrain</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>TrainAtGare</servlet-name>

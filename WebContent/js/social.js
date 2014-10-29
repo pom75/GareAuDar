@@ -185,8 +185,9 @@ function addGare(num){
 		success : function(rep) {
 			
 			var tpl = "<div class=\"col-md-4\"><h5>Nom :"+ num + "</h5></div><div class=\"col-md-4\"><button id=\"buttonunfav\" type=\"button\"  class=\"btn btn-danger\" onclick=\"unfav("+num+")\"  >Retirer des favoris</button></div>" +
-					"<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td></tr>{{#passages}}{{#train}}" +
-			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td></tr>{{/train}}</table>{{/passages}}";
+					"<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#passages}}{{#train}}" +
+			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td><td>{{term}}</td><td><button type=\"button\" class=\"btn btn-success\" " +
+			" onclick=\"addTrain('{{num}}','{{#date}}{{content}}{{/date}}','"+num+"','{{term}}');\">Ajouter ce train</button></td></tr>{{/train}}</table>{{/passages}}";
 			var html = Mustache.to_html(tpl, rep);
 			$('#listgare').append(html);
 
@@ -220,6 +221,18 @@ function callT(){
 	
 }
 
-function callS(){
-	
+function addTrain(numT,date,numG,term){
+	$.ajax({
+		type : "POST",
+		url : "addtrain",
+		data : "key="+getCookie("key")+"&user="+getCookie("id_user")+"&numT="+numT+"&date="+date+"&numG="+numG+"&term="+term,
+		dataType : "json",
+		success : function(rep) {
+			$('#addT').modal('show');
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			
+		}
+	});
 }
