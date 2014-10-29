@@ -18,6 +18,11 @@
 	</servlet>
 	
 	<servlet>
+		<servlet-name>GetMyTrainPasse</servlet-name>
+		<servlet-class>servlets.trains.GetMyTrainPasseServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
 		<servlet-name>AddTrain</servlet-name>
 		<servlet-class>servlets.trains.AddTrainServlet</servlet-class>
 	</servlet>
@@ -94,9 +99,13 @@
 	</servlet>
 
 	<!-- SERVLET MAPPING -->
-	<!-- TODO: rename and dispatch?  -->
-	
+	<!-- TODO: rename and dispatch? -->
 
+
+	<servlet-mapping>
+		<servlet-name>GetMyTrainPasse</servlet-name>
+		<url-pattern>/getmytrainp</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>GetMyTrainFuture</servlet-name>
 		<url-pattern>/getmytrainf</url-pattern>

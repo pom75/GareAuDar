@@ -214,7 +214,7 @@ function callT(){
 			"<tr><td>{{numG}}</td><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td><td>{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
 			" onclick=\"supTrain('{{num}}','{{#date}}{{content}}{{/date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
-			$('#tav').append(html);
+			$('#tav').html(html);
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

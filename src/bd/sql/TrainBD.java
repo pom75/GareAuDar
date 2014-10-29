@@ -50,7 +50,7 @@ public class TrainBD {
 		
 	}
 
-	public static JSONArray getTrainFutur(String user_id) {
+	public static JSONArray getTrainUser(String user_id) {
 		JSONArray jArray = new JSONArray();
 		Connection co;
 		Statement stm;
