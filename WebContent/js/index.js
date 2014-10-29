@@ -1,5 +1,5 @@
 //-----------------TOOLS index
-var menu = -1;
+var menu = 1;
 function switchMenu(bool){
 	if(menu == -1 || menu == 0 && bool){
 		menu = 1;
