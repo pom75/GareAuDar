@@ -10,19 +10,7 @@
 		<servlet-class>servlets.SendKeyServlet</servlet-class>
 	</servlet>
 
-	<!-- Train  -->
-	
-	<servlet>
-		<servlet-name>GetMyTrainFuture</servlet-name>
-		<servlet-class>servlets.trains.GetMyTrainFutureServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-		<servlet-name>AddTrain</servlet-name>
-		<servlet-class>servlets.trains.AddTrainServlet</servlet-class>
-	</servlet>
-	
-	
+
 	<!-- Search -->
 	<servlet>
 		<servlet-name>TrainAtGare</servlet-name>
@@ -43,6 +31,25 @@
 		<servlet-name>MostSearchedStation</servlet-name>
 		<servlet-class>servlets.search.MostSearchedStationServlet</servlet-class>
 	</servlet>
+
+	<!-- Train -->
+
+	<servlet>
+		<servlet-name>GetMyTrainFuture</servlet-name>
+		<servlet-class>servlets.trains.GetMyTrainFutureServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>AddTrain</servlet-name>
+		<servlet-class>servlets.trains.AddTrainServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SuppTrain</servlet-name> <!-- rename? -->
+		<servlet-class>servlets.trains.RemoveTrainServlet</servlet-class>
+	</servlet>
+
+
 
 	<!-- Profile -->
 
@@ -94,8 +101,8 @@
 	</servlet>
 
 	<!-- SERVLET MAPPING -->
-	<!-- TODO: rename and dispatch?  -->
-	
+	<!-- TODO: rename and dispatch? -->
+
 
 	<servlet-mapping>
 		<servlet-name>GetMyTrainFuture</servlet-name>
@@ -108,6 +115,11 @@
 	<servlet-mapping>
 		<servlet-name>AddTrain</servlet-name>
 		<url-pattern>/addtrain</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>SuppTrain</servlet-name>
+		<url-pattern>/suppTrain</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>TrainAtGare</servlet-name>
