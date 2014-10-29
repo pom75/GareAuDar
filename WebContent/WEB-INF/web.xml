@@ -10,10 +10,30 @@
 		<servlet-class>servlets.SendKeyServlet</servlet-class>
 	</servlet>
 
-	<!-- Train  -->
-	
-	
+	<!-- Search -->
 	<servlet>
+		<servlet-name>TrainAtGare</servlet-name>
+		<servlet-class>servlets.search.TrainAtGareServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Itineraire</servlet-name>
+		<servlet-class>servlets.search.ItineraireServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SearchStation</servlet-name>
+		<servlet-class>servlets.search.SearchStationServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+	<servlet-name>MostSearchedStation</servlet-name>
+	<servlet-class>servlets.search.MostSearchedStationServlet</servlet-class>
+	</servlet>
+
+	<!-- Train -->
+
+		<servlet>
 		<servlet-name>GetTrainFollowFutur</servlet-name>
 		<servlet-class>servlets.trains.GetTrainFollowFuturServlet</servlet-class>
 	</servlet>
@@ -33,28 +53,13 @@
 		<servlet-name>AddTrain</servlet-name>
 		<servlet-class>servlets.trains.AddTrainServlet</servlet-class>
 	</servlet>
-	
-	
-	<!-- Search -->
-	<servlet>
-		<servlet-name>TrainAtGare</servlet-name>
-		<servlet-class>servlets.search.TrainAtGareServlet</servlet-class>
-	</servlet>
 
 	<servlet>
-		<servlet-name>Itineraire</servlet-name>
-		<servlet-class>servlets.search.ItineraireServlet</servlet-class>
+		<servlet-name>SuppTrain</servlet-name> <!-- rename? -->
+		<servlet-class>servlets.trains.RemoveTrainServlet</servlet-class>
 	</servlet>
 
-	<servlet>
-		<servlet-name>SearchStation</servlet-name>
-		<servlet-class>servlets.search.SearchStationServlet</servlet-class>
-	</servlet>
 
-	<servlet>
-		<servlet-name>MostSearchedStation</servlet-name>
-		<servlet-class>servlets.search.MostSearchedStationServlet</servlet-class>
-	</servlet>
 
 	<!-- Profile -->
 
@@ -129,6 +134,11 @@
 	<servlet-mapping>
 		<servlet-name>AddTrain</servlet-name>
 		<url-pattern>/addtrain</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>SuppTrain</servlet-name>
+		<url-pattern>/supptrain</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>TrainAtGare</servlet-name>

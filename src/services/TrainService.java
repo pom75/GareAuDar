@@ -25,6 +25,7 @@ public class TrainService {
 		}	
 	}
 	
+
 	public static JSONObject getTrainPasse(String key, String user_id) {
 		JSONObject rep = new JSONObject();
 		if(!UserBD.myKey(user_id, key)){
@@ -47,6 +48,16 @@ public class TrainService {
 		return rep;
 	}
 
+	public static boolean removeTrain(String key, String user_id, String numT,
+			String date) {
+		if(!UserBD.myKey(user_id, key)){
+			return false;
+		}else{
+			return TrainBD.removeTrain(user_id, numT,date);
+		}	
+	}
+	
+
 	public static JSONObject getTrainFuture(String key, String user_id) {
 		JSONObject rep = new JSONObject();
 		if(!UserBD.myKey(user_id, key)){
@@ -62,10 +73,7 @@ public class TrainService {
 			//nb friend qui prennent ce train  == numT ==term  +-2h date
 			
 			//Date mise a jour de chaques train 
-			rep = majAllTrain(alltrain);
-			
-			
-			
+			rep = majAllTrain(alltrain);		
 		}	
 		
 		return rep;

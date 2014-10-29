@@ -3,9 +3,6 @@ package bd.sql;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,7 +28,7 @@ public class TrainBD {
 			//Insertion dans la bd
 			query = "INSERT INTO  " + DBConfig.TABLE_TRAIN + " (user_id,numT,date,numG,term) VALUES" + " ( '" + user_id+ "' , '" + numT + "', '" + date + "' , '" + numG + "' , '" + term + "' );";
 			stm.executeUpdate(query);
-			
+		//TODO: check if user id is string??
 			
 			//On coupe la connexion
 			stm.close();
@@ -39,7 +36,7 @@ public class TrainBD {
 
 			//Si une exeption est leve l'insersion na pas pu se faire , on revois false
 		} catch (MySQLIntegrityConstraintViolationException e) {
-			System.err.print("utilisateur d��ja cr�� :");
+			System.err.print("utilisateur déja crée :");
 			return false;
 		} catch (Exception e) {
 			System.err.print("Exception :");
@@ -49,6 +46,35 @@ public class TrainBD {
 		return true;
 		
 	}
+	
+	public static boolean removeTrain(String user_id, String numT, String date) {
+		Connection co;
+		Statement stm;
+		String query;
+
+		try {
+			//Connexion a la base
+			co = DBTools.getMySQLConnection();
+			stm = co.createStatement();
+
+			//Suppression dans la bd
+			//TODO check
+			query = "DELETE FROM  " + DBConfig.TABLE_TRAIN + " WHERE user_id ='"+user_id+"' AND numT = '"+numT +"' AND date = '"+date+"' );";
+			stm.executeUpdate(query);
+		
+			//On coupe la connexion
+			stm.close();
+			co.close();
+	} catch (Exception e) {
+			System.err.print("Exception :"); e.printStackTrace();
+			return false;
+		}
+		//Si tous ses bien passer on retrun true
+		return true;
+	}
+
+	
+	
 
 	public static JSONArray getTrainUser(String user_id) {
 		JSONArray jArray = new JSONArray();
@@ -82,5 +108,8 @@ public class TrainBD {
 		return jArray;
 		
 	}
+
+
+
 
 }
