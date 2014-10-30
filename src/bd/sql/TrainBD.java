@@ -59,7 +59,9 @@ public class TrainBD {
 
 			//Suppression dans la bd
 			//TODO check
-			query = "DELETE FROM  " + DBConfig.TABLE_TRAIN + " WHERE user_id ='"+user_id+"' AND numT = '"+numT +"' AND date = '"+date+"' );";
+			query = "DELETE FROM  " + DBConfig.TABLE_TRAIN + " WHERE user_id ='"+user_id+"' AND numT = '"+numT +"' AND date = '"+date+"' ;";
+			
+			System.out.println(query);
 			stm.executeUpdate(query);
 		
 			//On coupe la connexion

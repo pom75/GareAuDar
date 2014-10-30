@@ -226,19 +226,9 @@ body {
 				</table>
 					
 					<h4>Trains passé</h4>
-					<table class="table table-striped">
-					<tr>
-						<td>Heur</td>
-						<td>Misson</td>
-						<td>Num</td>
-						<td>Terminus</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
+					<div id="tpa">
+					
+					</div>
 					
 					 
 					<!-- Module Facebook -->
@@ -358,6 +348,27 @@ body {
 										<h4 class="modal-title" id="myModalLabel">Information !</h4>
 									</div>
 									<div class="modal-body">Ce train a été ajouté dans vos trains.</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+			<!-- Pop Up de train ajouté -->	
+						<div id="suppT" class="modal fade bs-example-modal-sm"
+							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Information !</h4>
+									</div>
+									<div class="modal-body">Ce train a été supprimé de vos trains.</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default"
 											data-dismiss="modal">Close</button>

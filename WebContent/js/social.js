@@ -244,9 +244,27 @@ function callT(){
 		success : function(rep) {
 			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
 			"<tr><td>{{numG}}</td><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td><td>{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
-			" onclick=\"supTrain('{{num}}','{{#date}}{{content}}{{/date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
+			" onclick=\"suppTrain('{{num}}','{{#date}}{{content}}{{/date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
 			$('#tav').html(html);
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+
+		}
+	});
+	
+	$.ajax({
+		type : "POST",
+		url : "getmytrainp",
+		data : "key="+getCookie("key")+"&user="+getCookie("id_user"),
+		dataType : "json",
+		success : function(rep) {
+			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
+			"<tr><td>{{numG}}</td><td>{{date}}</td><td>{{miss}}</td><td>{{numT}}</td><td>{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
+			" onclick=\"suppTrain('{{numT}}','{{date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
+			var html = Mustache.to_html(tpl, rep);
+			$('#tpa').html(html);
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -276,11 +294,11 @@ function addTrain(numT,date,numG,term){
 function suppTrain(numT,date){
 	$.ajax({
 		type : "POST",
-		url : "/supptrain",
+		url : "supptrain",
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user")+"&numT="+numT+"&date="+date,
 		dataType : "json",
 		success : function(rep) {
-			$('#addT').modal('show');
+			$('#suppT').modal('show');
 			//TODO: see what to do
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
