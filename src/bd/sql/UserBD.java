@@ -4,10 +4,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 import org.json.JSONObject;
 
+import services.TrainService;
+import tools.apis.JourneyTrain;
 import bd.DBConfig;
 import bd.DBTools;
 
@@ -17,6 +22,73 @@ import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 public class UserBD {
 
 
+	
+	public static JSONObject bestComp(String id){
+		Connection co;
+		Statement stm;
+		String query;
+		ArrayList<Integer> ids = new ArrayList<Integer>();
+		ArrayList<JourneyTrain> jt = new ArrayList<JourneyTrain>();
+		ArrayList<JourneyTrain> myList = new ArrayList<JourneyTrain>();
+		HashMap<Integer,Integer> num = new HashMap<Integer,Integer>();
+		JSONObject json = new JSONObject();
+		
+		try{
+			co = DBTools.getMySQLConnection();
+			stm = co.createStatement();
+			query = "select * from " + DBConfig.TABLE_FRIENDS + " where id_user_2 = '"+id+"';";
+			ResultSet rs = stm.executeQuery(query);
+			while(rs.next()){
+						ids.add(rs.getInt("id_user_1"));
+						num.put(rs.getInt("id_user_1"),0);	
+			}
+			query = "select * from Train where user_id = '"+id+"';";
+			rs = stm.executeQuery(query);
+			while(rs.next()){
+				myList.add(new JourneyTrain(Integer.valueOf(id),rs.getString("numT"),rs.getString("date"),rs.getString("numG"),rs.getString("term")));
+			}
+			for(int i = 0 ; i < ids.size() ; i++){
+				query = "select * from Train where user_id = '"+ids.get(i)+"';";
+				rs = stm.executeQuery(query);
+				while(rs.next()){
+					jt.add(new JourneyTrain(ids.get(i),rs.getString("numT"),rs.getString("date"),rs.getString("numG"),rs.getString("term")));
+				}
+			}
+			stm.close();
+			co.close();
+			
+			for(int i = 0 ; i < myList.size() ; i++){
+				JourneyTrain trip = myList.get(i);
+				for(int j = 0 ; j < jt.size() ; j++){
+					if(trip.equals(jt.get(j))){		
+						num.put(jt.get(j).getUser_id(), num.get(jt.get(j).getUser_id())+1);
+						jt.remove(j);
+						j--;
+					}
+				}
+			}
+			
+			int max = 0;
+			int user = 0;
+			for(int i = 0 ; i < ids.size() ;i++){
+				if(num.get(ids.get(i)) > max){
+					max = num.get(ids.get(i));
+					user = ids.get(i);
+				}
+			}
+			JSONObject userJson = getUserID(""+user);
+			String userName = userJson.get("first_name").toString() + " " + userJson.get("last_name").toString();
+			json.put("name", userName);
+//			json.put("id",user);
+			json.put("max",max);
+			
+			return json;
+		}catch (Exception e) {
+			System.err.print("Exception :");
+			e.printStackTrace();
+		}
+			return null;
+	}
 	
 	public static boolean myKey(String id , String key){
 		Connection con = null;

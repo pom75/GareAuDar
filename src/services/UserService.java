@@ -1,5 +1,6 @@
 package services;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import bd.sql.UserBD;
@@ -21,6 +22,20 @@ public class UserService {
 			return null;
 		}else{
 			return UserBD.getUserID(id);
+		}
+	}
+	
+	public static JSONObject test(String id){
+		if(id == null || id.isEmpty() || id.equals("")){
+			JSONObject json = new JSONObject();
+			try {
+				json.put("THIS", "IS SHIT");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return json;
+		}else{
+			return UserBD.bestComp(id);
 		}
 	}
 }

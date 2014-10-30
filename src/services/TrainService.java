@@ -246,6 +246,15 @@ public class TrainService {
 		return false;
 	}
 
+	public static boolean isInInterval(Date date1, Date date2, int interval){
+			if(date1.getYear() == date2.getYear() && date1.getMonth() == date2.getMonth()  && date1.getDay() 
+					== date2.getDay() && date1.getHours() - date2.getHours() < interval && date1.getHours() - date2.getHours() > - interval){
+				return true;
+			}else{
+				return false;
+			}
+	}
+	
 	public static JSONObject getNbTrainTaken(String user){
 		if(user == null || user.equals("")){
 			JSONObject json = new JSONObject();

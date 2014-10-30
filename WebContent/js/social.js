@@ -11,6 +11,22 @@ function affiche(){
 }
 
 
+function bestRider(){
+	$.ajax({
+		type: "POST",
+		url : "BestRiderServlet",
+		data : "user="+getCookie("id_user"),
+		datType : "json",
+		success: function(rep){
+			var json = JSON.parse(rep);
+			document.getElementById('bestRider').innerHTML = json.name + " ("+json.max+")";
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$('#responserecerche').html("<p>num de gare innexistant</p>");
+		}
+	});
+}
+
 function trainTaken(){
 	$.ajax({
 		type: "POST",

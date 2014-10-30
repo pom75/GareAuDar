@@ -36,6 +36,12 @@
 	<servlet-name>GetNbTrainTakenServlet</servlet-name>
 	<servlet-class>servlets.search.GetNbTrainTakenServlet</servlet-class>
 	</servlet>
+	
+	<servlet>
+	<servlet-name>BestRiderServlet</servlet-name>
+	<servlet-class>servlets.search.BestRiderServlet</servlet-class>
+	</servlet>
+	
 
 	<!-- Train -->
 
@@ -207,6 +213,11 @@
  <servlet-mapping>
 		<servlet-name>GetNbTrainTakenServlet</servlet-name>
 		<url-pattern>/GetNbTrainTaken</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>BestRiderServlet</servlet-name>
+		<url-pattern>/BestRiderServlet</url-pattern>
 	</servlet-mapping>
 
 </web-app>
