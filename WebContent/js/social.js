@@ -212,7 +212,7 @@ function addGare(num){
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			$('#responserecerche').html("<p>num de gare innexistant</p>");
+			
 		}
 	});
 
@@ -229,7 +229,7 @@ function unfav(num){
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			$('#responserecerche').html("<p>num de gare innexistant</p>");
+			
 		}
 	});
 
@@ -265,6 +265,27 @@ function callT(){
 			" onclick=\"suppTrain('{{numT}}','{{date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
 			$('#tpa').html(html);
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+
+		}
+	});
+	
+
+	$.ajax({
+		type : "POST",
+		url : "gettrainff",
+		data : "key="+getCookie("key")+"&user="+getCookie("id_user"),
+		dataType : "json",
+		success : function(rep) {
+			console.log(rep);
+			
+			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Nom</td></tr>{{#train}}" +
+			"<tr><td>{{numG}}</td><td>{{date}}</td><td>{{miss}}</td><td>{{numT}}</td><td>{{term}}</td><td>{{user_id}}</td></tr>{{/train}}</table>";
+			var html = Mustache.to_html(tpl, rep);
+			$('#tavf').html(html);
+			
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

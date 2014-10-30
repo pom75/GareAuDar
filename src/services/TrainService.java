@@ -90,13 +90,12 @@ public class TrainService {
 			try {
 
 				friend = FollowBD.listFollow(Integer.parseInt(user_id)).getJSONArray("list");
+				
 
 				for (int i = 0; i < friend.length(); i++){
-					((JSONObject)  friend.get(i)).getString("id_user");
-
 					JSONArray buff = new JSONArray();
 
-					buff = TrainBD.getTrainUser(user_id);
+					buff = TrainBD.getTrainUser(((JSONObject)  friend.get(i)).getString("id_user"));
 					buff = getTrainFutur(buff, 0);
 
 					for (int j = 0; j < buff.length(); j++){
