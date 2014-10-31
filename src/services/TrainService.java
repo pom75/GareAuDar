@@ -262,6 +262,22 @@ public class TrainService {
 			return TrainBD.getNbTrainTaken(user);
 		}
 	}
+
+
+	public static JSONObject getTrain(String date, String numT, String term) {
+		JSONArray resT = new JSONArray();
+		JSONObject res = new JSONObject();
+		
+		
+		
+		resT = TrainBD.getTrain(date,numT,term);
+		
+		//Recupere le train 
+		
+		//
+		
+		
+	}
 }
 
 

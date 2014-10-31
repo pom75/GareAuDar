@@ -45,11 +45,15 @@
 
 	<!-- Train -->
 
-		<servlet>
+	<servlet>
 		<servlet-name>GetTrainFollowFutur</servlet-name>
 		<servlet-class>servlets.trains.GetTrainFollowFuturServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>GetTrain</servlet-name>
+		<servlet-class>servlets.trains.GetTrainServlet</servlet-class>
+	</servlet>
 	
 	<servlet>
 		<servlet-name>GetMyTrainFuture</servlet-name>
@@ -146,6 +150,10 @@
 	<servlet-mapping>
 		<servlet-name>AddTrain</servlet-name>
 		<url-pattern>/addtrain</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetTrain</servlet-name>
+		<url-pattern>/gettrain</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>

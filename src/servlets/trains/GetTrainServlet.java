@@ -9,18 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import services.TrainService;
 
-public class GetTrainFollowFutur extends HttpServlet { 
+public class GetTrainServlet extends HttpServlet { 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String key = request.getParameter("key");
-		String user_id = request.getParameter("user");
-
+		String date = request.getParameter("date");
+		String numT = request.getParameter("numT");
+		String term = request.getParameter("term");
+		
 		response.setContentType("text/plain");
-		response.getWriter().println(TrainService.getTrainFallowFutur(key, user_id));
+		response.getWriter().println(TrainService.getTrain(date,numT,term));
 	}
 
 	/**
