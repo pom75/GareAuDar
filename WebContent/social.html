@@ -13,13 +13,12 @@
 body {
 	padding-top: 70px;
 	padding-bottom: 70px;
-	background-color: rgb(0,170,147);
+	background-color: rgb(0, 170, 147);
 }
 
 .badge {
 	margin-left: 5px;
 }
-
 
 .flexx {
 	padding: 20px;
@@ -79,9 +78,10 @@ body {
 			<div class="visible-xs">
 				<div id="sousmenu" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active" onclick="switchMenu(true)"><a href="#" >Prochains départ d' une
-								gare</a></li>
-						<li><a href="#contact" onclick="switchMenu(false)">Chercher un itinéraire</a></li>
+						<li class="active" onclick="switchMenu(true)"><a href="#">Prochains
+								départ d' une gare</a></li>
+						<li><a href="#contact" onclick="switchMenu(false)">Chercher
+								un itinéraire</a></li>
 					</ul>
 				</div>
 			</div>
@@ -90,14 +90,15 @@ body {
 			<div id="menu" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Recherche </a></li>
-					<li class="active" ><a href="social.html">Social</a></li>
+					<li class="active"><a href="social.html">Social</a></li>
 					<li><a href="actu.html">Actualitées</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="navbar-brand" href="#">
-					<div class="hidden-xs">
+							<div class="hidden-xs">
 								<span class="glyphicon glyphicon-envelope"></span>
-							</div></a></li>
+							</div>
+					</a></li>
 
 					<li>
 						<!-- Boutton favoris quand not xs -->
@@ -112,7 +113,7 @@ body {
 		</div>
 	</div>
 
-	
+
 	<!-- container Principal -->
 	<div class="container">
 
@@ -125,282 +126,262 @@ body {
 							<h3 class="panel-title">Social</h3>
 						</div>
 						<div class="list-group">
-							<a id="prop" href="#" class="list-group-item active" onclick="switchMenu(this)">Mon profil</a> 
-							<a id="favp" href="#" class="list-group-item" onclick="switchMenu(this)">Mes favoris</a>
-							<a id="trap" href="#" class="list-group-item" onclick="switchMenu(this)">Mes trains</a>
-							<a id="stap" href="#" class="list-group-item" onclick="switchMenu(this)">Mes statistiques</a>
+							<a id="prop" href="#" class="list-group-item active"
+								onclick="switchMenu(this)">Mon profil</a> <a id="favp" href="#"
+								class="list-group-item" onclick="switchMenu(this)">Mes
+								favoris</a> <a id="trap" href="#" class="list-group-item"
+								onclick="switchMenu(this)">Mes trains</a> <a id="stap" href="#"
+								class="list-group-item" onclick="switchMenu(this)">Mes
+								statistiques</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			
+
+
 			<!-- Sous menu Mon Profil -->
 			<div id="pro" class="col-md-9">
 				<div class="panel panel-primary  flexx">
 					<h2>Mon Profil</h2>
-					
+
 					<div class="col-md-3">
-					<img id="photoP" src=""/ height="100px" width="100px">
+						<img id="photoP" src="" / height="100px" width="100px">
 					</div>
-					<div id="infoP" class="col-md-6">
-					</div>
+					<div id="infoP" class="col-md-6"></div>
 					<div class="col-md-3">
-					<button id="buttonfollow" type="button" class="btn btn-success" onclick="follow()"  style="display: none">Suivre</button>
-					<button id="buttonunfollow" type="button" class="btn btn-danger" onclick="unfollow()" style="display: none" >Ne plus suivre</button>
-						
-					<!-- Module Facebook -->
-						<div class="fb-login-button" data-max-rows="4" data-size="large"
-							data-show-faces="true" data-auto-logout-link="true"
-							onclick="checkLoginState()">
-						</div>	
+						<button id="buttonfollow" type="button" class="btn btn-success"
+							onclick="follow()" style="display: none">Suivre</button>
+						<button id="buttonunfollow" type="button" class="btn btn-danger"
+							onclick="unfollow()" style="display: none">Ne plus
+							suivre</button>
+
+
 					</div>
 					<div class="col-md-9">
 						<h4>Personnes que je suis :</h4>
-						<div id="whofollow" >
-						
-						</div>
-						
+						<div id="whofollow"></div>
+
 					</div>
-					
+
 					<div class="col-md-9">
 						<h4>Personnes qui me suivent :</h4>
-						
-						<div id="whofollowme">
-						
-						</div>
-						
+
+						<div id="whofollowme"></div>
+
 					</div>
-						
-						
-					
-				</div>
-			</div>
-			
-			
-			
-			<!-- Sous menu Mes favoris -->
-			<div id="fav" class="col-md-9" style="display: none">
-				<div class="panel panel-primary  flexx">
-				<h2>Mes favoris</h2>
-				
-				<div id="listgare">
-				
-				</div>
-		
-				
-				<!-- Module Facebook -->
-						<div class="fb-login-button" data-max-rows="4" data-size="large"
-							data-show-faces="true" data-auto-logout-link="true"
-							onclick="checkLoginState()">
-						</div>	
+
+					<!-- Module Facebook -->
+					<div class="fb-login-button" data-max-rows="4" data-size="large"
+						data-show-faces="true" data-auto-logout-link="true"
+						onclick="checkLoginState()"></div>
 
 				</div>
 			</div>
-			
-			
+
+
+
+			<!-- Sous menu Mes favoris -->
+			<div id="fav" class="col-md-9" style="display: none">
+				<div class="panel panel-primary  flexx">
+					<h2>Mes favoris</h2>
+
+					<div id="listgare"></div>
+
+
+				</div>
+			</div>
+
+
 			<!-- Sous menu Mes trains -->
 			<div id="tra" class="col-md-9" style="display: none">
 				<div class="panel panel-primary  flexx">
 					<h2>Mes trains</h2>
-					
-					<h4>Mes trains à venir</h4>
-					<div id="tav">
-					
-					</div>
 
-				
-				<h4>Les trains à venir des gens que je suis</h4>
-					<div id="tavf">
-					
-					</div>
-					
+					<h4>Mes trains à venir</h4>
+					<div id="tav"></div>
+
+
+					<h4>Les trains à venir des gens que je suis</h4>
+					<div id="tavf"></div>
+
 					<h4>Trains passé</h4>
-					<div id="tpa">
-					
-					</div>
-					
-					 
-					<!-- Module Facebook -->
-						<div class="fb-login-button" data-max-rows="4" data-size="large"
-							data-show-faces="true" data-auto-logout-link="true"
-							onclick="checkLoginState()">
-						</div>	
-						
-						
+					<div id="tpa"></div>
+
+
 				</div>
 			</div>
-			
-			
+
+
 			<!-- Sous menu Mes Statistique -->
 			<div id="sta" class="col-md-9" style="display: none">
 				<div class="panel panel-primary  flexx">
 					<h2>Mes Statistiques</h2>
-					
 
-					    <label  class="col-md-5 control-label">Nombre total de train pris : </label>
-					    <label  class="col-md-4 control-label" id="trainTaken">valeur</label>
-					    <label  class="col-md-5 control-label">Gare la plus recherché  : </label>
-					    <label  class="col-md-4 control-label" id="GareMost">Valeur</label>
-					    <label  class="col-md-5 control-label">Itinéraire le plus rechercher  : </label>
-					    <label  class="col-md-4 control-label">Valeur</label>
-					    <label  class="col-md-5 control-label">Nombre de km parcourut  : </label>
-					    <label  class="col-md-4 control-label">Valeur</label>
-					    <label  class="col-md-5 control-label">Temps passé dans les transport  : </label>
-					    <label  class="col-md-4 control-label">Valeur</label>
-					    <label  class="col-md-5 control-label">Meilleur compagnon de voyage  : </label>
-					    <label  class="col-md-4 control-label" id="bestRider">Valeur</label>
-					    
-					  
-						<!-- Module Facebook -->
-						<div class="fb-login-button" data-max-rows="4" data-size="large"
-							data-show-faces="true" data-auto-logout-link="true"
-							onclick="checkLoginState()">
-						</div>	
+
+					<label class="col-md-5 control-label">Nombre total de train
+						pris : </label> <label class="col-md-4 control-label" id="trainTaken">valeur</label>
+					<label class="col-md-5 control-label">Gare la plus
+						recherché : </label> <label class="col-md-4 control-label" id="GareMost">Valeur</label>
+					<label class="col-md-5 control-label">Itinéraire le plus
+						rechercher : </label> <label class="col-md-4 control-label">Valeur</label>
+					<label class="col-md-5 control-label">Nombre de km
+						parcourut : </label> <label class="col-md-4 control-label">Valeur</label>
+					<label class="col-md-5 control-label">Temps passé dans les
+						transport : </label> <label class="col-md-4 control-label">Valeur</label>
+					<label class="col-md-5 control-label">Meilleur compagnon de
+						voyage : </label> <label class="col-md-4 control-label" id="bestRider">Valeur</label>
+
 				</div>
 			</div>
-			
-				<!-- Pop Up De connexion a facebook -->	
-						<div id="myModal" class="modal fade bs-example-modal-sm"
-							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">
-											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">Information !</h4>
-									</div>
-									<div class="modal-body">Pour pouvoir utiliser les
-										fonctionnalitées de cette page , il faut vous connecter
-										obligatoirement. Merci de votre compréhention.</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-									</div>
-								</div>
-							</div>
+
+			<!-- Pop Up De connexion a facebook -->
+			<div id="myModal" class="modal fade bs-example-modal-sm"
+				tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Information !</h4>
 						</div>
-						
-			   <!-- Pop Up de suivre une personne -->	
-						<div id="follow" class="modal fade bs-example-modal-sm"
-							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">
-											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">Information !</h4>
-									</div>
-									<div class="modal-body">Vous suivez désormais cette personne.</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-									</div>
-								</div>
-							</div>
+						<div class="modal-body">
+							Pour pouvoir utiliser les fonctionnalitées de cette page , il
+							faut vous connecter obligatoirement. Merci de votre
+							compréhention.
+
+							<!-- Module Facebook -->
+							<div class="fb-login-button" data-max-rows="4" data-size="large"
+								data-show-faces="true" data-auto-logout-link="true"
+								onclick="checkLoginState()"></div>
 						</div>
-						
-			 <!-- Pop Up de plus suivre une personne -->	
-						<div id="unfav" class="modal fade bs-example-modal-sm"
-							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">
-											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">Information !</h4>
-									</div>
-									<div class="modal-body">Cette gare a été correctement retirer de vos favoris.</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-									</div>
-								</div>
-							</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
 						</div>
-						
-			 <!-- Pop Up de train ajouté -->	
-						<div id="addT" class="modal fade bs-example-modal-sm"
-							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">
-											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">Information !</h4>
-									</div>
-									<div class="modal-body">Ce train a été ajouté dans vos trains.</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-									</div>
-								</div>
-							</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Pop Up de suivre une personne -->
+			<div id="follow" class="modal fade bs-example-modal-sm" tabindex="-1"
+				role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Information !</h4>
 						</div>
-						
-			<!-- Pop Up de train ajouté -->	
-						<div id="suppT" class="modal fade bs-example-modal-sm"
-							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog modal-sm">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">
-											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">Information !</h4>
-									</div>
-									<div class="modal-body">Ce train a été supprimé de vos trains.</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-									</div>
-								</div>
-							</div>
+						<div class="modal-body">Vous suivez désormais cette
+							personne.</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
 						</div>
-						
-						
-			
+					</div>
+				</div>
+			</div>
+
+			<!-- Pop Up de plus suivre une personne -->
+			<div id="unfav" class="modal fade bs-example-modal-sm" tabindex="-1"
+				role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Information !</h4>
+						</div>
+						<div class="modal-body">Cette gare a été correctement
+							retirer de vos favoris.</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Pop Up de train ajouté -->
+			<div id="addT" class="modal fade bs-example-modal-sm" tabindex="-1"
+				role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Information !</h4>
+						</div>
+						<div class="modal-body">Ce train a été ajouté dans vos
+							trains.</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Pop Up de train ajouté -->
+			<div id="suppT" class="modal fade bs-example-modal-sm" tabindex="-1"
+				role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Information !</h4>
+						</div>
+						<div class="modal-body">Ce train a été supprimé de vos
+							trains.</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
 		</div>
 	</div>
 
 	<!-- FOOTER -->
 	<div id="foot">
 		<nav class="navbar navbar-inverse navbar-fixed-bottom"
-		role="navigation">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Gar au Dar</a>
+			role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Gar au Dar</a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="#">About</a></li>
+						<li><a href="#">API REST</a></li>
+						<li><a href="#">Contact</a></li>
+						<li><a href="#">Aide</a></li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
 			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="#">About</a></li>
-					<li><a href="#">API REST</a></li>
-					<li><a href="#">Contact</a></li>
-					<li><a href="#">Aide</a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container -->
-	</nav>
+			<!-- /.container -->
+		</nav>
 	</div>
 </body>
 </html>
