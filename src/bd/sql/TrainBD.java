@@ -175,4 +175,39 @@ WHERE user_id =1
 		
 		return jArray;
 	}
+
+	public static JSONArray getTrain2(String user_id,String numT, String numG) {
+		
+		JSONArray jArray = new JSONArray();
+		Connection co;
+		Statement stm;
+		String query;
+		try{
+			co = DBTools.getMySQLConnection();
+			stm = co.createStatement();
+			query = "select * from " + DBConfig.TABLE_TRAIN + " where numT = '"+numT+"' AND numG = '"+numG+"' AND user_id = '"+user_id+"' ;";
+			ResultSet rs = stm.executeQuery(query);
+			
+			
+			while(rs.next()){
+				JSONObject json = new JSONObject();
+				json.put("user_id", rs.getString("user_id"));
+				json.put("numT", rs.getString("numT"));
+				json.put("date",rs.getString("date"));
+				json.put("numG",rs.getString("numG"));
+				json.put("term",rs.getString("term"));
+				jArray.put(json);
+					
+				}	
+			
+			stm.close();
+			co.close();
+			
+		}catch (Exception e) {
+			System.err.print("Exception :");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
 }

@@ -51,6 +51,11 @@
 	</servlet>
 	
 	<servlet>
+		<servlet-name>IsMyTrain</servlet-name>
+		<servlet-class>servlets.trains.IsMyTrainServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
 		<servlet-name>GetTrain</servlet-name>
 		<servlet-class>servlets.trains.GetTrainServlet</servlet-class>
 	</servlet>
@@ -129,7 +134,10 @@
 	<!-- SERVLET MAPPING -->
 	<!-- TODO: rename and dispatch? -->
 
-
+	<servlet-mapping>
+		<servlet-name>IsMyTrain</servlet-name>
+		<url-pattern>/ismytrain</url-pattern>
+	</servlet-mapping>
 	
 	<servlet-mapping>
 		<servlet-name>GetTrainFollowFutur</servlet-name>

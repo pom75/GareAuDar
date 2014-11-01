@@ -301,6 +301,44 @@ public class TrainService {
 		
 		return res;
 	}
+
+
+	public static JSONObject isMyTrain(String key, String user_id, String date,
+			String numT, String numG) {
+		JSONArray resT = new JSONArray();
+		JSONObject res = new JSONObject();
+
+		if(!UserBD.myKey(user_id, key)){
+			//AHAHAHAH
+		}else{
+
+
+			resT = TrainBD.getTrain2(user_id,numT,numG);
+			for (int i = 0; i < resT.length(); i++)
+			{
+				try {
+
+					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+					Date date1 = sdf.parse(((JSONObject)  resT.get(i)).getString("date"));
+					Date date2 = sdf.parse(date);
+
+					if (isInInterval(date2,date1,1)){
+						res.put("res", "true");
+					}
+
+
+				} catch (JSONException e) {
+					System.out.println("BUG JSON LLAAA \n");
+				} catch (ParseException e) {
+					System.out.println("BUG JSON LLAAA DATE \n");
+				}
+			}
+
+			
+		}
+		
+		return res;
+	}
 }
 
 
