@@ -1,12 +1,18 @@
+var menuOn = false;
 
 function affiche(){
-	var url = window.location.href;
-	url = url.substring(url.lastIndexOf("#")+1)
-	if(!(url.length >= 5)){
-		switchMenu(url+"m")
+	if ( isCo ){
+		menuOn = true;
+		var url = window.location.href;
+		url = url.substring(url.lastIndexOf("#")+1);
+		if(url.length > 1){
+			switchMenu(url);
+		}
 	}else{
-		switchMenu("prom");
+		displayAll();
+		$('#myModal').modal('show');
 	}
+	
 	
 }
 
@@ -59,7 +65,7 @@ function statSearchedTrain(){
 	});
 }
 
-function switchMenu(item){
+function displayAll(){
 	$( "#prop" ).removeClass("active");
 	$( "#prom1" ).removeClass("active");
 	$( "#pro" ).css("display", "none");
@@ -72,41 +78,46 @@ function switchMenu(item){
 	$( "#stap" ).removeClass("active");
 	$( "#stam1" ).removeClass("active");
 	$( "#sta" ).css("display", "none");
+}
 
-	if($(item).attr("id") == "prop" || $(item).attr("id") == "prom" || item == "prom"){
-		$( "#prop" ).addClass("active");
-		$( "#prom1" ).addClass("active");
-		$( "#pro" ).css("display", "inline");
-		
+function switchMenu(item){
+	displayAll();
+	if (menuOn){
+		if($(item).attr("id") == "prop" || $(item).attr("id") == "prom" || item == "pro"){
+			$( "#prop" ).addClass("active");
+			$( "#prom1" ).addClass("active");
+			$( "#pro" ).css("display", "inline");
+
 			callP();
-	
-		
-	}else if( $(item).attr("id") == "favp" || $(item).attr("id") == "favm" || item == "favm"){
-		$( "#favp" ).addClass("active");
-		$( "#favm1" ).addClass("active");
-		$( "#fav" ).css("display", "inline");
-		
+
+
+		}else if( $(item).attr("id") == "favp" || $(item).attr("id") == "favm" || item == "fav"){
+			$( "#favp" ).addClass("active");
+			$( "#favm1" ).addClass("active");
+			$( "#fav" ).css("display", "inline");
+
 			callF();
-		
-		
-	}else if( $(item).attr("id") == "trap" || $(item).attr("id") == "tram" || item == "tram"){
-		$( "#trap" ).addClass("active");
-		$( "#tram1" ).addClass("active");
-		$( "#tra" ).css("display", "inline");
-		
+
+
+		}else if( $(item).attr("id") == "trap" || $(item).attr("id") == "tram" || item == "tra"){
+			$( "#trap" ).addClass("active");
+			$( "#tram1" ).addClass("active");
+			$( "#tra" ).css("display", "inline");
+
 			callT();
-		
-		
-	}else if( $(item).attr("id") == "stap" || $(item).attr("id") == "stam" || item == "stam"){
-		$( "#stap" ).addClass("active");
-		$( "#stam1" ).addClass("active");
-		$( "#sta" ).css("display", "inline");
-		
+
+
+		}else if( $(item).attr("id") == "stap" || $(item).attr("id") == "stam" || item == "sta"){
+			$( "#stap" ).addClass("active");
+			$( "#stam1" ).addClass("active");
+			$( "#sta" ).css("display", "inline");
+
 			callS();
-		
-		
+
+
+		}
 	}
-	
+
 }
 
 

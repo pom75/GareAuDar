@@ -26,13 +26,14 @@ window.fbAsyncInit = function() {
 
 };
 
+var isCo = false;
 
 function statusChangeCallback(response) {
 	if (response.status === 'connected') {
 		// Logged into your app and Facebook
 		
 		accessToken = response.authResponse.accessToken;
-		
+		isCo = true;
 		setCookie("key",accessToken, 100);
 		$.ajax ({
 			type : "POST" ,
@@ -54,9 +55,11 @@ function statusChangeCallback(response) {
 			}
 		})
 	} else if (response.status === 'not_authorized') {
+		isCo = false;
 		$('#myModal').modal('show');
 	} else {
 		$('#myModal').modal('show');
+		isCo = false;
 	}
 }
 
