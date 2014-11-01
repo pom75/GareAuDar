@@ -267,16 +267,39 @@ public class TrainService {
 	public static JSONObject getTrain(String date, String numT, String term) {
 		JSONArray resT = new JSONArray();
 		JSONObject res = new JSONObject();
+		JSONArray buff = new JSONArray();
 		
 		
 		
-		resT = TrainBD.getTrain(date,numT,term);
+		resT = TrainBD.getTrain(numT,term);
+		for (int i = 0; i < resT.length(); i++)
+		{
+			try {
+
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+				Date date1 = sdf.parse(((JSONObject)  resT.get(i)).getString("date"));
+				Date date2 = sdf.parse(date);
+
+				if (isInInterval(date2,date1,2)){
+					buff.put(resT.get(i));
+				}
+
+
+			} catch (JSONException e) {
+				System.out.println("BUG JSON LLAAA \n");
+			} catch (ParseException e) {
+				System.out.println("BUG JSON LLAAA DATE \n");
+			}
+		}
 		
-		//Recupere le train 
+		try {
+			res.put("train", buff);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		//
-		
-		
+		return res;
 	}
 }
 
