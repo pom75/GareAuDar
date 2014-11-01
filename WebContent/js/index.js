@@ -26,8 +26,10 @@ function searchGare() {
 		
 		searchStation(num);
 
-		if($('#chek').is(':checked')){
+		if($('#chek').is(':checked') && isCo){
 			addFav(num);
+		}else{
+			$('#popUp').modal('show');
 		}
 		
 		$.ajax({
