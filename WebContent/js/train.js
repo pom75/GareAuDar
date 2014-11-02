@@ -23,30 +23,29 @@ function affiche(){
 					"<h5>Numéro du train : "+ numT+"<h5>" +
 					"<h5>Terminus : "+ getNomGare(term)+"<h5>" +
 					" <table class=\"table table-striped\"><tr><td>Qui le prends</td><td>Où</td><td>A quel heure</td></tr>{{#train}}" +
-			"<tr><td class='ami'>{{user_id}}</td><td class='ttt'>{{numG}}</td><td>{{date}}</td></tr>{{/train}}</table>";
+					"<tr><td class='ami'>{{user_id}}</td><td class='ttt'>{{numG}}</td><td>{{date}}</td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
 			$('#trainR').html(html);
 			$('.ttt').each(function(i, obj) {
-			    buff = getNomGare(obj.innerText);
-			    obj.innerText = buff;
+				buff = getNomGare(obj.innerText);
+				obj.innerText = buff;
 			});
-			$('.ami').each(function(i, obj) {
-			    buff = obj.innerText;
-			    $('.ami').each(function(i, obj) {
-				    
-				    $.ajax ({
-						type : "POST" ,
-						url: "prof/getprofil",
-						data: "id="+buff, 
-						dataType : "json" ,
-						success: function(rep){
-								obj.html( '<a href=\"prof.html?id=\"{{user_id}}\">' +rep.last_name +" "+ rep.first_name +'</a>');
-						},
-						error :function(jqXHR, textStatus , errorThrown ){
 
-						}
-					})
-				});
+			$('.ami').each(function(i, obj) {
+				buff = obj.innerText;
+				$.ajax ({
+					type : "POST" ,
+					url: "prof/getprofil",
+					data: "id="+buff, 
+					dataType : "json" ,
+					success: function(rep){
+						obj.innerHTML = '<a href="prof.html?id='+rep.id+'">' +rep.last_name +" "+ rep.first_name +'</a>';
+					},
+					error :function(jqXHR, textStatus , errorThrown ){
+
+					}
+				})
+
 			});
 		},
 		error :function(jqXHR, textStatus , errorThrown ){

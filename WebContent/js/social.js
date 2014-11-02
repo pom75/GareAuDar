@@ -285,7 +285,7 @@ function callT(){
 		dataType : "json",
 		success : function(rep) {
 			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heure</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
-			"<tr><td class='ttt' >{{numG}}</td><td>{{date}}</td><td><a href=\"train.html?numT={{num}}&date={{date}}&term={{term}}\">{{numT}}</a></td><td class='ttt' >{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
+			"<tr><td class='ttt' >{{numG}}</td><td>{{date}}</td><td><a href=\"train.html?numT={{numT}}&date={{date}}&term={{term}}\">{{numT}}</a></td><td class='ttt' >{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
 			" onclick=\"suppTrain('{{numT}}','{{date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
 			$('#tpa').html(html);
@@ -307,28 +307,26 @@ function callT(){
 			console.log(rep);
 			
 			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heure</td><td>Num</td><td>Terminus</td><td>Nom</td></tr>{{#train}}" +
-			"<tr><td class='ttt' >{{numG}}</td><td>{{date}}</td><td><a href=\"train.html?numT={{num}}&date={{date}}&term={{term}}\">{{numT}}</a></td><td class='ttt'>{{term}}</td><td class='ami'>{{user_id}}</td></tr>{{/train}}</table>";
+			"<tr><td class='ttt' >{{numG}}</td><td>{{date}}</td><td><a href=\"train.html?numT={{numT}}&date={{date}}&term={{term}}\">{{numT}}</a></td><td class='ttt'>{{term}}</td><td class='ami'>{{user_id}}</td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
-			$('#tavf').html(html);
+			$('#tavf').html(html);  
 			$('.ami').each(function(i, obj) {
-			    buff = obj.innerText;
-			    $('.ami').each(function(i, obj) {
-				    
-				    $.ajax ({
-						type : "POST" ,
-						url: "prof/getprofil",
-						data: "id="+buff, 
-						dataType : "json" ,
-						success: function(rep){
-								obj.innerText = rep.last_name +" "+ rep.first_name;
-						},
-						error :function(jqXHR, textStatus , errorThrown ){
+				buff = obj.innerText;
+				$.ajax ({
+					type : "POST" ,
+					url: "prof/getprofil",
+					data: "id="+buff, 
+					dataType : "json" ,
+					success: function(rep){
+						obj.innerHTML = '<a href="prof.html?id='+rep.id+'">' +rep.last_name +" "+ rep.first_name +'</a>';
+					},
+					error :function(jqXHR, textStatus , errorThrown ){
 
-						}
-					})
-				});
+					}
+				})
+
 			});
-			
+
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
