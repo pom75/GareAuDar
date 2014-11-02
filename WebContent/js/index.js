@@ -34,7 +34,7 @@ function searchGare() {
 		
 		$.ajax({
 			type : "POST",
-			url : "trainatgare",
+			url : "search/trainatgare",
 			data : "num="+num,
 			dataType : "json",
 			success : function(rep) {
@@ -55,7 +55,7 @@ function searchGare() {
 function searchStation(num){
 	$.ajax({
 		type: "POST",
-		url : "SearchStation",
+		url : "search/searchstation",
 		data : "token="+getCookie("key")+"&uic="+num+"&user="+getCookie("id_user"),
 		datType : "json",
 		success: function(rep){
@@ -69,7 +69,7 @@ function searchStation(num){
 function addFav(num){
 	$.ajax({
 		type : "POST",
-		url : "GareFavor",
+		url : "prof/garefavor",
 		data : "token="+getCookie("key")+"&uic="+num+"&user="+getCookie("id_user"),
 		dataType : "json",
 		success : function(rep) {
@@ -237,7 +237,7 @@ function searchIti() {
 		var arr = $("#gareliste2 option:selected").val();
 		$.ajax({
 			type : "POST",
-			url : "itineraire",
+			url : "search/itineraire",
 			data : "dep="+dep+"&arr="+arr,
 			dataType : "json",
 			success : function(rep) {

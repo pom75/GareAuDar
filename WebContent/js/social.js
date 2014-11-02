@@ -20,7 +20,7 @@ function affiche(){
 function bestRider(){
 	$.ajax({
 		type: "POST",
-		url : "BestRiderServlet",
+		url : "search/bestrider",
 		data : "user="+getCookie("id_user"),
 		datType : "json",
 		success: function(rep){
@@ -36,7 +36,7 @@ function bestRider(){
 function trainTaken(){
 	$.ajax({
 		type: "POST",
-		url : "GetNbTrainTaken",
+		url : "/search/getnbtraintaken",
 		data : "user="+getCookie("id_user"),
 		datType : "json",
 		success: function(rep){
@@ -52,7 +52,7 @@ function trainTaken(){
 function statSearchedTrain(){
 	$.ajax({
 		type: "POST",
-		url : "MostSearchedStation",
+		url : "/search/mostsearchedstation", // Tu t'es cru sur Needforspeed ?
 		data : "user="+getCookie("id_user"),
 		datType : "json",
 		success: function(rep){
@@ -127,7 +127,7 @@ function callP(){
 	
 	$.ajax ({
 		type : "POST" ,
-		url: "ListFollow",
+		url: "social/listfollow",
 		data: "quiJeSuis="+getCookie("id_user"), 
 		dataType : "json" ,
 		success: function(rep){
@@ -153,7 +153,7 @@ function callP(){
 	
 		$.ajax ({
 		type : "POST" ,
-		url: "ListFollow",
+		url: "social/listfollow",
 		data: "quiMeSuis="+getCookie("id_user"), 
 		dataType : "json" ,
 		success: function(rep){
@@ -182,7 +182,7 @@ function callP(){
 function callF(){
 	$.ajax ({
 		type : "POST" ,
-		url: "listgare",
+		url: "/train/listgare",
 		data: "user="+getCookie("id_user"), 
 		dataType : "json" ,
 		success: function(rep){
@@ -209,7 +209,7 @@ function callF(){
 function addGare(num){
 	$.ajax({
 		type : "POST",
-		url : "trainatgare",
+		url : "search/trainatgare",
 		data : "num="+num,
 		dataType : "json",
 		success : function(rep) {
@@ -232,7 +232,7 @@ function addGare(num){
 function unfav(num){
 	$.ajax({
 		type : "POST",
-		url : "SupGareFavor",
+		url : "prof/supgarefavor",
 		data : "token="+getCookie("key")+"&uic="+num+"&user="+getCookie("id_user"),
 		dataType : "json",
 		success : function(rep) {
@@ -249,7 +249,7 @@ function unfav(num){
 function callT(){
 	$.ajax({
 		type : "POST",
-		url : "getmytrainf",
+		url : "train/getmytrainf",
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user"),
 		dataType : "json",
 		success : function(rep) {
@@ -267,7 +267,7 @@ function callT(){
 	
 	$.ajax({
 		type : "POST",
-		url : "getmytrainp",
+		url : "train/getmytrainp",
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user"),
 		dataType : "json",
 		success : function(rep) {
@@ -286,7 +286,7 @@ function callT(){
 
 	$.ajax({
 		type : "POST",
-		url : "gettrainff",
+		url : "train/gettrainff",
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user"),
 		dataType : "json",
 		success : function(rep) {
@@ -309,7 +309,7 @@ function callT(){
 function addTrain(numT,date,numG,term){
 	$.ajax({
 		type : "POST",
-		url : "addtrain",
+		url : "train/addtrain",
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user")+"&numT="+numT+"&date="+date+"&numG="+numG+"&term="+term,
 		dataType : "json", //CHECK?
 		success : function(rep) {
@@ -326,7 +326,7 @@ function addTrain(numT,date,numG,term){
 function suppTrain(numT,date){
 	$.ajax({
 		type : "POST",
-		url : "supptrain",
+		url : "train/supptrain",
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user")+"&numT="+numT+"&date="+date,
 		dataType : "json",
 		success : function(rep) {

@@ -15,7 +15,7 @@ function affiche(){
 	
 	$.ajax ({
 		type : "POST" ,
-		url: "GetProfil",
+		url: "prof/getprofil",
 		data: "id="+url, 
 		dataType : "json" ,
 		success: function(rep){
@@ -36,7 +36,7 @@ function affiche(){
 	
 	$.ajax ({
 		type : "POST" ,
-		url: "ListFollow",
+		url: "/social/listfollow",
 		data: "quiJeSuis="+url, 
 		dataType : "json" ,
 		success: function(rep){
@@ -61,7 +61,7 @@ function affiche(){
 	
 		$.ajax ({
 		type : "POST" ,
-		url: "ListFollow",
+		url: "/social/listfolloww",
 		data: "quiMeSuis="+url, 
 		dataType : "json" ,
 		success: function(rep){
@@ -119,7 +119,7 @@ function callFollow(){
 	
 	$.ajax ({
 		type : "POST" ,
-		url: "AddFollow",
+		url: "social/addfollow",
 		data: "user1="+getCookie("id_user")+"&user2="+$.urlParam('id')+"&key="+getCookie("key"), 
 		dataType : "json" ,
 		success: function(rep){
@@ -143,7 +143,7 @@ function callUnfollow(){
 	
 	$.ajax ({
 		type : "POST" ,
-		url: "RemoveFollow",
+		url: "social/removefollow",
 		data: "user1="+getCookie("id_user")+"&user2="+$.urlParam('id')+"&key="+getCookie("key"), 
 		dataType : "json" ,
 		success: function(rep){

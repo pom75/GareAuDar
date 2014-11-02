@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-notify.css.txt" rel="stylesheet">
+
+<style>
+body {
+	padding-top: 70px;
+	padding-bottom: 70px;
+	background-color: rgb(0,170,147);
+}
+
+.badge {
+	margin-left: 5px;
+}
+
+
+.flexx {
+	padding: 20px;
+	padding-top: 0px;
+	min-height: 700px;
+}
+</style>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/mustache.js"></script>
+<script src="js/train.js"></script>
+
+
+
+
+</head>
+
+<body onload="affiche()">
+	<!-- facebookScript -->
+	<div id="fb-root"></div>
+	<script src="js/facebook.js"></script>
+	
+	<!-- Barre de navigation -->
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Boutton menu principal quand xs -->
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#menu">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<!-- Boutton sous menu quand xs -->
+				<div class="visible-xs">
+					
+					<!-- Boutton favori quand xs -->
+					<a class="navbar-brand pull-right" href="social.html#fav"> <span
+						class="glyphicon glyphicon-star"></span>
+					</a> <a class="navbar-brand pull-right" href="#"> <span
+						class="glyphicon glyphicon-bell"></span>
+					</a>
+				</div>
+				<!-- nom du site -->
+				<a class="navbar-brand" href="#">GAD</a>
+			</div>
+			<!-- Sous menu quand xs -->
+			<div class="visible-xs">
+				<div id="sousmenu" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active" onclick="switchMenu(true)"><a href="#" >Prochains départ d' une
+								gare</a></li>
+						<li><a href="#contact" onclick="switchMenu(false)">Chercher un itinéraire</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Menu adaptable -->
+			<div id="menu" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Recherche </a></li>
+					<li class="active"><a href="social.html">Social</a></li>
+					<li><a href="actu.html">Actualitées</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					
+
+					<li>
+						<!-- Boutton favoris quand not xs -->
+						<div class="hidden-xs">
+							<a class="navbar-brand" href="social.html#fav"><span
+								class="glyphicon glyphicon-star"></span></a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+	
+	<!-- container Principal -->
+	<div class="container">
+
+		<!-- Menu gauche de la page -->
+		<div class="row" >
+			<div class="hidden-xs" style="display: none" >
+				<div class="col-md-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Social</h3>
+						</div>
+						<div class="list-group">
+							<a id="prop" href="#" class="list-group-item active" onclick="switchMenu(this)">Mon profil</a> 
+							<a id="favp" href="#" class="list-group-item" onclick="switchMenu(this)">Mes favoris</a>
+							<a id="trap" href="#" class="list-group-item" onclick="switchMenu(this)">Mes trains</a>
+							<a id="stap" href="#" class="list-group-item" onclick="switchMenu(this)">Mes statistiques</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-- Sous menu Profil -->
+			<div id="pro" class="col-md-9">
+				<div class="panel panel-primary  flexx">
+					<h2>Profil</h2>
+					
+					<div class="col-md-3">
+					<img id="photoP" src="" height="100px" width="100px">
+					</div>
+					<div id="infoP" class="col-md-6">
+					</div>
+					<div class="col-md-3">
+					<button id="buttonfollow" type="button" class="btn btn-success" onclick="follow()"  >Suivre</button>
+					<button id="buttonunfollow" type="button" class="btn btn-danger" onclick="unfollow()"  >Ne plus suivre</button>
+						
+					<!-- Module Facebook -->
+						<div class="fb-login-button" data-max-rows="4" data-size="large"
+							data-show-faces="true" data-auto-logout-link="true"
+							onclick="checkLoginState()">
+						</div>	
+					</div>
+					<div class="col-md-9">
+						<h4>Personnes qu'il suis :</h4>
+						<div id="whofollow" >
+						
+						</div>
+						
+					</div>
+					
+					<div class="col-md-9">
+						<h4>Personnes qui le suivent :</h4>
+						
+						<div id="whofollowme">
+						
+						</div>
+						
+					</div>
+						
+						
+					
+				</div>
+			</div>
+			
+			
+			
+			
+			
+				<!-- Pop Up De connexion a facebook -->	
+						<div id="myModal" class="modal fade bs-example-modal-sm"
+							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Information !</h4>
+									</div>
+									<div class="modal-body">Pour pouvoir utiliser les
+										fonctionnalitées de cette page , il faut vous connecter
+										obligatoirement. Merci de votre compréhention.</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+			   <!-- Pop Up de suivre une personne -->	
+						<div id="follow" class="modal fade bs-example-modal-sm"
+							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Information !</h4>
+									</div>
+									<div class="modal-body">Vous suivez désormais cette personne.</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+			 <!-- Pop Up de plus suivre une personne -->	
+						<div id="unfollow" class="modal fade bs-example-modal-sm"
+							tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Information !</h4>
+									</div>
+									<div class="modal-body">Vous ne suivez plus désormais cette personne.</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+			
+		</div>
+	</div>
+
+	<!-- FOOTER -->
+	<div id="foot">
+		<nav class="navbar navbar-inverse navbar-fixed-bottom"
+		role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Gar au Dar</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="#">About</a></li>
+					<li><a href="#">API REST</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">Aide</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	</div>
+</body>
+</html>
+<script src="js/bootstrap-notify.js"></script>
+<script src="js/data.js"></script>

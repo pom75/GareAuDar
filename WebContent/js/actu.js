@@ -1,7 +1,7 @@
 function affiche(){
 	$.ajax ({
 		type : "POST" ,
-		url: "tweets",
+		url: "social/tweets",
 		data: "n=30", 
 		dataType : "json" ,
 		success: function(rep){

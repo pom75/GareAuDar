@@ -15,33 +15,27 @@
 		<servlet-name>TrainAtGare</servlet-name>
 		<servlet-class>servlets.search.TrainAtGareServlet</servlet-class>
 	</servlet>
-
 	<servlet>
 		<servlet-name>Itineraire</servlet-name>
 		<servlet-class>servlets.search.ItineraireServlet</servlet-class>
 	</servlet>
-
 	<servlet>
 		<servlet-name>SearchStation</servlet-name>
 		<servlet-class>servlets.search.SearchStationServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>MostSearchedStation</servlet-name>
+		<servlet-class>servlets.search.MostSearchedStationServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetNbTrainTakenServlet</servlet-name>
+		<servlet-class>servlets.search.GetNbTrainTakenServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>BestRiderServlet</servlet-name>
+		<servlet-class>servlets.search.BestRiderServlet</servlet-class>
+	</servlet>
 
-	<servlet>
-	<servlet-name>MostSearchedStation</servlet-name>
-	<servlet-class>servlets.search.MostSearchedStationServlet</servlet-class>
-	</servlet>
-	
-	
-	 <servlet>
-	<servlet-name>GetNbTrainTakenServlet</servlet-name>
-	<servlet-class>servlets.search.GetNbTrainTakenServlet</servlet-class>
-	</servlet>
-	
-	<servlet>
-	<servlet-name>BestRiderServlet</servlet-name>
-	<servlet-class>servlets.search.BestRiderServlet</servlet-class>
-	</servlet>
-	
 
 	<!-- Train -->
 
@@ -49,32 +43,26 @@
 		<servlet-name>GetTrainFollowFutur</servlet-name>
 		<servlet-class>servlets.trains.GetTrainFollowFuturServlet</servlet-class>
 	</servlet>
-	
 	<servlet>
 		<servlet-name>IsMyTrain</servlet-name>
 		<servlet-class>servlets.trains.IsMyTrainServlet</servlet-class>
 	</servlet>
-	
 	<servlet>
 		<servlet-name>GetTrain</servlet-name>
 		<servlet-class>servlets.trains.GetTrainServlet</servlet-class>
 	</servlet>
-	
 	<servlet>
 		<servlet-name>GetMyTrainFuture</servlet-name>
 		<servlet-class>servlets.trains.GetMyTrainFutureServlet</servlet-class>
 	</servlet>
-	
 	<servlet>
 		<servlet-name>GetMyTrainPasse</servlet-name>
 		<servlet-class>servlets.trains.GetMyTrainPasseServlet</servlet-class>
 	</servlet>
-	
 	<servlet>
 		<servlet-name>AddTrain</servlet-name>
 		<servlet-class>servlets.trains.AddTrainServlet</servlet-class>
 	</servlet>
-
 	<servlet>
 		<servlet-name>SuppTrain</servlet-name> <!-- rename? -->
 		<servlet-class>servlets.trains.RemoveTrainServlet</servlet-class>
@@ -88,22 +76,18 @@
 		<servlet-name>MonProfil</servlet-name>
 		<servlet-class>servlets.profile.MonProfilServlet</servlet-class>
 	</servlet>
-
 	<servlet>
 		<servlet-name>GetProfil</servlet-name>
 		<servlet-class>servlets.profile.GetProfilServlet</servlet-class>
 	</servlet>
-
 	<servlet>
 		<servlet-name>AddFavorite</servlet-name>
 		<servlet-class>servlets.profile.AddFavoriteServlet</servlet-class>
 	</servlet>
-
 	<servlet>
 		<servlet-name>DeleteFavorite</servlet-name>
 		<servlet-class>servlets.profile.DeleteFavoriteServlet</servlet-class>
 	</servlet>
-
 	<servlet>
 		<servlet-name>ListFavorite</servlet-name>
 		<servlet-class>servlets.profile.ListFavoriteServlet</servlet-class>
@@ -115,17 +99,14 @@
 		<servlet-name>AddFollow</servlet-name>
 		<servlet-class>servlets.social.AddFollowServlet</servlet-class>
 	</servlet>
-
 	<servlet>
 		<servlet-name>RemoveFollow</servlet-name>
 		<servlet-class>servlets.social.RemoveFollowServlet</servlet-class>
 	</servlet>
-
 	<servlet>
 		<servlet-name>ListFollow</servlet-name>
 		<servlet-class>servlets.social.ListFollowServlet</servlet-class>
 	</servlet>
-
 	<servlet>
 		<servlet-name>TweetsServlet</servlet-name>
 		<servlet-class>servlets.social.TweetsServlet</servlet-class>
@@ -134,106 +115,111 @@
 	<!-- SERVLET MAPPING -->
 	<!-- TODO: rename and dispatch? -->
 
+
+	<!-- Train -->
 	<servlet-mapping>
 		<servlet-name>IsMyTrain</servlet-name>
-		<url-pattern>/ismytrain</url-pattern>
+		<url-pattern>/train/ismytrain</url-pattern>
 	</servlet-mapping>
-	
 	<servlet-mapping>
 		<servlet-name>GetTrainFollowFutur</servlet-name>
-		<url-pattern>/gettrainff</url-pattern>
+		<url-pattern>/train/gettrainff</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>GetMyTrainPasse</servlet-name>
-		<url-pattern>/getmytrainp</url-pattern>
+		<url-pattern>/train/getmytrainp</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>GetMyTrainFuture</servlet-name>
-		<url-pattern>/getmytrainf</url-pattern>
+		<url-pattern>/train/getmytrainf</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ListFavorite</servlet-name>
-		<url-pattern>/listgare</url-pattern>
+		<url-pattern>/train/listgare</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>AddTrain</servlet-name>
-		<url-pattern>/addtrain</url-pattern>
+		<url-pattern>/train/addtrain</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>GetTrain</servlet-name>
-		<url-pattern>/gettrain</url-pattern>
+		<url-pattern>/train/gettrain</url-pattern>
 	</servlet-mapping>
-	
 	<servlet-mapping>
 		<servlet-name>SuppTrain</servlet-name>
-		<url-pattern>/supptrain</url-pattern>
+		<url-pattern>/train/supptrain</url-pattern>
 	</servlet-mapping>
+
+	<!-- Search -->
 	<servlet-mapping>
 		<servlet-name>TrainAtGare</servlet-name>
-		<url-pattern>/trainatgare</url-pattern>
+		<url-pattern>/search/trainatgare</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Itineraire</servlet-name>
-		<url-pattern>/itineraire</url-pattern>
+		<url-pattern>/search/itineraire</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SendKey</servlet-name>
-		<url-pattern>/sendkey</url-pattern>
+		<url-pattern>/search/sendkey</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>SearchStation</servlet-name>
+		<url-pattern>/search/searchstation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MostSearchedStation</servlet-name>
+		<url-pattern>/search/mostsearchedstation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetNbTrainTakenServlet</servlet-name>
+		<url-pattern>/search/getnbtraintaken</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BestRiderServlet</servlet-name>
+		<url-pattern>/search/bestrider</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- Social -->
+
+
+	<servlet-mapping>
 		<servlet-name>AddFollow</servlet-name>
-		<url-pattern>/AddFollow</url-pattern>
+		<url-pattern>/social/addfollow</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RemoveFollow</servlet-name>
-		<url-pattern>/RemoveFollow</url-pattern>
+		<url-pattern>/social/removefollow</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ListFollow</servlet-name>
-		<url-pattern>/ListFollow</url-pattern>
+		<url-pattern>/social/listfollow</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>TweetsServlet</servlet-name>
+		<url-pattern>/social/tweets</url-pattern>
+	</servlet-mapping>
+
+	<!-- Profile -->
+
+
+	<servlet-mapping>
 		<servlet-name>AddFavorite</servlet-name>
-		<url-pattern>/GareFavor</url-pattern>
+		<url-pattern>/prof/garefavor</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DeleteFavorite</servlet-name>
-		<url-pattern>/SupGareFavor</url-pattern>
+		<url-pattern>/prof/supgarefavor</url-pattern>
 	</servlet-mapping>
-
 	<servlet-mapping>
 		<servlet-name>MonProfil</servlet-name>
-		<url-pattern>/MonProfil</url-pattern>
+		<url-pattern>/prof/monprofil</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>GetProfil</servlet-name>
-		<url-pattern>/GetProfil</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>TweetsServlet</servlet-name>
-		<url-pattern>/tweets</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>SearchStation</servlet-name>
-		<url-pattern>/SearchStation</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>MostSearchedStation</servlet-name>
-		<url-pattern>/MostSearchedStation</url-pattern>
-	</servlet-mapping>
-	
- <servlet-mapping>
-		<servlet-name>GetNbTrainTakenServlet</servlet-name>
-		<url-pattern>/GetNbTrainTaken</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>BestRiderServlet</servlet-name>
-		<url-pattern>/BestRiderServlet</url-pattern>
+		<url-pattern>/prof/getprofil</url-pattern>
 	</servlet-mapping>
 
 </web-app>

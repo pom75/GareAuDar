@@ -37,7 +37,7 @@ function statusChangeCallback(response) {
 		setCookie("key",accessToken, 100);
 		$.ajax ({
 			type : "POST" ,
-			url: "sendkey",
+			url: "search/sendkey",
 			data:"key="+accessToken, 
 			dataType : "json" ,
 			success: function(rep){
