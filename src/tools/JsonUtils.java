@@ -22,10 +22,12 @@ public class JsonUtils {
 		return js;
 	}
 
-	public static JSONObject newJsonOk() {
+	
+	public static JSONObject newJsonOk(JSONObject result) {
 		JSONObject js = new JSONObject();
 		try {
 			js.put("status", "ok");
+			js.put("result", result);
 		} catch (JSONException e) {
 			// TODO should not occur
 			e.printStackTrace();
@@ -33,9 +35,4 @@ public class JsonUtils {
 		return js;
 	}
 
-	//TODO: see for array??
-	// Mettre dans champs result?
-	// Json okay prend le json de resultat?
-	
-	
 }

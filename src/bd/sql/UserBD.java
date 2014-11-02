@@ -232,14 +232,14 @@ public class UserBD {
 					+ key + "';";
 			ResultSet rs = stm.executeQuery(query);
 			if (rs.next()) {
-				JSONObject json = JsonUtils.newJsonOk();
-				
+				JSONObject json = new JSONObject();
+
 				json.put("id", rs.getInt("id_user"));
 				json.put("id_fb", rs.getString("id_fb"));
 				json.put("first_name", rs.getString("first_name"));
 				json.put("last_name", rs.getString("last_name"));
-
-				return json;
+				// HERE
+				return JsonUtils.newJsonOk(json);
 			}
 			// TODO return Json no user
 			return JsonUtils.newJsonError(42, "NO SUCH USER");
@@ -250,7 +250,7 @@ public class UserBD {
 			e.printStackTrace();
 			// TODO Return Json exception
 			return JsonUtils.newJsonError(22, "Unknown Error");
-			
+
 		}
 
 	}
