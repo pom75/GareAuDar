@@ -20,7 +20,7 @@ public class DBConfig {
 
 	// MongoDB
 	public static final String MONGO_IP = "localhost";
-	public static final int MONGO_PORT = 27130;
+	public static final int MONGO_PORT = 27017;
 	public static final String MONGO_DB = "gare";
 	public static final String COLLECTION_ACTUALITE = "actualite";
 	public static final String COLLECTION_TWEET = "actualite";
