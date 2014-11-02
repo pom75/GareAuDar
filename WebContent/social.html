@@ -33,18 +33,18 @@ body {
     <![endif]-->
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/ajax.js"></script>
 <script src="js/mustache.js"></script>
+<script src="js/facebook.js"></script>
 <script src="js/social.js"></script>
 
 
 
 
 </head>
-<body onload="affiche();statSearchedTrain();trainTaken();bestRider();">
+<body onload="statSearchedTrain();trainTaken();bestRider();">
 	<!-- facebookScript -->
 	<div id="fb-root"></div>
-	<script src="js/facebook.js"></script>
+	
 
 	<!-- Barre de navigation -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -142,21 +142,24 @@ body {
 			<!-- Sous menu Mon Profil -->
 			<div id="pro" class="col-md-9">
 				<div class="panel panel-primary  flexx">
-					<h2>Mon Profil</h2>
 
-					<div class="col-md-3">
-						<img id="photoP" src="" / height="100px" width="100px">
+
+					<div class="col-md-9">
+						<h2>Mon Profil</h2>
+						<div class="col-md-3">
+							<img id="photoP" src="" / height="100px" width="100px">
+						</div>
+						<div id="infoP" class="col-md-6"></div>
+						<div class="col-md-6">
+							<button id="buttonfollow" type="button" class="btn btn-success"
+								onclick="follow()" style="display: none">Suivre</button>
+							<button id="buttonunfollow" type="button" class="btn btn-danger"
+								onclick="unfollow()" style="display: none">Ne plus
+								suivre</button>
+
+						</div>
 					</div>
-					<div id="infoP" class="col-md-6"></div>
-					<div class="col-md-3">
-						<button id="buttonfollow" type="button" class="btn btn-success"
-							onclick="follow()" style="display: none">Suivre</button>
-						<button id="buttonunfollow" type="button" class="btn btn-danger"
-							onclick="unfollow()" style="display: none">Ne plus
-							suivre</button>
-
-
-					</div>
+					<br>
 					<div class="col-md-9">
 						<h4>Personnes que je suis :</h4>
 						<div id="whofollow"></div>

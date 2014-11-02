@@ -13,7 +13,7 @@ function switchMenu(bool){
 		$("#page2").css("display", "inline");
 		$("#page1").css("display", "none");
 		menu = 0;
-		
+
 	}
 }
 
@@ -22,34 +22,56 @@ function switchMenu(bool){
 
 //Apelle a la servlet
 function searchGare() {
-		var num = $("#gareliste option:selected").val();
-		
-		searchStation(num);
+	var num = $("#gareliste option:selected").val();
 
-		if($('#chek').is(':checked') && isCo){
-			addFav(num);
-		}else{
-			$('#popUp').modal('show');
-		}
-		
-		$.ajax({
-			type : "POST",
-			url : "search/trainatgare",
-			data : "num="+num,
-			dataType : "json",
-			success : function(rep) {
-				var tpl = "<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td></tr>{{#passages}}{{#train}}" +
-				"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td></tr>{{/train}}</table>{{/passages}}";
-				var html = Mustache.to_html(tpl, rep);
-				$('#responserecerche').html(html);
+	searchStation(num);
 
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				$('#responserecerche').html("<p>num de gare innexistant</p>");
-			}
-		});
-
+	if($('#chek').is(':checked') && isCo){
+		addFav(num);
+	}else if($('#chek').is(':checked') && !isCo){
+		$('#popUp').modal('show');
 	}
+
+	$.ajax({
+		type : "POST",
+		url : "search/trainatgare",
+		data : "num="+num,
+		dataType : "json",
+		success : function(rep) {
+			var tpl = "<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#passages}}{{#train}}" +
+			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td><td class='ttt'>{{term}}</td><td><button type=\"button\" class=\"btn btn-success\" " +
+			" onclick=\"addTrain('{{num}}','{{#date}}{{content}}{{/date}}',"+num+",{{term}});\">Ajouter ce train</button></td></tr>{{/train}}{{/passages}}</table>";
+			var html = Mustache.to_html(tpl, rep);
+			$('#responserecerche').html(html);
+			
+			$('.ttt').each(function(i, obj) {
+			    buff = getNomGare(obj.innerText);
+			    obj.innerText = buff;
+			});
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$('#responserecerche').html("<p>num de gare innexistant</p>");
+		}
+	});
+
+}
+function addTrain(numT,date,numG,term){
+	$.ajax({
+		type : "POST",
+		url : "train/addtrain",
+		data : "key="+getCookie("key")+"&user="+getCookie("id_user")+"&numT="+numT+"&date="+date+"&numG="+numG+"&term="+term,
+		dataType : "json", //CHECK?
+		success : function(rep) {
+			$('#popUp1').modal('show');
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+
+		}
+	});
+}
+
 
 
 function searchStation(num){
@@ -119,7 +141,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'"  >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "b":
 		$.each( tags, function( key, value ) {
@@ -127,7 +149,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "c":
 		$.each( tags, function( key, value ) {
@@ -135,7 +157,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "d":
 		$.each( tags, function( key, value ) {
@@ -143,7 +165,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "e":
 		$.each( tags, function( key, value ) {
@@ -151,7 +173,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "l":
 		$.each( tags, function( key, value ) {
@@ -159,7 +181,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "j":
 		$.each( tags, function( key, value ) {
@@ -167,7 +189,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "h":
 		$.each( tags, function( key, value ) {
@@ -175,7 +197,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "n":
 		$.each( tags, function( key, value ) {
@@ -183,7 +205,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "p":
 		$.each( tags, function( key, value ) {
@@ -191,7 +213,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "r":
 		$.each( tags, function( key, value ) {
@@ -199,7 +221,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "u":
 		$.each( tags, function( key, value ) {
@@ -207,7 +229,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "k":
 		$.each( tags, function( key, value ) {
@@ -215,7 +237,7 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;	
 	default:
 		$.each( tags, function( key, value ) {
@@ -223,36 +245,36 @@ function choixTRAIN(s){
 				$("#gareliste").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
-		break;
+		});
+	break;
 	}
-	
+
 }
 
 //-----------------Service inineraire
 
 //Apelle a la servlet
 function searchIti() {
-		var dep = $("#gareliste1 option:selected").val();
-		var arr = $("#gareliste2 option:selected").val();
-		$.ajax({
-			type : "POST",
-			url : "search/itineraire",
-			data : "dep="+dep+"&arr="+arr,
-			dataType : "json",
-			success : function(rep) {
-				var tpl = "<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td></tr>{{#passages}}{{#train}}" +
-				"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td></tr>{{/train}}</table>{{/passages}}";
-				var html = Mustache.to_html(tpl, rep);
-				$('#responserecerche1').html(html);
+	var dep = $("#gareliste1 option:selected").val();
+	var arr = $("#gareliste2 option:selected").val();
+	$.ajax({
+		type : "POST",
+		url : "search/itineraire",
+		data : "dep="+dep+"&arr="+arr,
+		dataType : "json",
+		success : function(rep) {
+			var tpl = "<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td></tr>{{#passages}}{{#train}}" +
+			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td></tr>{{/train}}</table>{{/passages}}";
+			var html = Mustache.to_html(tpl, rep);
+			$('#responserecerche1').html(html);
 
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				$('#responserecerche1').html("<p>num de gare innexistant</p>");
-			}
-		});
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			$('#responserecerche1').html("<p>num de gare innexistant</p>");
+		}
+	});
 
-	}
+}
 
 
 //Changement de Menu dynamique (Radio options)
@@ -288,10 +310,10 @@ function choixTRAIN1(s){
 	case "a":
 		$.each( tags, function( key, value ) {
 			if (typeof value.fields.a !== 'undefined') {
-				$("#gareliste").append('<option value="'+value.fields.code_uic +'"  >'+ value.fields.libelle_point_arret +'</option>');
+				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "b":
 		$.each( tags, function( key, value ) {
@@ -299,7 +321,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "c":
 		$.each( tags, function( key, value ) {
@@ -307,7 +329,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "d":
 		$.each( tags, function( key, value ) {
@@ -315,7 +337,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "e":
 		$.each( tags, function( key, value ) {
@@ -323,7 +345,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "l":
 		$.each( tags, function( key, value ) {
@@ -331,7 +353,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "j":
 		$.each( tags, function( key, value ) {
@@ -339,7 +361,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "h":
 		$.each( tags, function( key, value ) {
@@ -347,7 +369,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "n":
 		$.each( tags, function( key, value ) {
@@ -355,7 +377,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "p":
 		$.each( tags, function( key, value ) {
@@ -363,7 +385,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "r":
 		$.each( tags, function( key, value ) {
@@ -371,7 +393,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "u":
 		$.each( tags, function( key, value ) {
@@ -379,7 +401,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;
 	case "k":
 		$.each( tags, function( key, value ) {
@@ -387,7 +409,7 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
+		});
 		break;	
 	default:
 		$.each( tags, function( key, value ) {
@@ -395,8 +417,8 @@ function choixTRAIN1(s){
 				$("#gareliste1").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');$("#gareliste2").append('<option value="'+value.fields.code_uic +'" >'+ value.fields.libelle_point_arret +'</option>');
 
 			}
-	});
-		break;
+		});
+	break;
 	}
-	
+
 }

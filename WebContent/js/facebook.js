@@ -41,14 +41,13 @@ function statusChangeCallback(response) {
 			data:"key="+accessToken, 
 			dataType : "json" ,
 			success: function(rep){
-				if(!(typeof (rep.code) == 'undefined')){
-					erreurServlet(rep.code,rep.mess);
-				}else{
-					setCookie("id_fb",rep.id_fb, 100);
-					setCookie("id_user",rep.id, 100);
-					setCookie("fname",rep.first_name , 100);
-					setCookie("lname",rep.last_name , 100);
-				} 
+				
+					console.log(rep);
+					setCookie("id_fb",rep.result.id_fb, 100);
+					setCookie("id_user",rep.result.id, 100);
+					setCookie("fname",rep.result.first_name , 100);
+					setCookie("lname",rep.result.last_name , 100);
+				
 			},
 			error :function(jqXHR, textStatus , errorThrown ){
 				
@@ -61,6 +60,7 @@ function statusChangeCallback(response) {
 		$('#myModal').modal('show');
 		isCo = false;
 	}
+	affiche()
 }
 
 

@@ -26,10 +26,10 @@ public class UserBD {
 		Connection co;
 		Statement stm;
 		String query;
-		ArrayList<Integer> ids = new ArrayList<>();
-		ArrayList<JourneyTrain> jt = new ArrayList<>();
-		ArrayList<JourneyTrain> myList = new ArrayList<>();
-		HashMap<Integer, Integer> num = new HashMap<>();
+		ArrayList<Integer> ids = new ArrayList();
+		ArrayList<JourneyTrain> jt = new ArrayList();
+		ArrayList<JourneyTrain> myList = new ArrayList();
+		HashMap<Integer, Integer> num = new HashMap();
 		JSONObject json = new JSONObject();
 
 		try {
@@ -210,7 +210,7 @@ public class UserBD {
 			// Si une exeption est leve l'insersion na pas pu se faire , on
 			// revois false
 		} catch (MySQLIntegrityConstraintViolationException e) {
-			System.err.print("utilisateur déja cré :");
+			System.err.print("utilisateur d��ja cr�� :");
 			return false;
 		} catch (Exception e) {
 			System.err.print("Exception :");
@@ -243,7 +243,7 @@ public class UserBD {
 			}
 			// TODO return Json no user
 			return JsonUtils.newJsonError(42, "NO SUCH USER");
-			// note to stephane, tu peux créer méthode dans JsonUtils
+			// note to stephane, tu peux cr��er m��thode dans JsonUtils
 
 		} catch (Exception e) {
 			System.err.print("AAAAAAAAAAAAAAException :");

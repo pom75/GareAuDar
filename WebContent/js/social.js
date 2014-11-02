@@ -1,15 +1,18 @@
 var menuOn = false;
 
 function affiche(){
+	displayAll();
 	if ( isCo ){
 		menuOn = true;
 		var url = window.location.href;
 		url = url.substring(url.lastIndexOf("#")+1);
-		if(url.length > 1){
+		if(url.length > 1 && url.length < 5){
 			switchMenu(url);
+		}else{
+			switchMenu("pro");
 		}
+		
 	}else{
-		displayAll();
 		$('#myModal').modal('show');
 	}
 	
@@ -36,7 +39,7 @@ function bestRider(){
 function trainTaken(){
 	$.ajax({
 		type: "POST",
-		url : "/search/getnbtraintaken",
+		url : "search/getnbtraintaken",
 		data : "user="+getCookie("id_user"),
 		datType : "json",
 		success: function(rep){
@@ -52,7 +55,7 @@ function trainTaken(){
 function statSearchedTrain(){
 	$.ajax({
 		type: "POST",
-		url : "/search/mostsearchedstation", // Tu t'es cru sur Needforspeed ?
+		url : "search/mostsearchedstation", // Tu t'es cru sur Needforspeed ?
 		data : "user="+getCookie("id_user"),
 		datType : "json",
 		success: function(rep){
@@ -123,7 +126,7 @@ function switchMenu(item){
 
 function callP(){
 	$('#photoP').attr( "src", "http://graph.facebook.com/"+getCookie("id_fb")+"/picture" );
-	$('#infoP').append( "<h3>"+ getCookie("lname") +" "+ getCookie("fname") +"</h3>" );
+	$('#infoP').html( "<h3>"+ getCookie("lname") +" "+ getCookie("fname") +"</h3>" );
 	
 	$.ajax ({
 		type : "POST" ,
@@ -182,13 +185,14 @@ function callP(){
 function callF(){
 	$.ajax ({
 		type : "POST" ,
-		url: "/train/listgare",
+		url: "train/listgare",
 		data: "user="+getCookie("id_user"), 
 		dataType : "json" ,
 		success: function(rep){
 			if(!(typeof (rep.code) == 'undefined')){
 				erreurServlet(rep.code,rep.mess);
 			}else{
+				$('#listgare').html("");
 				for (var i = 0; i < rep.list.length; i++) {
 				    var counter = rep.list[i];
 				     addGare(counter.uic); 
@@ -214,12 +218,16 @@ function addGare(num){
 		dataType : "json",
 		success : function(rep) {
 			
-			var tpl = "<div class=\"col-md-4\"><h5>Nom :"+ num + "</h5></div><div class=\"col-md-4\"><button id=\"buttonunfav\" type=\"button\"  class=\"btn btn-danger\" onclick=\"unfav("+num+")\"  >Retirer des favoris</button></div>" +
+			var tpl = "<div class=\"col-md-4\"><h5>"+ getNomGare(num) + "</h5></div><div class=\"col-md-4\"><button id=\"buttonunfav\" type=\"button\"  class=\"btn btn-danger\" onclick=\"unfav("+num+")\"  >Retirer des favoris</button></div>" +
 					"<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#passages}}{{#train}}" +
-			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td><td>{{term}}</td><td><button type=\"button\" class=\"btn btn-success\" " +
+			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td><td class='ttt'>{{term}}</td><td><button type=\"button\" class=\"btn btn-success\" " +
 			" onclick=\"addTrain('{{num}}','{{#date}}{{content}}{{/date}}','"+num+"','{{term}}');\">Ajouter ce train</button></td></tr>{{/train}}</table>{{/passages}}";
 			var html = Mustache.to_html(tpl, rep);
 			$('#listgare').append(html);
+			$('.ttt').each(function(i, obj) {
+			    buff = getNomGare(obj.innerText);
+			    obj.innerText = buff;
+			});
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -253,11 +261,16 @@ function callT(){
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user"),
 		dataType : "json",
 		success : function(rep) {
-			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
-			"<tr><td>{{numG}}</td><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td><td>{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
+			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
+			"<tr><td class='ttt'>{{numG}}</td><td>{{#date}}{{content}}{{/date}}</td><td>{{num}}</td><td class='ttt' >{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
 			" onclick=\"suppTrain('{{num}}','{{#date}}{{content}}{{/date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
 			$('#tav').html(html);
+			$('.ttt').each(function(i, obj) {
+			    buff = getNomGare(obj.innerText);
+			    obj.innerText = buff;
+			});
+			
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -271,11 +284,12 @@ function callT(){
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user"),
 		dataType : "json",
 		success : function(rep) {
-			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
-			"<tr><td>{{numG}}</td><td>{{date}}</td><td>{{miss}}</td><td>{{numT}}</td><td>{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
+			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
+			"<tr><td class='ttt' >{{numG}}</td><td>{{date}}</td><td>{{numT}}</td><td class='ttt' >{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
 			" onclick=\"suppTrain('{{numT}}','{{date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
 			$('#tpa').html(html);
+
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -293,9 +307,13 @@ function callT(){
 			console.log(rep);
 			
 			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Nom</td></tr>{{#train}}" +
-			"<tr><td>{{numG}}</td><td>{{date}}</td><td>{{miss}}</td><td>{{numT}}</td><td>{{term}}</td><td>{{user_id}}</td></tr>{{/train}}</table>";
+			"<tr><td class='ttt' >{{numG}}</td><td>{{date}}</td><td>{{miss}}</td><td>{{numT}}</td><td class='ttt'>{{term}}</td><td>{{user_id}}</td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
 			$('#tavf').html(html);
+			$('.ttt').each(function(i, obj) {
+			    buff = getNomGare(obj.innerText);
+			    obj.innerText = buff;
+			});
 			
 
 		},
