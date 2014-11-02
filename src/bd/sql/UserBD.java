@@ -26,10 +26,12 @@ public class UserBD {
 		Connection co;
 		Statement stm;
 		String query;
-		ArrayList<Integer> ids = new ArrayList();
-		ArrayList<JourneyTrain> jt = new ArrayList();
-		ArrayList<JourneyTrain> myList = new ArrayList();
-		HashMap<Integer, Integer> num = new HashMap();
+
+		ArrayList<Integer> ids = new ArrayList<Integer>();
+		ArrayList<JourneyTrain> jt = new ArrayList<JourneyTrain>();
+		ArrayList<JourneyTrain> myList = new ArrayList<JourneyTrain>();
+		HashMap<Integer, Integer> num = new HashMap<Integer, Integer>();
+		
 		JSONObject json = new JSONObject();
 
 		try {
