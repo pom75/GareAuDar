@@ -28,7 +28,7 @@ function bestRider(){
 		datType : "json",
 		success: function(rep){
 			var json = JSON.parse(rep);
-			document.getElementById('bestRider').innerHTML = json.name + " ("+json.max+")";
+			document.getElementById('bestRider').innerHTML = "<a href=\"prof.html?id="+json.id+"\" >" +json.name + " ("+json.max+")</a>";
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			$('#responserecerche').html("<p>num de gare innexistant</p>");
@@ -60,7 +60,7 @@ function statSearchedTrain(){
 		datType : "json",
 		success: function(rep){
 			var json = JSON.parse(rep);
-			document.getElementById('GareMost').innerHTML = json.station + " ("+json.num+")";
+			document.getElementById('GareMost').innerHTML = getNomGare(json.station) + " ("+json.num+")";
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			$('#responserecerche').html("<p>num de gare innexistant</p>");
@@ -219,7 +219,7 @@ function addGare(num){
 		success : function(rep) {
 			
 			var tpl = "<div class=\"col-md-4\"><h5>"+ getNomGare(num) + "</h5></div><div class=\"col-md-4\"><button id=\"buttonunfav\" type=\"button\"  class=\"btn btn-danger\" onclick=\"unfav("+num+")\"  >Retirer des favoris</button></div>" +
-					"<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#passages}}{{#train}}" +
+					"<table class=\"table table-striped\"><tr><td>Heure</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#passages}}{{#train}}" +
 			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td><td class='ttt'>{{term}}</td><td><button type=\"button\" class=\"btn btn-success\" " +
 			" onclick=\"addTrain('{{num}}','{{#date}}{{content}}{{/date}}','"+num+"','{{term}}');\">Ajouter ce train</button></td></tr>{{/train}}</table>{{/passages}}";
 			var html = Mustache.to_html(tpl, rep);
@@ -261,8 +261,8 @@ function callT(){
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user"),
 		dataType : "json",
 		success : function(rep) {
-			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
-			"<tr><td class='ttt'>{{numG}}</td><td>{{#date}}{{content}}{{/date}}</td><td>{{num}}</td><td class='ttt' >{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
+			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heure</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
+			"<tr><td class='ttt'>{{numG}}</td><td>{{#date}}{{content}}{{/date}}</td><td><a href=\"train.html?numT={{num}}&date={{#date}}{{content}}{{/date}}&term={{term}}\">{{num}}</a></td><td class='ttt' >{{term}}</td></a><td><button type=\"button\" class=\"btn btn-danger\" " +
 			" onclick=\"suppTrain('{{num}}','{{#date}}{{content}}{{/date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
 			$('#tav').html(html);
@@ -284,8 +284,8 @@ function callT(){
 		data : "key="+getCookie("key")+"&user="+getCookie("id_user"),
 		dataType : "json",
 		success : function(rep) {
-			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
-			"<tr><td class='ttt' >{{numG}}</td><td>{{date}}</td><td>{{numT}}</td><td class='ttt' >{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
+			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heure</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#train}}" +
+			"<tr><td class='ttt' >{{numG}}</td><td>{{date}}</td><td><a href=\"train.html?numT={{num}}&date={{date}}&term={{term}}\">{{numT}}</a></td><td class='ttt' >{{term}}</td><td><button type=\"button\" class=\"btn btn-danger\" " +
 			" onclick=\"suppTrain('{{numT}}','{{date}}');\">Suprimer ce train</button></td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
 			$('#tpa').html(html);
@@ -306,13 +306,27 @@ function callT(){
 		success : function(rep) {
 			console.log(rep);
 			
-			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Nom</td></tr>{{#train}}" +
-			"<tr><td class='ttt' >{{numG}}</td><td>{{date}}</td><td>{{miss}}</td><td>{{numT}}</td><td class='ttt'>{{term}}</td><td>{{user_id}}</td></tr>{{/train}}</table>";
+			var tpl = "<table class=\"table table-striped\"><tr><td>Depart</td><td>Heure</td><td>Num</td><td>Terminus</td><td>Nom</td></tr>{{#train}}" +
+			"<tr><td class='ttt' >{{numG}}</td><td>{{date}}</td><td><a href=\"train.html?numT={{num}}&date={{date}}&term={{term}}\">{{numT}}</a></td><td class='ttt'>{{term}}</td><td class='ami'>{{user_id}}</td></tr>{{/train}}</table>";
 			var html = Mustache.to_html(tpl, rep);
 			$('#tavf').html(html);
-			$('.ttt').each(function(i, obj) {
-			    buff = getNomGare(obj.innerText);
-			    obj.innerText = buff;
+			$('.ami').each(function(i, obj) {
+			    buff = obj.innerText;
+			    $('.ami').each(function(i, obj) {
+				    
+				    $.ajax ({
+						type : "POST" ,
+						url: "prof/getprofil",
+						data: "id="+buff, 
+						dataType : "json" ,
+						success: function(rep){
+								obj.innerText = rep.last_name +" "+ rep.first_name;
+						},
+						error :function(jqXHR, textStatus , errorThrown ){
+
+						}
+					})
+				});
 			});
 			
 

@@ -88,7 +88,7 @@ public class UserBD {
 			String userName = userJson.get("first_name").toString() + " "
 					+ userJson.get("last_name").toString();
 			json.put("name", userName);
-			// json.put("id",user);
+			json.put("id",user);
 			json.put("max", max);
 
 			return json;

@@ -38,7 +38,7 @@ function searchGare() {
 		data : "num="+num,
 		dataType : "json",
 		success : function(rep) {
-			var tpl = "<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#passages}}{{#train}}" +
+			var tpl = "<table class=\"table table-striped\"><tr><td>Heure</td><td>Misson</td><td>Num</td><td>Terminus</td><td>Gestion</td></tr>{{#passages}}{{#train}}" +
 			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td><td class='ttt'>{{term}}</td><td><button type=\"button\" class=\"btn btn-success\" " +
 			" onclick=\"addTrain('{{num}}','{{#date}}{{content}}{{/date}}',"+num+",{{term}});\">Ajouter ce train</button></td></tr>{{/train}}{{/passages}}</table>";
 			var html = Mustache.to_html(tpl, rep);
@@ -95,7 +95,7 @@ function addFav(num){
 		data : "token="+getCookie("key")+"&uic="+num+"&user="+getCookie("id_user"),
 		dataType : "json",
 		success : function(rep) {
-			var tpl = "<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td></tr>{{#passages}}{{#train}}" +
+			var tpl = "<table class=\"table table-striped\"><tr><td>Heure</td><td>Misson</td><td>Num</td></tr>{{#passages}}{{#train}}" +
 			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td></tr>{{/train}}</table>{{/passages}}";
 			var html = Mustache.to_html(tpl, rep);
 			$('#responserecerche').html(html);
@@ -263,7 +263,7 @@ function searchIti() {
 		data : "dep="+dep+"&arr="+arr,
 		dataType : "json",
 		success : function(rep) {
-			var tpl = "<table class=\"table table-striped\"><tr><td>Heur</td><td>Misson</td><td>Num</td></tr>{{#passages}}{{#train}}" +
+			var tpl = "<table class=\"table table-striped\"><tr><td>Heure</td><td>Misson</td><td>Num</td></tr>{{#passages}}{{#train}}" +
 			"<tr><td>{{#date}}{{content}}{{/date}}</td><td>{{miss}}</td><td>{{num}}</td></tr>{{/train}}</table>{{/passages}}";
 			var html = Mustache.to_html(tpl, rep);
 			$('#responserecerche1').html(html);
