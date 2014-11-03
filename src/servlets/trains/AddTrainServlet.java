@@ -23,7 +23,7 @@ public class AddTrainServlet extends HttpServlet {
 		String numG = request.getParameter("numG");
 		String term = request.getParameter("term");
 		
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(TrainService.addTrain(key, user_id, numT,date,numG, term));
 	}
 

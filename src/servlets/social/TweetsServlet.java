@@ -14,7 +14,7 @@ public class TweetsServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String n = request.getParameter("n");
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(ToolService.getNTweet(n));
 	}
 

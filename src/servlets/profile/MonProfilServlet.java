@@ -21,7 +21,7 @@ public class MonProfilServlet extends HttpServlet {
 				key = cookie.getValue();
 			}
 		}
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(UserService.getProfil(key));
 	}
 

@@ -19,7 +19,7 @@ public class GetMyTrainFutureServlet extends HttpServlet {
 		String key = request.getParameter("key");
 		String user_id = request.getParameter("user");
 		
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(TrainService.getTrainFuture(key, user_id));
 	}
 

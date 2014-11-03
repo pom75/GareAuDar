@@ -20,7 +20,7 @@ public class GetTrainServlet extends HttpServlet {
 		String numT = request.getParameter("numT");
 		String term = request.getParameter("term");
 		
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(TrainService.getTrain(date,numT,term));
 	}
 

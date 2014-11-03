@@ -30,7 +30,7 @@ public class ItineraireServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String dep = request.getParameter("dep");
 		String arr = request.getParameter("arr");
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(SNCFApi.getInineraire(dep, arr));
 	}
 

@@ -29,7 +29,7 @@ public class SendKeyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String key = request.getParameter("key");
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		KeyService keyService = new KeyService(key);
 		response.getWriter().println(keyService.service());
 	}

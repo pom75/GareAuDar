@@ -15,7 +15,7 @@ public class GetProfilServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(UserService.getProfilID(id));
 	}
 

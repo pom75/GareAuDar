@@ -22,7 +22,7 @@ public class IsMyTrainServlet extends HttpServlet {
 		String numT = request.getParameter("numT");
 		String numG = request.getParameter("numG");
 		
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(TrainService.isMyTrain(key,user_id,date,numT,numG));
 	}
 

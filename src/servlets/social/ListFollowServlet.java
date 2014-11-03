@@ -18,7 +18,7 @@ public class ListFollowServlet extends HttpServlet {
 		String user1 = request.getParameter("quiMeSuis");
 		
 		
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(FollowService.getFollow(user1,user2));
 	}
 

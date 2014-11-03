@@ -19,7 +19,7 @@ public class DeleteFavoriteServlet extends HttpServlet {
 		String token = request.getParameter("token");
 		String uic = request.getParameter("uic");
 		String user = request.getParameter("user");
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(GareService.removeFavor(token,user, uic));
 	}
 

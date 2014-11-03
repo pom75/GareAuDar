@@ -20,7 +20,7 @@ public class RemoveTrainServlet extends HttpServlet {
 		String numT = request.getParameter("numT");
 		String date = request.getParameter("date");
 		
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(TrainService.removeTrain(key, user_id, numT, date));
 	}
 

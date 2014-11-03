@@ -22,7 +22,7 @@ public class AddFavoriteServlet extends HttpServlet {
 		String user = request.getParameter("user");
 		String token = request.getParameter("token");
 		String uic = request.getParameter("uic");
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(GareService.addFavor(token, user, uic));
 	}
 

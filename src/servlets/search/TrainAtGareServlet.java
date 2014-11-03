@@ -24,7 +24,7 @@ public class TrainAtGareServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String num = request.getParameter("num");
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(SNCFApi.getTrainAtGareJSON(num));
 	}
 

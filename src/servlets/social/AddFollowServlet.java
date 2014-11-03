@@ -19,7 +19,7 @@ public class AddFollowServlet extends HttpServlet {
 		String user1 = request.getParameter("user1");
 		String user2 = request.getParameter("user2");
 		String key = request.getParameter("key");
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(FollowService.addFollow(user1, user2,key));
 	}
 

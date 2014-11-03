@@ -21,7 +21,7 @@ public class RemoveFollowServlet extends HttpServlet {
 		String key = request.getParameter("key");
 		String user1 = request.getParameter("user1");
 		String user2 = request.getParameter("user2");
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(FollowService.removeFollow(key,user1, user2));
 	}
 

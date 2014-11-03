@@ -14,7 +14,7 @@ public class BestRiderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String user_id = request.getParameter("user");
 		
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.getWriter().println(UserService.test(user_id));
 	}
 
